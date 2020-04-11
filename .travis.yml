@@ -1,10 +1,8 @@
-sudo: required
 language: java
+sudo: required
 jdk:
   - oraclejdk8
 
-install:
-  - cd desapp-groupF-backend/ && mvn install -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8
-
 script:
+  - cd desapp-groupF-backend
   - mvn clean install -Dmaven.compiler.target=1.8 -Dmaven.compiler.source=1.8 && mvn test
