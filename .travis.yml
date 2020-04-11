@@ -2,7 +2,7 @@ dist: xenial
 language: java
 sudo: required
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 script:
   - cd desapp-groupF-backend
