@@ -5,18 +5,13 @@ class Compra {
     // usuario
     // tipoDeEnvio
     //estado
+    //itemCompra
+
+    fun devolverTotal():Double {
+        return 0.0
+    }
 
 }
 
-class itemCompra {
-    var item: Producto = TODO()
-    var cantidad: Double = 0.0
-    // comercio ?
 
 
-}
-
-
- fun devolverTotal() {
-
- }
