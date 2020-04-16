@@ -11,4 +11,4 @@ script:
 after_success:
   - cd desapp-groupF-backend/
   - mvn cobertura:cobertura
-  - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/cobertura/coverage.xml -DapiToken=e2a1d8454e4948008593996ff0f8af46
+  - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/cobertura/coverage.xml
