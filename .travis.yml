@@ -16,4 +16,4 @@ before_install:
 after_success:
   - cd desapp-groupF-backend/
   - mvn cobertura:cobertura
-	- java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r target/site/jacoco/jacoco.xml
+  - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=47dc56996a3242b2b25606a5e65d5fca -DapiToken=f180db4dff814bea8e16d39471959d9c 
