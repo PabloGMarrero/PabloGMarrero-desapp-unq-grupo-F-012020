@@ -50,4 +50,11 @@ class ProductoTest {
         assertEquals(producto.precio, 85.5)
     }
 
+    @Test
+    fun testProductoConPrecio50YMarcaPepitos(){
+        var producto = ProductoBuilder.unProducto().conPrecio(50.0).conMarca("Pepitos").build()
+        assertEquals(producto.precio, 50.0)
+        assertEquals(producto.marca, "Pepitos")
+    }
+
 }
