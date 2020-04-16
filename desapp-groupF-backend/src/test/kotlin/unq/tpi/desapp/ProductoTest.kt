@@ -21,31 +21,31 @@ class ProductoTest {
     }
 
     @Test
-    fun testConstructorConId100(){
+    fun testProductoConId100(){
         var producto = ProductoBuilder.unProducto().conId(100).build()
         assertEquals(producto.id, 100)
     }
 
     @Test
-    fun testConstructorConImagenDistintoVacio(){
+    fun testProductoConImagenDistintoVacio(){
         var producto = ProductoBuilder.unProducto().conUrl("blabla").build()
         assertEquals(producto.imagen, "blabla")
     }
 
     @Test
-    fun testConstructorConMarcaDistintoVacio(){
+    fun testProductoConMarcaDistintoVacio(){
         var producto = ProductoBuilder.unProducto().conMarca("Marolio").build()
         assertEquals(producto.marca, "Marolio")
     }
 
     @Test
-    fun testConstructorConNombreDistintoVacio(){
+    fun testProductoConNombreDistintoVacio(){
         var producto = ProductoBuilder.unProducto().conNombre("Aceite").build()
         assertEquals(producto.nombre, "Aceite")
     }
 
     @Test
-    fun testConstructorConPrecioDistintoVacio(){
+    fun testProductoConPrecioDistintoVacio(){
         var producto = ProductoBuilder.unProducto().conPrecio(85.5).build()
         assertEquals(producto.precio, 85.5)
     }
