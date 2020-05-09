@@ -1,6 +1,6 @@
 import Product from '../model/Product'
 
-const base_path = './../../assets/img/'
+const base_path = './assets/img/'
 
 const products=[
     new Product(1, "Coca-Cola regular", "Coca-Cola", base_path + 'coca-cola-225.jpg', 150.5),
