@@ -4,7 +4,12 @@ import Home from './components/Home/Home'
 
 function App() {
   return (
-   <Home></Home>
+    <Router>
+      <Switch>
+        <Route exact path= '/' component={Home}/>
+        <Route exact path='/home' component={Home}/>
+      </Switch>
+    </Router>
   );
 }
 
