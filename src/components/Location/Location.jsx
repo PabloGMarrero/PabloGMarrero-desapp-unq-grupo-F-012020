@@ -2,14 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import {withRouter} from 'react-router';
 import { TextField } from '@material-ui/core';
-import Geocode from "react-geocode";
+import { GoogleComponent } from 'react-google-location' 
 
-
+const API_KEY = "AIzaSyAhVNCPUtWFJOD4CrFBoHEHcMhsb_OGpGg" 
 
 class Location extends React.Component {
-    constructor(props) {
+    constructor(props){
         super(props);
+        this.state = {
+            place: null,
+
+        }
     }
+    
 
 
 
@@ -18,13 +23,23 @@ class Location extends React.Component {
             <div className="Location">
                 <h1>Buy From Home</h1>
 
-                <form className="input" noValidate autoComplete="off">
-                    <TextField id="standard-basic" label="Calle y Numero" />
+                <div >
+                <GoogleComponent
+            
+                    apiKey={API_KEY}
+                    language={'en'}
+                    country={'country:us'}
+                    coordinates={true}
+                    placeholder={'Start typing location'}
+                   locationBoxStyle={'custom-style'}
+                     locationListStyle={'custom-style-list'}
+                    onClick={(e) => { this.setState({ place: e }) }} />
+                </div>
 
-                </form>
             </div>
         );
     }
 }
+
 
 export default withRouter(Location);
