@@ -14,8 +14,16 @@ class Home extends React.Component{
     render(){
         return (
             <div className="main-body">
+                <div className={"Home-Top-Page"}>
                 <Navbar></Navbar>
-                <ProductsList products = {this.state.products}></ProductsList>
+                </div>
+                
+                
+
+                <div className={"Home-Middle-Page"}>
+                    <ProductsList products = {this.state.products}></ProductsList>
+                </div>
+                
             </div>
         )
     }
