@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import { Product } from '../Product/Product';
 
 export class ProductsList extends Component{
@@ -11,4 +11,4 @@ export class ProductsList extends Component{
     }
 }
 
-export default ProductsList;
+export default ProductsList;*/

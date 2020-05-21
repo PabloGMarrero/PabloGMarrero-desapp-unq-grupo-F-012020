@@ -33,7 +33,7 @@ class Location extends React.Component {
                     placeholder={'Start typing location'}
                    locationBoxStyle={'custom-style'}
                      locationListStyle={'custom-style-list'}
-                    onClick={(e) => { this.setState({ place: e }) }} />
+                    onChange={(e) => { this.setState({ place: e }) }} />
                 </div>
 
             </div>
