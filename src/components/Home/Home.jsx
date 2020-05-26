@@ -40,8 +40,7 @@ class Home extends React.Component{
         return (
             <div className="main-body">
                 <div className={"Home-Top-Page"}>
-                <Navbar></Navbar>
-                </div>
+                        </div>
                 
                 
 
