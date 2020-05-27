@@ -22,7 +22,7 @@ const Product = ({ data }) => {
 
   return (
     
-    <div id={id} className="card product-card">
+    <div id={id} className="product-card">
       <div className="card-body">
         <div className="row">
           <div className="product-col" style={{ textAlign: 'center' }}>
@@ -30,8 +30,8 @@ const Product = ({ data }) => {
           </div>
           <div className="card">
             <h5 className="card-title">{productName}</h5>
-            <p className="card-text">{price}</p>
-            <Button size="small" color="primary" align= "center">
+            <p className="card-text">{price}$ </p>
+            <Button variant="contained" size="small" color="primary" align= "center">
                       Agregar al Carrito
             </Button>
           </div>
