@@ -1,6 +1,6 @@
 .product-img {
-    height: 150px;
-    width: 50px;
+    height: 200px;
+    width: 150px;
   }
   
   .product-card {
@@ -8,5 +8,18 @@
   }
   
   .product-col {
+    text-align: center;
+  }
+
+
+  .card-title{
+    text-align: center;
+  }
+  
+  .card-text{
+    text-align: center;
+  }
+
+  .card{
     text-align: center;
   }

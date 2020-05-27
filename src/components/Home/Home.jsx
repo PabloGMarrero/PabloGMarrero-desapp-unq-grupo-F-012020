@@ -1,10 +1,9 @@
 import React from 'react'
 import './Home.css';
-import { ProductsService } from '../../service/ProductsService';
-import ProductsList from '../ProductsList/ProductsList'
-import Navbar from '../Navbar/Navbar';
 import { getProducts } from '../api/productAPI';
 import Product from '../Product/Product.jsx';
+
+
 
 class Home extends React.Component{
     constructor(props){
@@ -38,6 +37,7 @@ class Home extends React.Component{
 
     render(){
         return (
+                
             <div className="main-body">
                 <div className={"Home-Top-Page"}>
                         </div>
@@ -54,4 +54,4 @@ class Home extends React.Component{
     }
 }
 
-export default Home;
+export default Home; 

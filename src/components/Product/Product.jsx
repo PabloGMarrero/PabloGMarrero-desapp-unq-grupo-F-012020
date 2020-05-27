@@ -7,26 +7,33 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';*/
+*/
+import Button from '@material-ui/core/Button';
 
 import React from 'react';
 import './Product.css';
 
 const base_path = './assets/img/'
 
+
+
 const Product = ({ data }) => {
   const { id, productName, price, image_url:image } = data;
 
   return (
+    
     <div id={id} className="card product-card">
       <div className="card-body">
         <div className="row">
-          <div className="col-2 product-col" style={{ textAlign: 'center' }}>
+          <div className="product-col" style={{ textAlign: 'center' }}>
             <img src={base_path + 'coca-cola-225.jpg'} alt={productName} className="product-img" />
           </div>
           <div className="col-10">
             <h5 className="card-title">{productName}</h5>
             <p className="card-text">{price}</p>
+            <Button size="small" color="primary" align= "center">
+                      Agregar al Carrito
+            </Button>
           </div>
         </div>
       </div>
