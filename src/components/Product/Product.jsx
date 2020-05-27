@@ -28,7 +28,7 @@ const Product = ({ data }) => {
           <div className="product-col" style={{ textAlign: 'center' }}>
             <img src={base_path + 'coca-cola-225.jpg'} alt={productName} className="product-img" />
           </div>
-          <div className="col-10">
+          <div className="card">
             <h5 className="card-title">{productName}</h5>
             <p className="card-text">{price}</p>
             <Button size="small" color="primary" align= "center">

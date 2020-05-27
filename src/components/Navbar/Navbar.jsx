@@ -6,44 +6,51 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import MenuIcon from '@material-ui/icons/Menu'; 
-import {Link, withRouter} from "react-router-dom";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-}));
+export default function SimpleMenu(){
 
-class NavBar extends React.Component {
-  constructor(props) {
-      super(props);
 
-  }  ;
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-      render() {
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
       return (
         <div className="root">
-          <AppBar position="static" color="primary">
+          <AppBar  color="primary">
             <Toolbar>
-              <IconButton edge="start" className="menuButton" color="inherit" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
+            <Button  color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                    Menu
+                  </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </Menu>
+              
+              <Button align="left" color="inherit"  onClick={() => this.props.history.push(`/login`)} >Login</Button>
+              <Button align="left" color="inherit" onClick={() => this.props.history.push(`/register`)}>Register</Button>
               <Typography variant="h6" className="title">
                 Compra en casa!
               </Typography>
-              <Button color="inherit"  onClick={() => this.props.history.push(`/login`)} >Login</Button>
-              <Button color="inherit" onClick={() => this.props.history.push(`/register`)}>Register</Button>
             </Toolbar>
           </AppBar>
         </div>
       );
-    }
-  }
-  export default withRouter(NavBar);
+}
+
+
+
