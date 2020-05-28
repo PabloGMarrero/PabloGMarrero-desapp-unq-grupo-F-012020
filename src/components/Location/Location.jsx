@@ -14,7 +14,7 @@ class Location extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            place: null,
+            error: '',
             lng: -58.3225,
             lat: -34.6813,
             zoom: 12
