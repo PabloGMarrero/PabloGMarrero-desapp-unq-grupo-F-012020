@@ -1,24 +1,24 @@
 import React from 'react';
 import Navbar from "../components/Navbar/Navbar";
 import ContainerRoot from '../components/Location/Location'
-import {withRouter} from 'react-router';
 import Footer from '../components/Footer/Footer'
 
 
 
-class Root extends React.Component {
+export default class Root extends React.Component {
     constructor(props) {
         super(props);
     }
 
-
+    
 
     render() {
+        console.log('root', this.props);
         return (
-           
+            
             <div>
                  <Navbar></Navbar>
-                 <ContainerRoot></ContainerRoot>
+                  <ContainerRoot></ContainerRoot>
                  <Footer></Footer>
             </div>
             
@@ -27,4 +27,3 @@ class Root extends React.Component {
     }
 }
 
-export default withRouter(Root);

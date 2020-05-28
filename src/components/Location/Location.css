@@ -1,8 +1,8 @@
 .mapContainer {
-    position: absolute;
-    top: 0;
+    position: absolute center;
+    top: 20;
     right: 0;
-    left: 0;
+    left: 110px;
     bottom: 0;
     }
 

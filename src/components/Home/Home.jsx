@@ -2,7 +2,7 @@ import React from 'react'
 import './Home.css';
 import { getProducts } from '../api/productAPI';
 import Product from '../Product/Product.jsx';
-
+import {withRouter} from 'react-router';
 
 
 class Home extends React.Component{
@@ -15,7 +15,7 @@ class Home extends React.Component{
     }
 
     componentDidMount() {
-        getProducts()
+        getProducts(this.props.location.state.coord.long,this.props.location.state.coord.lat)
           .then(products => this.setState({ products }))
           .catch(error => this.setState({ error }))
       }
@@ -36,12 +36,13 @@ class Home extends React.Component{
 
 
     render(){
+      console.log(this.props.location.state)
         return (
                 
             <div className="main-body">
                 <div className={"Home-Top-Page"}>
                         </div>
-                
+                <div>Longitude: {this.props.location.state.coord.long} | Latitude: {this.props.location.state.coord.lat} </div>
                 
 
                 <div className="container">
@@ -54,4 +55,4 @@ class Home extends React.Component{
     }
 }
 
-export default Home; 
+export default withRouter(Home); 

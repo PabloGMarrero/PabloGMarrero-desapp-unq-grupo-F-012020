@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './views/Home'
 import Login from './views/Login'
 import Root from './views/Root'
@@ -8,14 +8,14 @@ import Register from './views/Register'
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
-        <Route exact path= '/' component={Root}/>
-        <Route exact path='/home' component={Home}/>
+        <Route exact path= '/' render={props => <Root {...props} />}/>
+        <Route exact path='/home'  render={props => <Home coord={ props.location.state }/>}/>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/register' component={Register}/>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
 
