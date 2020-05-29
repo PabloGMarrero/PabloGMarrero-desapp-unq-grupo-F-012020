@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "../components/Navbar/Navbar";
+import './Root.css';
 import ContainerRoot from '../components/Location/Location'
 import Footer from '../components/Footer/Footer'
 
@@ -13,11 +13,10 @@ export default class Root extends React.Component {
     
 
     render() {
-        console.log('root', this.props);
         return (
             
-            <div>
-                 <Navbar></Navbar>
+            <div className="containerRoot">
+                 
                   <ContainerRoot></ContainerRoot>
                  <Footer></Footer>
             </div>

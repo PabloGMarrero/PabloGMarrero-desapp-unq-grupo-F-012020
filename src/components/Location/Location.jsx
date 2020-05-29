@@ -6,7 +6,7 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import Button from '@material-ui/core/Button'
 import './Location.css';
 
-//const API_KEY = "AIzaSyAhVNCPUtWFJOD4CrFBoHEHcMhsb_OGpGg" 
+const image = './assets/img/logoB.png'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXplY2FycmFzY29zYSIsImEiOiJja2FoNnFkZmYwZ3N5MnBvMXNtdGx6c3QyIn0.xR9FIATQVNcdykGIGpITsA';
 
@@ -28,9 +28,11 @@ class Location extends React.Component {
     componentDidMount() {
         const map = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/satellite-streets-v11',
+        style: 'mapbox://styles/mapbox/navigation-guidance-day-v4',
         center: [this.state.lng, this.state.lat],
-        zoom: this.state.zoom
+        zoom: this.state.zoom,
+        height: '500px',
+        attributionControl: false
         });
          
         map.on('click', () => {
@@ -39,35 +41,34 @@ class Location extends React.Component {
         lat: map.getCenter().lat.toFixed(4),
         zoom: map.getZoom().toFixed(2) });
         
+
         });
 
         
-        var geocoder = new MapboxGeocoder({
-            accessToken: 'pk.eyJ1IjoiZXplY2FycmFzY29zYSIsImEiOiJja2FoNnFkZmYwZ3N5MnBvMXNtdGx6c3QyIn0.xR9FIATQVNcdykGIGpITsA',
+    //    var geocoder = new MapboxGeocoder({
+    //        accessToken: 'pk.eyJ1IjoiZXplY2FycmFzY29zYSIsImEiOiJja2FoNnFkZmYwZ3N5MnBvMXNtdGx6c3QyIn0.xR9FIATQVNcdykGIGpITsA',
 
-            })
-            map.addControl(geocoder);           
+     //       })
+      //      map.addControl(geocoder);           
         }
+
         render() {
-            console.log(1, this.state);
-            console.log(1 , this.props);
-           const goToHome =()=>{
-                console.log('ejecuto')
-                this.props.history.push('/home',{coord: {lat: this.state.lat , long: this.state.lng}})
-            }
+           
         return (
         <div>
-            <div ref={el => this.mapContainer = el} className='mapContainer'>
-            <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
-           </div> 
+                <img src={image} alt={'im'} class="center" />
+                <div ref={el => this.mapContainer = el} className='mapContainer'> </div> 
 
-                 <Button variant="contained" size="small" color="primary" align= "center"
-                 onClick={() => goToHome()  }>Buscar</Button>
-
-
-
-
-        </div>
+                 <div className= "coordenadas">
+                    <div> Longitude: {this.state.lng} | Latitude: {this.state.lat} </div>
+                 </div>
+                 <p></p>
+            
+            <div className= "button-buscar"> <Button variant="contained" size="small" color="primary" align= "center"
+                 onClick={() => this.props.history.push('/home',{coord: {lat: this.state.lat , long: this.state.lng}}) }>Buscar Productos</Button> 
+            </div>
+        
+        </div> 
         )
     }
 }

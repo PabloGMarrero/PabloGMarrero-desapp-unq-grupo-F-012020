@@ -1,48 +1,34 @@
 .mapContainer {
-    position: absolute center;
+    margin-left: auto;
+    margin-right: auto;
     top: 20;
     right: 0;
     left: 110px;
     bottom: 0;
+    width: 800px;
+    height: 600px;
     }
 
 
-    .sidebarStyle {
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 12px;
-        background-color: #404040;
-        color: #ffffff;
-        z-index: 1 !important;
-        padding: 6px;
-        font-weight: bold;
-        }
-        
-* {
-    box-sizing: border-box;
+.button-buscar{
+
+    text-align: center;
+
 }
 
-.react-geocoder {
-    position: relative;
-    width: 300px;
+.coordenadas{
+    text-align: center;
 }
 
-.react-geocoder input {
-    width: 100%;
-}
+h1 {
+    font-weight: bold;
+    color: black;
+    font-size: 32px;
+  }
 
-.react-geocoder-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1;
-    background-color: white;
-    border: 1px solid black;
-    width: 100%;
-}
-
-.react-geocoder-item {
-    border-bottom: 1px solid black;
-}
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12%;
+  }
