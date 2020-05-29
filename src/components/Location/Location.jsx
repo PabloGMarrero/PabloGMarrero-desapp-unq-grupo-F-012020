@@ -22,11 +22,13 @@ class Location extends React.Component {
         }
     }
 
+   
+
     
     componentDidMount() {
         const map = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/mapbox/satellite-streets-v11',
         center: [this.state.lng, this.state.lat],
         zoom: this.state.zoom
         });
@@ -35,20 +37,14 @@ class Location extends React.Component {
         this.setState({
         lng: map.getCenter().lng.toFixed(4),
         lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
+        zoom: map.getZoom().toFixed(2) });
         
-        });
         });
 
         
         var geocoder = new MapboxGeocoder({
             accessToken: 'pk.eyJ1IjoiZXplY2FycmFzY29zYSIsImEiOiJja2FoNnFkZmYwZ3N5MnBvMXNtdGx6c3QyIn0.xR9FIATQVNcdykGIGpITsA',
-            marker: {
-                color: 'orange',
-                latitude: this.state.lat,
-                longitude: this.state.lng
-                },
-                mapboxgl: mapboxgl
+
             })
             map.addControl(geocoder);           
         }

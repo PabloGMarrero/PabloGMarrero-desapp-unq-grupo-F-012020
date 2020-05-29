@@ -13,20 +13,21 @@ import Button from '@material-ui/core/Button';
 import React from 'react';
 import './Product.css';
 
-const base_path = './assets/img/'
+//const base_path = './assets/img/'
 
 
 
 const Product = ({ data }) => {
-  const { id, productName, price, image_url:image } = data;
-
+  const { id, productName, price, imageUrl } = data;
+  console.log({imageUrl});
   return (
     
     <div id={id} className="product-card">
       <div className="card-body">
         <div className="row">
           <div className="product-col" style={{ textAlign: 'center' }}>
-            <img src={base_path + 'coca-cola-225.jpg'} alt={productName} className="product-img" />
+            
+            <img src={imageUrl} alt={productName} className="product-img" />
           </div>
           <div className="card">
             <h5 className="card-title">{productName}</h5>
