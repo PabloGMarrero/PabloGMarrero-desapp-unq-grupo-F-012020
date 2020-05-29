@@ -1,5 +1,4 @@
 import React from 'react';
-import './Root.css';
 import ContainerRoot from '../components/Location/Location'
 import Footer from '../components/Footer/Footer'
 
