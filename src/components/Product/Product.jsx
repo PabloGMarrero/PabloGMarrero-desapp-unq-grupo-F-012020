@@ -13,33 +13,65 @@ import Button from '@material-ui/core/Button';
 import React from 'react';
 import './Product.css';
 
-//const base_path = './assets/img/'
 
 
+class Product extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      qty: 0
+    };
+    this.add = this.add.bind(this);
+    this.subtract = this.subtract.bind(this);
 
-const Product = ({ data }) => {
-  const { id, productName, price, imageUrl } = data;
-  console.log({imageUrl});
-  return (
-    
-    <div id={id} className="product-card">
-      <div className="card-body">
-        <div className="row">
-          <div className="product-col" style={{ textAlign: 'center' }}>
+  }
+
+  add() {
+    this.setState({
+      qty: this.state.qty + 1
+    });
+    this.props.handleTotal(this.props.price);
+  }
+
+  subtract() {
+    this.setState({
+      qty: this.state.qty - 1
+    });
+    this.props.handleTotal(-this.props.price);
+  }
+
+
+  render() {
+    return (
+      <div>
+        <div className="row form-group">
+          <div className="col-sm-10">
+            <h4>{this.props.productName}</h4>  
+            <h4> Precio: ${this.props.price}</h4> 
             
-            <img src={imageUrl} alt={productName} className="product-img" />
+            <div className="product-col" style={{ textAlign: 'center' }}>
+            
+            <img src={this.props.imageUrl} alt={this.props.productName}  className="product-img" />
           </div>
-          <div className="card">
-            <h5 className="card-title">{productName}</h5>
-            <p className="card-text">{price}$ </p>
-            <Button variant="contained" size="small" color="primary" align= "center">
-                      Agregar al Carrito
+          </div>
+          <div className="col-sm-2 text-right">Quantity: {this.state.qty}</div>
+        </div>
+        <div className="row btn-toolbar">
+          <div className="col-6">
+          </div>
+          <div className="col-6 text-right">
+            <Button  variant="contained" size="small" color="primary" align= "center" onClick={this.add}>
+              Add Item
+            </Button>
+            <Button  variant="contained" size="small" color="primary" align= "center" onClick={this.subtract} disabled={this.state.qty < 1}>
+              Remove item
             </Button>
           </div>
         </div>
+        <hr />
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Product;
