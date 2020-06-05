@@ -65,7 +65,7 @@ class Product extends React.Component {
             <Button  variant="contained" size="small" color='secondary'  align= "center" onClick={this.add}>
               Agregar
             </Button>
-            <Button  variant="contained" size="small" color='secondary' align= "center" onClick={this.subtract} disabled={this.state.qty < 1}>
+            <Button  variant="contained" size="small" color='default' align= "center" onClick={this.subtract} disabled={this.state.qty < 1}>
               Remover
             </Button>
           </div>
