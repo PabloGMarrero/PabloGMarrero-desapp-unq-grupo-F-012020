@@ -17,7 +17,6 @@ export default class Root extends React.Component {
             <div className="containerRoot">
                  
                   <ContainerRoot></ContainerRoot>
-                 <Footer></Footer>
             </div>
             
         )

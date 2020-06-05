@@ -5,6 +5,9 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import Button from '@material-ui/core/Button'
 import './Location.css';
+import red from '@material-ui/core/colors/red';
+
+const primary = red['A700']; // #F44336
 
 const image = './assets/img/logoB.png'
 
@@ -64,7 +67,7 @@ class Location extends React.Component {
                  </div>
                  <p></p>
             
-            <div className= "button-buscar"> <Button variant="contained" size="small" color="primary" align= "center"
+            <div className= "button-buscar"> <Button variant="contained" size="small" color='secondary' align= "center"
                  onClick={() => this.props.history.push('/home',{coord: {lat: this.state.lat , long: this.state.lng}}) }>Buscar Productos</Button> 
             </div>
         

@@ -19,10 +19,10 @@ class NavBar extends React.Component {
       render() {
       return (
 
-          <AppBar position="static" color="primary">
+          <AppBar position="static" color="secondary">
             <Toolbar>
               <IconButton edge="start" className="menuButton" color="inherit" aria-label="menu">                   
-                <MenuIcon onClick={() => this.props.history.push('/home',{coord: {lat: this.state.lat , long: this.state.lng}})}>                    
+                <MenuIcon onClick={() => this.props.history.push(`/`)}>                    
                 </MenuIcon>
               </IconButton>              
               <Button color="inherit"  onClick={() => this.props.history.push(`/login`)} >Login</Button>

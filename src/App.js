@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path= '/' render={props => <Root {...props} />}/>
+        <Route exact path= '/' render={props => <Root coord={ props.location.state }/>}/>
         <Route exact path='/home'  render={props => <Home coord={ props.location.state }/>}/>
         <Route exact path='/login' render={props => <Login coord={ props.location.state }/>}/>
         <Route exact path='/register' render={props => <Register coord={ props.location.state }/>}/>
