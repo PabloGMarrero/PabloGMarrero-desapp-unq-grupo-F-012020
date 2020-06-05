@@ -1,3 +1,19 @@
 .main-body{
     margin: 1%;
 }
+
+.products{
+    height: 33%;
+    width: 33%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-grow: 1;
+    border: 2px solid white;
+    
+    
+}

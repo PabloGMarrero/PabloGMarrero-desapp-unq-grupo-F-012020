@@ -1,10 +1,11 @@
 import React from 'react'
 import './Home.css';
-import { getProducts } from '../api/productAPI';
+import { getProducts, getStores } from '../api/productAPI';
 import Product from '../Product/Product.jsx';
+import Store from '../Store/Store.jsx';
 import Total from '../Product/Total.jsx';
 import {withRouter} from 'react-router';
-
+import SplitPane, { Pane } from 'react-split-pane';
 
 class Home extends React.Component {
 constructor(props) {
@@ -12,12 +13,14 @@ constructor(props) {
 
   this.state = {
     total: 0,
-    productList: ""
+    productList: "",
+    storeList: []
   };
 
   this.createProduct = this.createProduct.bind(this);
   this.calculateTotal = this.calculateTotal.bind(this);
   this.showProduct = this.showProduct.bind(this);
+  this.createStore = this.createStore.bind(this);
 }
 
 
@@ -26,12 +29,23 @@ componentDidMount() {
   getProducts(this.props.location.state.coord.long,this.props.location.state.coord.lat)
     .then(productList => this.setState({ productList }))
     .catch(error => this.setState({ error }));
+
+    getStores(this.props.location.state.coord.long,this.props.location.state.coord.lat)
+    .then(storeList => this.setState({ storeList }))
+    .catch(error => this.setState({ error }));  
  
 }
+
 
 createProduct(product) {
   this.setState({
     products: this.state.productList.push(product)
+  });
+}
+
+createStore(store) {
+  this.setState({
+    stores: this.state.storeList.push(store)
   });
 }
 
@@ -47,8 +61,19 @@ showProduct(info) {
   alert(info);
 }
 
+renderStores() {
+  const { storeList } = this.state;
+  return (
+    <div>
+      {storeList.map(store => <Store data={store} />)}
+    </div>
+  );
+
+}
+
 
 render() {
+  
   if (!this.state.productList) return <p>loading...!!!!</p>;
 
   var component = this;
@@ -64,10 +89,23 @@ render() {
     );
   });
 
+
+  console.log(this.state.storeList)
+  console.log(this.state.productList)
   return (
+
+   
     <div>
-      {products}
-      <Total total={this.state.total} />
+        <h3>Comercios Cerca tuyo</h3>
+        <div>{this.renderStores()}</div>
+
+        <h3>Productos Cerca tuyo</h3>
+        <div className="products">
+            {products}
+        </div>
+        <div className="total">
+          <Total total={this.state.total} />
+        </div>
     </div>
   );
 }

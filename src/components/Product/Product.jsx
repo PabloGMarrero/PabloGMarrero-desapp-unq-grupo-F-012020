@@ -46,25 +46,27 @@ class Product extends React.Component {
       <div>
         <div className="row form-group">
           <div className="col-sm-10">
-            <h4>{this.props.productName}</h4>  
-            <h4> Precio: ${this.props.price}</h4> 
-            
-            <div className="product-col" style={{ textAlign: 'center' }}>
+          <div className="product-col" style={{ textAlign: 'center' }}>
             
             <img src={this.props.imageUrl} alt={this.props.productName}  className="product-img" />
           </div>
+
+            <h4>{this.props.productName}</h4>  
+            <h4> ${this.props.price}</h4> 
+            
+            
           </div>
-          <div className="col-sm-2 text-right">Quantity: {this.state.qty}</div>
+          <div className="col-sm-2 text-right">Cantidad: {this.state.qty}</div>
         </div>
         <div className="row btn-toolbar">
           <div className="col-6">
           </div>
           <div className="col-6 text-right">
             <Button  variant="contained" size="small" color="primary" align= "center" onClick={this.add}>
-              Add Item
+              Agregar
             </Button>
             <Button  variant="contained" size="small" color="primary" align= "center" onClick={this.subtract} disabled={this.state.qty < 1}>
-              Remove item
+              Remover
             </Button>
           </div>
         </div>
