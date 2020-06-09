@@ -1,29 +1,78 @@
-import React from 'react'
+import React, {useState, useContext, useEffect} from 'react'
+import {withRouter} from 'react-router';
 import './Home.css';
 import { getProducts } from '../api/productAPI';
+import ProductList from '../ProductsList/ProductsList'
 import Product from '../Product/Product.jsx';
 import Total from '../Product/Total.jsx';
-import {withRouter} from 'react-router';
+import { CoordenadasContext } from '../../location-context';
 
+const Home = () =>{
+  const [coord] = useContext(CoordenadasContext)
+  const [total, setTotal] = useState(0)
+  const [productList, setProductList] = useState([])
+  const [error, setError] = useState("")
 
+  useEffect(() => {
+    //getProducts(coord.lat,coord.lng)
+    getProducts(-58.258655, -34.721533)
+    .then(productList => setProductList({ productList }))
+    .catch(error => setError({ error }));
+  },[coord] );
+
+  const createProduct = (product) => {
+    setProductList({
+      productList: productList.push(product)
+    });
+  }
+
+  const calculateTotal = (price) => {
+    setTotal({
+      total: total + price
+    });
+    //console.log(total);
+  }
+  
+  const showProduct = (info) => {
+    alert(info);
+  }
+  
+  const RenderProducts=  ()=> {
+    var component = this;
+    return (
+      <ProductList products = {productList} component = {component} ></ProductList>
+    )
+  }
+  
+  return (
+    <div>
+      <div className= "coordenadas">
+        <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
+      </div>  
+      <RenderProducts></RenderProducts>
+      <Total total = {total} />
+    </div>
+    );
+}
+/*
 class Home extends React.Component {
 constructor(props) {
   super(props);
-
   this.state = {
     total: 0,
-    productList: ""
+    productList: "", 
   };
 
   this.createProduct = this.createProduct.bind(this);
   this.calculateTotal = this.calculateTotal.bind(this);
   this.showProduct = this.showProduct.bind(this);
+  
 }
 
 
 
 componentDidMount() {
-  getProducts(this.props.location.state.coord.long,this.props.location.state.coord.lat)
+  getProducts(-58.258655,-34.721533)
     .then(productList => this.setState({ productList }))
     .catch(error => this.setState({ error }));
  
@@ -39,11 +88,11 @@ calculateTotal(price) {
   this.setState({
     total: this.state.total + price
   });
-  console.log(this.state.total);
+  //console.log(this.state.total);
 }
 
 showProduct(info) {
-  console.log(info);
+  //console.log(info);
   alert(info);
 }
 
@@ -64,14 +113,14 @@ render() {
     );
   });
 
-  return (
-    <div>
-      {products}
-      <Total total={this.state.total} />
-    </div>
+return (
+  <div>
+    {products}
+    <Total total={this.state.total} />
+  </div>
   );
-}
-}
+ }
+}*/
 export default withRouter(Home);
 
 /*

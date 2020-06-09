@@ -8,20 +8,14 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
-
     render() {
-        return (
-           
+        return (    
             <div>
                  <Navbar></Navbar>
                  <ContainerHome></ContainerHome>
                  <Footer></Footer>
-            </div>
-            
-        )
-            
+            </div>         
+        )        
     }
 }
 

@@ -9,19 +9,13 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
-
     render() {
-        return (
-           
+        return (   
             <div>
                  <Navbar></Navbar>
                  <ContainerLogin></ContainerLogin>
-            </div>
-            
-        )
-            
+            </div>      
+        )         
     }
 }
 

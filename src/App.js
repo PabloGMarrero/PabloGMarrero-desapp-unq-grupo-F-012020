@@ -1,21 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './views/Home'
 import Login from './views/Login'
 import Root from './views/Root'
-import Register from './views/Register'
+import RegisterView from './views/Register'
 
+import {CoordenadasContext, CoordenadasProvider } from './location-context'
+//import CoordenadasContext, {CoordenadasProvider } from './location-context'
 
-function App() {
+function App(){
+  const coord = useContext(CoordenadasContext)
+
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path= '/' render={props => <Root {...props} />}/>
-        <Route exact path='/home'  render={props => <Home coord={ props.location.state }/>}/>
-        <Route exact path='/login' render={props => <Login coord={ props.location.state }/>}/>
-        <Route exact path='/register' render={props => <Register coord={ props.location.state }/>}/>
-      </Switch>
-    </BrowserRouter>
+    <CoordenadasProvider value = {coord}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path= '/' render={props => <Root coord={ props.location.state } />}/>
+            <Route exact path='/home' render= {props => <Home coord={ props.location.state }/>}  />
+            <Route exact path='/login' render={props => <Login coord={ props.location.state }/>}  />
+            <Route exact path='/register' render={props => <RegisterView history= {props.history} 
+              coord={ props.location.state }/>}   />
+          </Switch>
+        </BrowserRouter>
+    </CoordenadasProvider>
   );
 }
 
