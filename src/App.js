@@ -4,15 +4,16 @@ import Home from './views/Home'
 import Login from './views/Login'
 import Root from './views/Root'
 import RegisterView from './views/Register'
-
-import {CoordenadasContext, CoordenadasProvider } from './location-context'
-//import CoordenadasContext, {CoordenadasProvider } from './location-context'
+import {CoordenadasContext, CoordenadasProvider } from './context/location-context'
+import { UserContext, UserProvider } from './context/user-context'
 
 function App(){
   const coord = useContext(CoordenadasContext)
+  const user = useContext(UserContext)
 
   return (
-    <CoordenadasProvider value = {coord}>
+    <UserProvider value = {user}>
+      <CoordenadasProvider value = {coord}>
         <BrowserRouter>
           <Switch>
             <Route exact path= '/' render={props => <Root coord={ props.location.state } />}/>
@@ -22,7 +23,8 @@ function App(){
               coord={ props.location.state }/>}   />
           </Switch>
         </BrowserRouter>
-    </CoordenadasProvider>
+      </CoordenadasProvider>
+    </UserProvider>
   );
 }
 
