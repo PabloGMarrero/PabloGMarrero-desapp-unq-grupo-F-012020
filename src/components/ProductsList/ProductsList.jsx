@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Product from '../Product/Product';
 
-const ProductsList = ({products, component}) =>{
+const ProductsList = ({products, calculateTotal}) =>{
     return (
         products.length > 0 ?
         products.map( product =>
             <Product
+                key={product.productName}
                 productName={product.productName}
                 price={product.price}
                 imageUrl={product.imageUrl}
-                handleShow={component.showProduct}
-                handleTotal={component.calculateTotal}
+                handleTotal={calculateTotal}
             />
           )
           : <p>Loading...</p>

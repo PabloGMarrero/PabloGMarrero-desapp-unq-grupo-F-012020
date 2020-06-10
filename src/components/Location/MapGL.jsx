@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { CoordenadasContext } from '../../location-context'
+import { CoordenadasContext } from '../../context/location-context'
 
 const styles = {
   width: "100vw",

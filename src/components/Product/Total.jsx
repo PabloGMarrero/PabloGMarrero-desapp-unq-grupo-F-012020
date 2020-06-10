@@ -1,27 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-class Total extends React.Component {
-    constructor(props) {
-      super(props);
-    }
-    render() {
-      let total = this.props.total.toFixed(2);
-      let totalIncTax = (+total ).toFixed(2);
-      let mystyle = {
-        borderTop: "1px solid #ddd",
-        marginTop: "10px"
-      };
-      return (
-        <div style={{"marginTop": "30px", "backgroundColor":"#F6F6F6","padding": "10px"}}>
+const mystyle = {
+  borderTop: "1px solid #ddd",
+  marginTop: "10px"
+};
 
-          <h3 className="row" style={mystyle}>
-            <span className="col-6">Total:</span>
-            <span className="col-6 text-right">${totalIncTax}</span>
-          </h3>
-  
-        </div>
-      );
-    }
-  }
+const Total = (totalProp)=> {
+  let [total, setTotal] = useState(totalProp)
+  let totalIncTax = (+total);
 
-  export default Total;
+  return (
+    <div style={{"marginTop": "30px", "backgroundColor":"#F6F6F6","padding": "10px"}}>
+      <h3 className="row" style={mystyle}>
+        <span className="col-6">Total:</span>
+        <span className="col-6 text-right">${totalIncTax}</span>
+      </h3>
+   </div>
+  );
+}
+
+export default Total;

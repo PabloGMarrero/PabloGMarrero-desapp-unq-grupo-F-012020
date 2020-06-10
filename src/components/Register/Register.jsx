@@ -1,7 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/styles';
+import { withRouter, useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -13,8 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import authService from '../../service/auth-service';
+import { useState } from 'react';
 
-const styles = theme => ({
+const styles = makeStyles((theme) => ({
   paper: {
     marginTop: 8,
     display: 'flex',
@@ -26,157 +26,129 @@ const styles = theme => ({
     backgroundColor: '#FE6B8B',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: 3,
   },
   submit: {
     margin: 3,
   },
-});
+}));
 
-class RegisterView extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      name:'',
-      email:'',
-      password:'',
-      error: ''
-    };
-    this.isEmpty = this.isEmpty.bind(this);
-    this.validateEmail = this.validateEmail.bind(this);
-    this.handleClickRegistrar = this.handleClickRegistrar.bind(this);
-  }
-
-  componentDidMount(){
-    console.log("Estoy en register" + this.props)
-  }
-
-  isEmpty(value) {
+const RegisterView = () =>{
+  const classes = styles();
+  const history = useHistory();
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [setError] = useState("")
+  
+  const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
   }
 
-  validateEmail(email) {
+  const validateEmail = (email) => {
       if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
           return true;
       }
-      this.setState({error: 'Por favor, introduzca un email válido.'});
+      setError('Por favor, introduzca un email válido.');
       return false;
   }
 
-  handleClickRegistrar(ev) {
+  const handleClickRegistrar = (ev) => {
     ev.preventDefault();
-    const {name, email, password} = this.state;
-    if (this.isEmpty(name) && this.isEmpty(email) && this.isEmpty(password)) {
-        this.setState({error: 'Por favor, complete todos los campos.'})
+    if (isEmpty(name) && isEmpty(email) && isEmpty(password)) {
+      setError('Por favor, complete todos los campos.')
     } else {
-        if (this.validateEmail(email)) {
+        if (validateEmail(email)) {
             authService.register(name, email, password)
-              .then(response =>  this.props.history.push(`/login`,{coord: {lat: this.state.lat , long: this.state.lng}, success: response.data}))
+              .then(response =>  history.push(`/login`))
               .catch( e => console.log(e))
-                /*.then(response =>  this.props.history.push(`/`, {success: response.data}))
-                .catch((error) => this.setState({error: error.response.data.message}));*/
         }
     }
-}
-
-  render(){
-    const {classes} = this.props
-    return (
-      <div className="container">
-        <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  onChange={(ev) => this.setState({ name: ev.target.value, error: ''})}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(ev) => this.setState({ email: ev.target.value, error: ''})}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={(ev) => this.setState({ password: ev.target.value, error: ''})}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-            <button onClick={ (ev) => this.handleClickRegistrar(ev)}>Sign Up</button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-      </Container>
-      </div>
-    )
   }
+
+  return (
+        <div className="container">
+          <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign up
+            </Typography>
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete="fname"
+                    name="firstName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="firstName"
+                    label="First Name"
+                    autoFocus
+                    onChange={(ev) => setName(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="lastName"
+                    label="Last Name"
+                    name="lastName"
+                    autoComplete="lname"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    onChange={(ev) =>setPassword(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  />
+                </Grid>
+              </Grid>
+              <button onClick={ (ev) => handleClickRegistrar(ev)}>Sign Up</button>
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Container>
+        </div>
+  )
 }
 
-/*             type="submit"
-fullWidth
-variant="contained"
-color="primary"
-className={classes.submit}
-*/
-
-RegisterView.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-withRouter(RegisterView);
-export default withStyles(styles)(RegisterView);
+export default withRouter(RegisterView);
