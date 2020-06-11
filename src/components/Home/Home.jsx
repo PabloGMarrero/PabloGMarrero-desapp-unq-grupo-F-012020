@@ -10,15 +10,15 @@ const Home = () =>{
   const [coord] = useContext(CoordenadasContext)
   let [total, setTotal] = useState(0)
   const [productList, setProductList] = useState([])
-  const [error, setError] = useState("")
+  const [setError] = useState("")
 
   useEffect(() => {
     getProducts(-58.258655, -34.721533)
     .then(productList => setProductList(productList ))
     .catch(error => setError( error ));
-  },[coord] );
+  },[coord, setError] );
 
-  const createProduct = (product) => {
+  const addProduct = (product) => {
     setProductList({
       productList: productList.push(product)
     });

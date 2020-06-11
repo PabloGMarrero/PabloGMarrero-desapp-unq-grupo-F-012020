@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types'
+import React, { useContext, useState }  from 'react';
+import { withRouter, useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,12 +10,13 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import authService from '../../service/auth-service';
-import { withRouter } from 'react-router';
 
-const styles = (theme) => ({
+import authService from '../../service/auth-service';
+import { UserContext } from '../../context/user-context'
+
+const styles = makeStyles((theme) => ({
   paper: {
     marginTop: 8,
     display: 'flex',
@@ -33,78 +34,52 @@ const styles = (theme) => ({
   submit: {
     margin: 3,
   },
-});
+}));
 
-class Login extends React.Component{
-  constructor(props){
-    super(props);
-    
-    this.state={
-      email:'',
-      password:'',
-      success:'',
-      error: ''
-    };
-    this.isEmpty = this.isEmpty.bind(this);
-    this.changeEmail = this.changeEmail.bind(this);
-    this.changePassword = this.changePassword.bind(this);
-    this.handleClickLogin = this.handleClickLogin.bind(this);
-  }
 
-  componentDidMount(){
-    console.log(this.props.history)
-    console.log(this.props.location)
-  }
+const Login = () =>{
+  const classes = styles();
+  const [,setUser] = useContext(UserContext)
+  const history = useHistory();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [setError] = useState("")
 
-  isEmpty(value) {
+  const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
   }
-  changeEmail = (ev) => this.setState({email: ev.target.value, error: ''});
-  changePassword = (ev) => this.setState({password: ev.target.value, error: ''});
+  const changeEmail = (ev) => setEmail(ev.target.value);
+  const changePassword = (ev) => setPassword(ev.target.value);
 
-  componentWillMount() {
-    let exito = "" //"" ? this.props.location.state.success : "";
-    if(!this.isEmpty(exito)){
-        this.setState({success: exito})
-    }
+  const handleSubmit = (resp) =>{
+    setUser(resp.data)
+    history.push(`/home`)
   }
 
-  handleSubmit = () =>{
-    this.props.history.push(`/home`, 
-    {coord: {lat: this.props.location.state.coord.lat , long: this.props.location.state.coord.lng}})
-  }
-
-  handleClickLogin(ev) {
+  const handleClickLogin = (ev) => {
     ev.preventDefault();
-    const {email, password} = this.state;
-    authService.login("", email, password)
+    if (isEmpty(email) && isEmpty(password)) {
+      setError('Por favor, complete todos los campos.')
+    }else{
+      authService.login("", email, password)
       .then(resp => {
+        handleSubmit(resp)
         if (resp.data.accesToken){
             localStorage.setItem("user", JSON.stringify(resp.data));
         }
       })
-      .then(response => this.handleSubmit()      )
-      .catch((e) => console.log(e) && this.setState({error: 'Bad username or password'}));
-}
+      .catch((e) => console.log(e) && setError({error: 'Bad username or password'}));
+    }
+  }
   
-  /*render(){
-    return(
-      <h1>Hola</h1>
-    )
-  }*/
-  render(){
-
-    const {classes} = this.props
-    return (
-      <Container component="main" maxWidth="xs">
+  return (
+    <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <Typography component="h1" variant="h5">Sign in</Typography>
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -116,7 +91,7 @@ class Login extends React.Component{
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={this.changeEmail}
+              onChange={changeEmail}
             />
             <TextField
               variant="outlined"
@@ -128,7 +103,7 @@ class Login extends React.Component{
               type="password"
               id="password"
               autoComplete="current-password"
-              onChange={this.changePassword}
+              onChange={changePassword}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -140,33 +115,21 @@ class Login extends React.Component{
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={(ev) => this.handleClickLogin(ev)}
-            >
-              Sign In
+              onClick={(ev) => handleClickLogin(ev)}
+              >Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <Grid item>
+                <Link href="#" variant="body2">Forgot password?</Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <Link href="#" variant="body2">{"Don't have an account? Sign Up"}</Link>
               </Grid>
             </Grid>
           </form>
         </div>
       </Container>
-    );
-  }
+  );
 }
 
-
-Login.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
-
-
-export default withStyles(styles)(withRouter(Login));//(withStyles(styles)(Login));
+export default withRouter(Login);

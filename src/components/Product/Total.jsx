@@ -5,9 +5,9 @@ const mystyle = {
   marginTop: "10px"
 };
 
-const Total = (totalProp)=> {
-  let [total, setTotal] = useState(totalProp)
-  let totalIncTax = (+total);
+const Total = ({totalProp})=> {
+  let [total, setTotal] = useState(0)
+  let totalIncTax = (total);
 
   return (
     <div style={{"marginTop": "30px", "backgroundColor":"#F6F6F6","padding": "10px"}}>
