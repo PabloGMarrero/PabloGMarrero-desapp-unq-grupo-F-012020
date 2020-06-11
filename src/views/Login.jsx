@@ -5,24 +5,13 @@ import {withRouter} from 'react-router';
 
 
 
-class Login extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-
-    render() {
-        return (
-           
-            <div>
-                 <Navbar></Navbar>
-                 <ContainerLogin></ContainerLogin>
-            </div>
-            
-        )
-            
-    }
+const Login = () => {
+    return (   
+        <div>
+            <Navbar></Navbar>
+            <ContainerLogin></ContainerLogin>
+        </div>      
+    )         
 }
 
 export default withRouter(Login);

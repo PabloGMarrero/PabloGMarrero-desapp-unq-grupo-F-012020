@@ -1,25 +1,4 @@
 .product-img {
     height: 200px;
     width: 200px;
-  }
-  
-  .product-card {
-    margin-bottom: 5px;
-  }
-  
-  .product-col {
-    text-align: center;
-  }
-
-
-  .card-title{
-    text-align: center;
-  }
-  
-  .card-text{
-    text-align: center;
-  }
-
-  .card{
-    text-align: center;
-  }
+}
