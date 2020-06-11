@@ -6,10 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton'
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
 
@@ -34,7 +31,6 @@ const NavBar = () => {
     const classes = styles();
     const history = useHistory()
     const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
-    const open = Boolean(true);
 
   const goToLogin = () =>{
     history.push("/login")
