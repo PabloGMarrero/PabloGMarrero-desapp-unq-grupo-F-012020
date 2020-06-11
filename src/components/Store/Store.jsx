@@ -1,4 +1,33 @@
 import React from 'react';
+
+class Store extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+
+  }
+
+  render() {
+    return (
+        <div id={this.props.id} className="card store-card">
+        <div className="card-body">
+          <div className="row">
+            <div className="col-10">
+              <p className="card-title"> {this.props.storeName}</p>
+              <h2>({this.props.activity})</h2>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Store;
+
+/*import React from 'react';
 import './Store.css';
 
 
@@ -19,4 +48,4 @@ const Store = ({ data }) => {
     );
   }
   
-  export default Store;
+  export default Store;*/
