@@ -42,7 +42,8 @@ const Home = () =>{
       </div>  
       <RenderProducts></RenderProducts>
       <Total total = {total} />
+
     </div>
-    );
+  );
 }
 export default withRouter(Home);

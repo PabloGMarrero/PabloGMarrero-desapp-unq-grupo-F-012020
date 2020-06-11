@@ -35,11 +35,10 @@ const NavBar = () => {
   const goToLogin = () =>{
     history.push("/login")
   }
-
   const goToProfile = () =>{
     history.push("/profile")
   }
-
+  
   const goToRegister = () =>{
     history.push("/register")
   }
