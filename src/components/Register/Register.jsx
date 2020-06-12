@@ -128,12 +128,6 @@ const RegisterView = () =>{
                     onChange={(ev) =>setPassword(ev.target.value)}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
-                </Grid>
               </Grid>
               <button onClick={ (ev) => handleClickRegistrar(ev)}>Sign Up</button>
               <Grid container justify="flex-end">

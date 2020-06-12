@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { CoordenadasContext } from '../../context/location-context'
 import MapboxGLMap from './MapGL.jsx'
+import Button from '@material-ui/core/Button'
 
 const Location = () =>{
     const [coord] = useContext(CoordenadasContext)
@@ -10,13 +11,14 @@ const Location = () =>{
     const history = useHistory();
     return (
         <div>
+            <img src={image} alt={'im'} className="center" />
             <div className= "coordenadas">
                 <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
             </div>           
                 
-            <button color="inherit" onClick={() => {history.push(`/home`)}}>Buscar productos</button>
-            <img src={image} alt={'im'} className="center" />
-            <MapboxGLMap></MapboxGLMap>
+            <Button variant="contained" size="small" color='secondary' align= "center" onClick={() => {history.push(`/home`)}}>Buscar productos</Button>
+            
+            <MapboxGLMap className='mapContainer'></MapboxGLMap>
         </div>
     )
 }

@@ -14,8 +14,8 @@ class Store extends React.Component {
         <div className="card-body">
           <div className="row">
             <div className="col-10">
-              <p className="card-title"> {this.props.storeName}</p>
-              <h2>({this.props.activity})</h2>
+              <h2 className="card-title"> {this.props.storeName}</h2>  <p>({this.props.activity})</p>
+             
 
             </div>
           </div>
