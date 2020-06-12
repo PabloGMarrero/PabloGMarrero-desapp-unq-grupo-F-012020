@@ -8,6 +8,7 @@ import StoreList from '../ProductsList/StoreList'
 import Total from '../Product/Total.jsx';
 import { CoordenadasContext } from '../../context/location-context';
 import { useTranslation } from 'react-i18next'
+import Box from '@material-ui/core/Box'
 
 const Home = () =>{
   const [coord] = useContext(CoordenadasContext)
@@ -64,20 +65,20 @@ const Home = () =>{
 
 
   return (
-    <div>
-      <div className= "coordenadas">
+    <Box>
+      <Box className= "coordenadas">
         <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
-      </div>  
+      </Box>  
       <Typography variant="h4">{t("Home.Stores")} </Typography>
       {storeList ? <RenderStores> </RenderStores> : <p>{t("Home.SearchingStores")}</p>}
       
       <Typography variant="h4">{t("Home.Products")}</Typography>
-      <div className="products" >
+      <Box className="products" >
         <RenderProducts ></RenderProducts>
-      </div>
+      </Box>
       <Total total = {total} />
 
-    </div>
+    </Box>
   );
 }
 export default withRouter(Home);

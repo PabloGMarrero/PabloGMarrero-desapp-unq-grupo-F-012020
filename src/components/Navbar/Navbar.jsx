@@ -4,11 +4,13 @@ import {useHistory } from 'react-router-dom';
 import './Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar'
+import Box from '@material-ui/core/Box'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
+import { useTranslation } from 'react-i18next'
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -18,19 +20,37 @@ const styles = makeStyles((theme) => ({
       marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
+      flexGrow: 5,
     },
     image: {
       maxHeight: '40px'
+    },
+    strikingButton:{
+      background:  "#E59500",
+      margin: theme.spacing(0, 2, 0, 0)
+    },
+    button:{
+      margin: theme.spacing(0, 15, 0, 0),
+      display: 'flex',
+      justifyContent: "flex-end",
+      width: "100vw"
+    },
+    languageButton:{
+      marginRight: theme.spacing(2),
+      background: "#6D8EA0",
+    },
+    navbar:{
+      background:"#840032"
     }
   }));
   
 
 const NavBar = () => {
-    const [user] = useContext(UserContext)
-    const classes = styles();
-    const history = useHistory()
-    const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
+  const [user] = useContext(UserContext)
+  const classes = styles();
+  const history = useHistory()
+  const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
+  const { t, i18n } = useTranslation();
 
   const goToLogin = () =>{
     history.push("/login")
@@ -51,24 +71,38 @@ const NavBar = () => {
       history.push("/home")
   }
 
+  const changeLanguage = (language) =>{
+    i18n.changeLanguage(language)
+  }
+
   return (
-    <AppBar position="static" color="secondary">
+    <AppBar position="static" className={classes.navbar}>
       <Toolbar>
         <IconButton edge="start" className="menuButton" color="inherit" aria-label="menu">   
-            <Typography variant="h6" className={classes.title} onClick={goToHome}>Home</Typography>
+            <Typography variant="h6" className={classes.title} onClick={goToHome}>{t("Navbar.Home")}</Typography>
         </IconButton>   
-            <div>{isLoggued ?
-                <div>
-                    <Button onClick={goToProfile}>Mi Perfil</Button>
-                    <Button onClick={logOut}>Logout</Button>
-                </div>
-                :
-                <div>
-                    <Button onClick={goToLogin}>Login</Button>
-                    <Button onClick={goToRegister}>Register</Button>              
-                </div>
+        <Box className={classes.button}>
+          <Box>
+            {isLoggued ?
+              <Box>
+                <Button color='primary' variant="outlined" className={classes.strikingButton} onClick={goToProfile}>{t("Navbar.Profile")}</Button>
+                <Button color='default' variant="outlined" className={classes.strikingButton} onClick={logOut}>{t("Navbar.Logout")}</Button>
+              </Box>
+              :
+              <Box>
+                <Button color='default' variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
+                <Button color='default' variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>              
+              </Box>
             }
-          </div>           
+          </Box>     
+          <Button className={classes.languageButton} onClick={() => changeLanguage('en')}>
+              {t("Language.English")}
+          </Button>
+          <Button className={classes.languageButton} onClick={() => changeLanguage('es')}>
+              {t("Language.Spanish")}
+          </Button> 
+        
+        </Box>     
       </Toolbar>
     </AppBar>
   );

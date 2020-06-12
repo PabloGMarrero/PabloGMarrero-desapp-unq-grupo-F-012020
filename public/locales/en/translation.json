@@ -6,6 +6,22 @@
         "Login": "Login",
         "Register": "Register"
     },
+    "Login":{
+        "Signin": "Sign in",
+        "ForgotPass": "Forgot password?",
+        "Remember": "Remember me", 
+        "HaveNotAccount": "Don't have an account? Sign Up!",
+        "Password": "Password"
+    },
+    "Register":{
+        "Signup": "Sign up",
+        "FirstName": "First name",
+        "LastName": "Last name", 
+        "Email": "Email address",
+        "Password": "Password",
+        "InfoEmail": "I want to receive discounts, marketing promotions and updates via email.",
+        "HaveAccount": "Already have an account? Sign in"
+    },
     "Home":{
         "Stores": "Stores near.",
         "SearchingStores": "Looking stores...",
@@ -13,6 +29,14 @@
     },
     "Location":{
         "SearchProducts": "Search products"
+    },
+    "Product":{
+        "Quantity": "Quantity",
+        "Add": "Add",
+        "Remove": "Remove"
+    },    
+    "Total":{
+        "Total": "Total"
     },
     "Footer":{
         "Body": "Buy from Home is an application that brings shops in your area closer to your home."

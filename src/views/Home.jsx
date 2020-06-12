@@ -8,7 +8,6 @@ import Footer from '../components/Footer/Footer'
 
 const styles = makeStyles((theme) => ({
     root:{
-        margin: theme.spacing(2, 4),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
