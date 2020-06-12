@@ -4,9 +4,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { CoordenadasContext } from '../../context/location-context'
 
 const styles = {
-  width: "100vw",
+  width: "80vw",
   height: "calc(100vh - 80px)",
-  position: "absolute"
+  margin: "20px 0 0 0"
 };
 
 const MapboxGLMap = () => {
