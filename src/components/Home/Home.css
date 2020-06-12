@@ -4,7 +4,6 @@
 
 .products{
     height: 200%;
-
     padding: 0;
     margin: 0;
     display: flex;
@@ -14,6 +13,4 @@
     align-content: center;
     flex-grow: 1;
     flex: 1 1 160px;
-    
-    
 }
