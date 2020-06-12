@@ -1,0 +1,24 @@
+{
+    "Navbar":{
+        "Home": "Inicio",
+        "Profile": "Mi Perfil",
+        "Logout": "Logout",
+        "Login": "Login",
+        "Register": "Registrar"
+    },
+    "Home":{
+        "Stores": "Comercios cerca tuyo",
+        "SearchingStores": "Buscando comercios...",
+        "Products": "Productos cerca tuyo"
+    },
+    "Location":{
+        "SearchProducts": "Buscar productos"
+    },
+    "Footer":{
+        "Body": "Buy from Home es una aplicacion que te acerca los comercios de tu zona a tu casa."
+    },
+    "Language":{
+        "English": "Inglés",
+        "Spanish": "Español"
+    }
+}
