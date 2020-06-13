@@ -151,7 +151,7 @@ const RegisterView = () =>{
                 fullWidth
                 className={classes.register} 
                 onClick={ (ev) => handleClickRegistrar(ev)}
-                >Sign Up
+                >{t("Register.Signup")}
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>

@@ -26,7 +26,7 @@ const styles = makeStyles((theme) => ({
       maxHeight: '40px'
     },
     strikingButton:{
-      background:  "#E59500",
+      background:  "#EDF2F4",
       margin: theme.spacing(0, 2, 0, 0)
     },
     button:{
@@ -37,10 +37,10 @@ const styles = makeStyles((theme) => ({
     },
     languageButton:{
       marginRight: theme.spacing(2),
-      background: "#6D8EA0",
+      background: "#EDF2F4",
     },
     navbar:{
-      background:"#840032"
+      background:"#D80032"
     }
   }));
   

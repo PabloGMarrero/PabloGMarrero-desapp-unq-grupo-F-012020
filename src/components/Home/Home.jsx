@@ -32,7 +32,7 @@ const Home = () =>{
   }
   fetchData();
   
-  },[coord, setError, getProducts, getStores, setStoreList, setProductList] );
+  },[coord, setError, setStoreList, setProductList] );
 
   const addProduct = (product) => {
     setProductList({

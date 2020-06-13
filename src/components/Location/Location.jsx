@@ -21,7 +21,7 @@ const styles = makeStyles((theme) => ({
     },
     button:{
         color: "#FFFFFF",
-        background: "#B80913",
+        background: "#D80032",
     }
 }));
 
