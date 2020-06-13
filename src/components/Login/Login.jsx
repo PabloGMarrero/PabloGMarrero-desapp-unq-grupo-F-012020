@@ -12,9 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import Box from '@material-ui/core/Box'
 import authService from '../../service/auth-service';
 import { UserContext } from '../../context/user-context'
+import { useTranslation } from 'react-i18next'
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +26,7 @@ const styles = makeStyles((theme) => ({
   },
   avatar: {
     margin: 1,
-    backgroundColor: 'theme.palette.secondary.main',
+    backgroundColor: '#E59500'
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -33,6 +34,7 @@ const styles = makeStyles((theme) => ({
   },
   submit: {
     margin: 3,
+    backgroundColor: '#E59500'
   },
 }));
 
@@ -44,6 +46,7 @@ const Login = () =>{
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [setError] = useState("")
+  const { t } = useTranslation()
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -71,15 +74,19 @@ const Login = () =>{
       .catch((e) => console.log(e) && setError({error: 'Bad username or password'}));
     }
   }
+
+  const goToRegister = () =>{
+    history.push("/register")
+  }
   
   return (
     <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
+        <Box className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">Sign in</Typography>
+          <Typography component="h1" variant="h5">{t("Login.Signin")}</Typography>
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -99,7 +106,7 @@ const Login = () =>{
               required
               fullWidth
               name="password"
-              label="Password"
+              label= {t("Login.Password")}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -107,27 +114,27 @@ const Login = () =>{
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label={t("Login.Remember")}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
               className={classes.submit}
               onClick={(ev) => handleClickLogin(ev)}
-              >Sign In
+              >{t("Login.Signin")}
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">Forgot password?</Link>
+                <Link href="#" variant="body2">{t("Login.ForgotPass")}</Link>
               </Grid>
+              <hr></hr>
               <Grid item>
-                <Link href="#" variant="body2">{"Don't have an account? Sign Up"}</Link>
+                <Link href="#" onClick={goToRegister} variant="body2">{t("Login.HaveNotAccount")}</Link>
               </Grid>
             </Grid>
           </form>
-        </div>
+        </Box>
       </Container>
   );
 }

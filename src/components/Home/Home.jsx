@@ -1,11 +1,14 @@
 import React, {useState, useContext, useEffect} from 'react'
 import {withRouter} from 'react-router';
 import './Home.css';
+import Typography from '@material-ui/core/Typography';
 import { getProducts, getStores } from '../api/productAPI';
 import ProductList from '../ProductsList/ProductsList'
 import StoreList from '../ProductsList/StoreList'
 import Total from '../Product/Total.jsx';
 import { CoordenadasContext } from '../../context/location-context';
+import { useTranslation } from 'react-i18next'
+import Box from '@material-ui/core/Box'
 
 const Home = () =>{
   const [coord] = useContext(CoordenadasContext)
@@ -13,13 +16,11 @@ const Home = () =>{
   const [productList, setProductList] = useState([])
   const [storeList, setStoreList] = useState([])
   const [setError] = useState("")
- 
+  const { t } = useTranslation();
 
 
-  useEffect(() => {
-    
+  useEffect(() => {    
     async function fetchData() {
-
        //getStores(coord.lat,coord.lng)
      await  getStores(-58.258655, -34.721533)
        .then(storeList => setStoreList(storeList ))
@@ -31,11 +32,7 @@ const Home = () =>{
   }
   fetchData();
   
-  },[coord, setError, getProducts, getStores, setStoreList, setProductList] );
-
-
-
-  console.log(productList)
+  },[coord, setError, setStoreList, setProductList] );
 
   const addProduct = (product) => {
     setProductList({
@@ -57,11 +54,8 @@ const Home = () =>{
     return (
           <ProductList products = {productList}
           calculateTotal = {calculateTotal} ></ProductList>
-
-
     )
-  }  
-  console.log(storeList)
+  }
 
   const RenderStores=  ()=> {
     return (
@@ -69,21 +63,22 @@ const Home = () =>{
     )
   }
 
+
   return (
-    <div>
-      <div className= "coordenadas">
+    <Box>
+      <Box className= "coordenadas">
         <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
-      </div>  
-      <h3>Comercios Cerca tuyo</h3>
-      {storeList ? <RenderStores> </RenderStores> : <p>Buscando Comercios</p>}
+      </Box>  
+      <Typography variant="h4">{t("Home.Stores")} </Typography>
+      {storeList ? <RenderStores> </RenderStores> : <p>{t("Home.SearchingStores")}</p>}
       
-      <h3>Productos Cerca tuyo</h3>
-      <div className="products" >
-      <RenderProducts ></RenderProducts>
-      </div>
+      <Typography variant="h4">{t("Home.Products")}</Typography>
+      <Box className="products" >
+        <RenderProducts ></RenderProducts>
+      </Box>
       <Total total = {total} />
 
-    </div>
+    </Box>
   );
 }
 export default withRouter(Home);

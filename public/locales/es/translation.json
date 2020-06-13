@@ -1,0 +1,48 @@
+{
+    "Navbar":{
+        "Home": "Inicio",
+        "Profile": "Mi Perfil",
+        "Logout": "Logout",
+        "Login": "Login",
+        "Register": "Registrar"
+    },
+    "Login":{
+        "Signin": "Entrar",
+        "ForgotPass": "Olvidó la contraseña?",
+        "Remember": "Recuérdame", 
+        "HaveNotAccount": "No tienes una cuenta? Registrate!",
+        "Password": "Contraseña"
+    },
+    "Register":{
+        "Signup": "Registrate",
+        "FirstName": "Primer nombre",
+        "LastName": "Apellido", 
+        "Email": "Dirección de email",
+        "Password": "Contraseña",
+        "InfoEmail": "Quiero recibir descuentos, promociones y noticias via email.",
+        "HaveAccount": "Ya tenés una cuenta? Logueate!"
+    },
+    "Home":{
+        "Stores": "Comercios cerca tuyo",
+        "SearchingStores": "Buscando comercios...",
+        "Products": "Productos cerca tuyo"
+    },
+    "Location":{
+        "SearchProducts": "Buscar productos"
+    },
+    "Product":{
+        "Quantity": "Cantidad", 
+        "Add": "Agregar",
+        "Remove": "Remover"
+    },   
+    "Total":{
+        "Total": "Total"
+    },
+    "Footer":{
+        "Body": "Buy from Home es una aplicacion que te acerca los comercios de tu zona a tu casa."
+    },
+    "Language":{
+        "English": "Inglés",
+        "Spanish": "Español"
+    }
+}

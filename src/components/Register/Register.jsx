@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import authService from '../../service/auth-service';
+import { Button } from '@material-ui/core';
+import Box from '@material-ui/core/Box'
+import {useTranslation } from 'react-i18next'
+
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -22,7 +26,7 @@ const styles = makeStyles((theme) => ({
   },
   avatar: {
     margin: 1,
-    backgroundColor: '#FE6B8B',
+    backgroundColor: '#E59500',
   },
   form: {
     width: '100%',
@@ -31,6 +35,9 @@ const styles = makeStyles((theme) => ({
   submit: {
     margin: 3,
   },
+  register:{
+    background: '#E59500'
+  }
 }));
 
 const RegisterView = () =>{
@@ -40,7 +47,8 @@ const RegisterView = () =>{
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [setError] = useState("")
-  
+  const {t} = useTranslation()
+
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
   }
@@ -66,16 +74,19 @@ const RegisterView = () =>{
     }
   }
 
+  const goToLogin = () =>{
+    history.push("/login")
+  }
   return (
-        <div className="container">
+        <Box className="container">
           <Container component="main" maxWidth="xs">
           <CssBaseline />
-          <div className={classes.paper}>
+          <Box className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              {t("Register.Signup")}
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
@@ -87,7 +98,7 @@ const RegisterView = () =>{
                     required
                     fullWidth
                     id="firstName"
-                    label="First Name"
+                    label={t("Register.FirstName")}
                     autoFocus
                     onChange={(ev) => setName(ev.target.value)}
                   />
@@ -98,7 +109,7 @@ const RegisterView = () =>{
                     required
                     fullWidth
                     id="lastName"
-                    label="Last Name"
+                    label={t("Register.LastName")}
                     name="lastName"
                     autoComplete="lname"
                   />
@@ -109,7 +120,7 @@ const RegisterView = () =>{
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label={t("Register.Email")}
                     name="email"
                     autoComplete="email"
                     onChange={(ev) => setEmail(ev.target.value)}
@@ -121,26 +132,36 @@ const RegisterView = () =>{
                     required
                     fullWidth
                     name="password"
-                    label="Password"
+                    label={t("Register.Password")}
                     type="password"
                     id="password"
                     autoComplete="current-password"
                     onChange={(ev) =>setPassword(ev.target.value)}
                   />
                 </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                    label={t("Register.InfoEmail")}
+                  />
+                </Grid>
               </Grid>
-              <button onClick={ (ev) => handleClickRegistrar(ev)}>Sign Up</button>
+              <Button 
+                type="submit"
+                fullWidth
+                className={classes.register} 
+                onClick={ (ev) => handleClickRegistrar(ev)}
+                >{t("Register.Signup")}
+              </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
+                  <Link href="#" onClick={goToLogin} variant="body2">{t("Register.HaveAccount")}</Link>
                 </Grid>
               </Grid>
             </form>
-          </div>
+          </Box>
         </Container>
-        </div>
+        </Box>
   )
 }
 
