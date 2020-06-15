@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Store extends React.Component {
   constructor(props) {
     super(props);
@@ -10,17 +11,20 @@ class Store extends React.Component {
 
   render() {
     return (
+      
         <div id={this.props.id} className="card store-card">
         <div className="card-body">
           <div className="row">
             <div className="col-10">
-              <h2 className="card-title"> {this.props.storeName}</h2>  <p>({this.props.activity})</p>
-             
-
+              <p className="card-title"> {this.props.storeName}</p>  
+              <div className="col-10">
+              <h>({this.props.activity})</h>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     );
   }
 }

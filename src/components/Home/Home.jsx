@@ -9,6 +9,7 @@ import Total from '../Product/Total.jsx';
 import { CoordenadasContext } from '../../context/location-context';
 import { useTranslation } from 'react-i18next'
 import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid';
 
 const Home = () =>{
   const [coord] = useContext(CoordenadasContext)
@@ -70,8 +71,9 @@ const Home = () =>{
         <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
       </Box>  
       <Typography variant="h4">{t("Home.Stores")} </Typography>
+      <Grid container spacing={2}>
       {storeList ? <RenderStores> </RenderStores> : <p>{t("Home.SearchingStores")}</p>}
-      
+      </Grid>
       <Typography variant="h4">{t("Home.Products")}</Typography>
       <Box className="products" >
         <RenderProducts ></RenderProducts>

@@ -15,6 +15,12 @@ class UserService{
             id
         })
     }
+
+    updateUser(name, email, password){
+        return axios.post(API_URL+"update", {
+            name, email, password
+        });
+    }
 }
 
 export default new UserService();

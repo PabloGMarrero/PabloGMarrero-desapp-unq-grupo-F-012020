@@ -42,6 +42,7 @@ const styles = makeStyles((theme) => ({
     navbar:{
       background:"#D80032"
     }
+
   }));
   
 
@@ -71,6 +72,10 @@ const NavBar = () => {
       history.push("/home")
   }
 
+  const goToAddProduct = () =>{
+    history.push("/product")
+}
+
   const changeLanguage = (language) =>{
     i18n.changeLanguage(language)
   }
@@ -85,13 +90,13 @@ const NavBar = () => {
           <Box>
             {isLoggued ?
               <Box>
-                <Button color='primary' variant="outlined" className={classes.strikingButton} onClick={goToProfile}>{t("Navbar.Profile")}</Button>
-                <Button color='default' variant="outlined" className={classes.strikingButton} onClick={logOut}>{t("Navbar.Logout")}</Button>
+                <Button variant="outlined" className={classes.strikingButton} onClick={goToProfile}>{t("Navbar.Profile")}</Button>
+                <Button variant="outlined" className={classes.strikingButton} onClick={logOut}>{t("Navbar.Logout")}</Button>
               </Box>
               :
               <Box>
-                <Button color='default' variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
-                <Button color='default' variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>              
+                <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
+                <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>              
               </Box>
             }
           </Box>     
@@ -101,6 +106,10 @@ const NavBar = () => {
           <Button className={classes.languageButton} onClick={() => changeLanguage('es')}>
               {t("Language.Spanish")}
           </Button> 
+          <Button className={classes.strikingButton} onClick={goToAddProduct}>
+              Agregar Productos
+          </Button> 
+        
         
         </Box>     
       </Toolbar>

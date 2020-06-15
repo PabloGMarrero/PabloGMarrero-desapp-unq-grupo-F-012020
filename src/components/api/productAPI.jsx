@@ -2,9 +2,13 @@ import axios from 'axios';
 
 //const API_URL = 'https://buyingfromhome.herokuapp.com/products/'
 //const API_URL = 'http://localhost:8080/products/'
-const API_URL_PRODUCT = 'https://buyingfromhome.herokuapp.com/stores/store?'
+//const API_URL_PRODUCT = 'https://buyingfromhome.herokuapp.com/stores/store?'
 
-const API_URL_STORES = 'https://buyingfromhome.herokuapp.com/stores/stores?'
+//const API_URL_STORES = 'https://buyingfromhome.herokuapp.com/stores/stores?'
+
+const API_URL_PRODUCT = 'http://localhost:8080/stores/store?'
+
+const API_URL_STORES = 'http://localhost:8080/stores/stores?'
 
 
 
