@@ -113,18 +113,6 @@ const RegisterView = () =>{
                     required
                     fullWidth
                     id="address"
-                    label= 'Calle'
-                    name="address"
-                    autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="address"
                     label= 'Localidad'
                     name="address"
                     autoComplete="address"

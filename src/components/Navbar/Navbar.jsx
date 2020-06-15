@@ -73,7 +73,7 @@ const NavBar = () => {
   }
 
   const goToAddProduct = () =>{
-    history.push("/product")
+    history.push("/store")
 }
 
   const changeLanguage = (language) =>{
