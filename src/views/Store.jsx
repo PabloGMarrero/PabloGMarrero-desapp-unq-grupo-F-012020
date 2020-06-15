@@ -5,7 +5,7 @@ import {withRouter} from 'react-router';
 
 
 
-const Comercio = () => {
+const Store = () => {
     return (   
         <div>
             <Navbar></Navbar>
@@ -14,4 +14,4 @@ const Comercio = () => {
     )         
 }
 
-export default withRouter(Product);
+export default withRouter(Store);

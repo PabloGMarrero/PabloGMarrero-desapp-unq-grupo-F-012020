@@ -5,7 +5,7 @@ import Login from './views/Login'
 import Root from './views/Root'
 import RegisterView from './views/Register'
 import ProfileView from './views/Profile'
-import StoreView from './views/Comercio'
+import StoreView from './views/Store'
 import {CoordenadasContext, CoordenadasProvider } from './context/location-context'
 import { UserContext, UserProvider } from './context/user-context'
 

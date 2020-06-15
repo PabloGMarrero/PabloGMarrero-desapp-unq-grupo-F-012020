@@ -55,7 +55,7 @@ const RegisterView = () =>{
           <CssBaseline />
           <Box className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Agregar Comercions
+              Agregar Comercios
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
@@ -89,7 +89,67 @@ const RegisterView = () =>{
                     required
                     fullWidth
                     id="address"
-                    label= 'address'
+                    label= 'Calle'
+                    name="address"
+                    autoComplete="address"
+//                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="address"
+                    label= 'Numero'
+                    name="address"
+                    autoComplete="address"
+//                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="address"
+                    label= 'Calle'
+                    name="address"
+                    autoComplete="address"
+//                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="address"
+                    label= 'Localidad'
+                    name="address"
+                    autoComplete="address"
+//                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="address"
+                    label= 'Latitud'
+                    name="address"
+                    autoComplete="address"
+//                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    requirenpm
+                    fullWidth
+                    id="address"
+                    label= 'Longitud'
                     name="address"
                     autoComplete="address"
 //                    onChange={(ev) => setEmail(ev.target.value)}
