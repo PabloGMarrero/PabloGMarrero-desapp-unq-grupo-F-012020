@@ -11,6 +11,9 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
+import Switch from '@material-ui/core/Switch';
+import Grid from '@material-ui/core/Grid';
+
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -96,7 +99,8 @@ const NavBar = () => {
               :
               <Box>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
-                <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>              
+                <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>    
+                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Productos</Button>           
               </Box>
             }
           </Box>     
@@ -106,9 +110,8 @@ const NavBar = () => {
           <Button className={classes.languageButton} onClick={() => changeLanguage('es')}>
               {t("Language.Spanish")}
           </Button> 
-          <Button className={classes.strikingButton} onClick={goToAddProduct}>
-              Agregar Productos
-          </Button> 
+
+         
         
         
         </Box>     

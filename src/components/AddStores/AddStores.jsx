@@ -55,7 +55,7 @@ const RegisterView = () =>{
           <CssBaseline />
           <Box className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Agregar Comercios
+              Agregar Comercio
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
@@ -134,7 +134,7 @@ const RegisterView = () =>{
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
-                    requirenpm
+                    required
                     fullWidth
                     id="address"
                     label= 'Longitud'
