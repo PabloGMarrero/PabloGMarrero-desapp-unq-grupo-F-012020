@@ -44,7 +44,18 @@ const AddStoreView = () =>{
   const history = useHistory();
   const [setError] = useState("")
   const {t} = useTranslation()
+  const param = {
 
+    name: '',
+    activity: '',
+    street: '',
+    number: '',
+    locality: '',
+    latitude: '',
+    longitude: '',
+    covDistance: ''
+
+  }
  
   return (
         <Box className="container">
@@ -66,7 +77,7 @@ const AddStoreView = () =>{
                     id="Name"
                     label= 'Nombre'
                     autoFocus
-  //                  onChange={(ev) => setName(ev.target.value)}
+    //                onChange={(ev) => setName(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -146,7 +157,7 @@ const AddStoreView = () =>{
                     required
                     fullWidth
                     name="covDistance"
-                    label={"Distancia Covertura"}
+                    label={"Distancia Cobertura"}
                     type="covDistance"
                     id="covDistance"
                     autoComplete="covDistance"
