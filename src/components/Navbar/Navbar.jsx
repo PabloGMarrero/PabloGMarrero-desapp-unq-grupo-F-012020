@@ -75,8 +75,12 @@ const NavBar = () => {
       history.push("/home")
   }
 
-  const goToAddProduct = () =>{
-    history.push("/store")
+  const goToAddStore = () =>{
+    history.push("/addstore")
+}
+
+const goToAddProduct = () =>{
+  history.push("/addproduct")
 }
 
   const changeLanguage = (language) =>{
@@ -100,7 +104,8 @@ const NavBar = () => {
               <Box>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>    
-                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Productos</Button>           
+                <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
+                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>            
               </Box>
             }
           </Box>     

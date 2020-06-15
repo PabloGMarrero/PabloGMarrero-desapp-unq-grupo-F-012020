@@ -39,9 +39,12 @@ const styles = makeStyles((theme) => ({
   }
 }));
 
-const AddStoreView = () =>{
+const AddProductView = () =>{
   const classes = styles();
   const history = useHistory();
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [setError] = useState("")
   const {t} = useTranslation()
 
@@ -52,7 +55,7 @@ const AddStoreView = () =>{
           <CssBaseline />
           <Box className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Agregar Comercio
+              Agregar Producto
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
@@ -74,10 +77,10 @@ const AddStoreView = () =>{
                     variant="outlined"
                     required
                     fullWidth
-                    id="activity"
-                    label='Actividad'
-                    name="activity"
-                    autoComplete="activity"
+                    id="Marca"
+                    label='Marca'
+                    name="Marca"
+                    autoComplete="Marca"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -85,10 +88,10 @@ const AddStoreView = () =>{
                     variant="outlined"
                     required
                     fullWidth
-                    id="address"
-                    label= 'Calle'
-                    name="address"
-                    autoComplete="address"
+                    id="price"
+                    label= 'Precio'
+                    name="price"
+                    autoComplete="price"
 //                    onChange={(ev) => setEmail(ev.target.value)}
                   />
                 </Grid>
@@ -97,10 +100,10 @@ const AddStoreView = () =>{
                     variant="outlined"
                     required
                     fullWidth
-                    id="address"
-                    label= 'Numero'
-                    name="address"
-                    autoComplete="address"
+                    id="imageurl"
+                    label= 'Imagen'
+                    name="imageurl"
+                    autoComplete="imageurl"
 //                    onChange={(ev) => setEmail(ev.target.value)}
                   />
                 </Grid>
@@ -109,48 +112,11 @@ const AddStoreView = () =>{
                     variant="outlined"
                     required
                     fullWidth
-                    id="address"
-                    label= 'Localidad'
-                    name="address"
-                    autoComplete="address"
+                    id="store"
+                    label= 'Comercio'
+                    name="store"
+                    autoComplete="store"
 //                    onChange={(ev) => setEmail(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="address"
-                    label= 'Latitud'
-                    name="address"
-                    autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="address"
-                    label= 'Longitud'
-                    name="address"
-                    autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="covDistance"
-                    label={"Distancia Covertura"}
-                    type="covDistance"
-                    id="covDistance"
-                    autoComplete="covDistance"
-  //                  onChange={(ev) =>setPassword(ev.target.value)}
                   />
                 </Grid>
                 <Button 
@@ -158,7 +124,7 @@ const AddStoreView = () =>{
                 fullWidth
                 className={classes.register} 
   //              onClick={ (ev) => handleClickRegistrar(ev)}
-                >Agregar Comercio
+                >Agregar Producto
               </Button>
               </Grid>
               
@@ -169,4 +135,4 @@ const AddStoreView = () =>{
   )
 }
 
-export default withRouter(AddStoreView);
+export default withRouter(AddProductView);

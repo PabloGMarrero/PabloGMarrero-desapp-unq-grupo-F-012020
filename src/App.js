@@ -5,7 +5,8 @@ import Login from './views/Login'
 import Root from './views/Root'
 import RegisterView from './views/Register'
 import ProfileView from './views/Profile'
-import StoreView from './views/Store'
+import StoreView from './views/AddStore'
+import ProductView from './views/AddProduct'
 import {CoordenadasContext, CoordenadasProvider } from './context/location-context'
 import { UserContext, UserProvider } from './context/user-context'
 
@@ -22,7 +23,8 @@ function App(){
             <Route exact path='/home' render= {props => <Home coord={ props.location.state }/>}  />
             <Route exact path='/login' render={props => <Login coord={ props.location.state }/>}  />
             <Route exact path='/profile' render={props => <ProfileView coord={ props.location.state }/>}  />
-            <Route exact path='/store' render={props => <StoreView coord={ props.location.state }/>}  />
+            <Route exact path='/addstore' render={props => <StoreView coord={ props.location.state }/>}  />
+            <Route exact path='/addproduct' render={props => <ProductView coord={ props.location.state }/>}  />
             <Route exact path='/register' render={props => <RegisterView history= {props.history} 
             
               coord={ props.location.state }/>}   />
