@@ -19,7 +19,6 @@ class Product extends React.Component {
     this.setState({
       qty: this.state.qty + 1
     });
-    alert(this.state.qty)
     this.props.handleTotal(this.props.price);
   }
 
@@ -48,7 +47,7 @@ class Product extends React.Component {
         </Box>
         <Box className="row btn-toolbar">
           <Box className="col-6 text-right">
-            <Button  variant="contained" size="small" color='#840032'  align= "center" onClick={this.add}>
+            <Button  variant="contained" size="small" color='#840032' align= "center" onClick={this.add}>
               {this.props.t("Product.Add")}
             </Button>
             <Button  variant="contained" size="small" color='#840032' align= "center" onClick={this.subtract} disabled={this.state.qty < 1}>

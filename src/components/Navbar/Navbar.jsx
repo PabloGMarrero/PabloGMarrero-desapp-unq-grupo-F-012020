@@ -50,7 +50,7 @@ const styles = makeStyles((theme) => ({
   
 
 const NavBar = () => {
-  const [user] = useContext(UserContext)
+  const [user, setUser] = useContext(UserContext)
   const classes = styles();
   const history = useHistory()
   const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
@@ -69,6 +69,12 @@ const NavBar = () => {
 
   const logOut =() =>{
     //tendría que desloguearse llamando a auth-service.js
+    setUser({
+      id: 0, 
+      name: "",
+      password: "",
+      email: "",
+    })
     history.push("/")
   }
   const goToHome = () =>{
@@ -104,8 +110,8 @@ const goToAddProduct = () =>{
               <Box>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>    
-                <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
-                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>            
+                {/* <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
+                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>             */}
               </Box>
             }
           </Box>     
