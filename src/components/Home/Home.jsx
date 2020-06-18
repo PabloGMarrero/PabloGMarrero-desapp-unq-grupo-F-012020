@@ -71,9 +71,9 @@ const Home = () =>{
         <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
       </Box>  
       <Typography variant="h4">{t("Home.Stores")} </Typography>
-      <Grid container spacing={2}>
+      <Box className="products" >
       {storeList ? <RenderStores> </RenderStores> : <p>{t("Home.SearchingStores")}</p>}
-      </Grid>
+      </Box>
       <Typography variant="h4">{t("Home.Products")}</Typography>
       <Box className="products" >
         <RenderProducts ></RenderProducts>

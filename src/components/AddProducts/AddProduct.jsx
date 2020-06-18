@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
 import {useTranslation } from 'react-i18next'
+import productService from '../../service/product-service';
 
 
 const styles = makeStyles((theme) => ({
@@ -43,10 +44,29 @@ const AddProductView = () =>{
   const classes = styles();
   const history = useHistory();
   const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [brand, setBrand] = useState("")
+  const [imagenUrl, setImagenUrl] = useState("")
+  const [price, setPrice] = useState("")
+  const [store, setStore] = useState("")
   const [setError] = useState("")
   const {t} = useTranslation()
+
+  const isEmpty = (value) => {
+    return (typeof value === 'undefined' || value === null || value === '');
+  }
+
+  const handleClickAddProductToStore = (ev) => {
+    ev.preventDefault();
+    if (isEmpty(name) && isEmpty(brand) && isEmpty(price) && isEmpty(store)) {
+      setError('Por favor, complete todos los campos.')
+      
+    } else {
+            productService.addProductToStore(name, brand, imagenUrl, price , store)
+              .then(response =>  history.push(`/home`))
+              .catch( e => console.log(e))
+
+    }
+  }
 
  
   return (
@@ -69,7 +89,7 @@ const AddProductView = () =>{
                     id="Name"
                     label= 'Nombre'
                     autoFocus
-  //                  onChange={(ev) => setName(ev.target.value)}
+                   onChange={(ev) => setName(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -81,6 +101,7 @@ const AddProductView = () =>{
                     label='Marca'
                     name="Marca"
                     autoComplete="Marca"
+                    onChange={(ev) => setBrand(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -92,7 +113,7 @@ const AddProductView = () =>{
                     label= 'Precio'
                     name="price"
                     autoComplete="price"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                   onChange={(ev) => setPrice(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -104,7 +125,7 @@ const AddProductView = () =>{
                     label= 'Imagen'
                     name="imageurl"
                     autoComplete="imageurl"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                   onChange={(ev) => setImagenUrl(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -116,14 +137,14 @@ const AddProductView = () =>{
                     label= 'Comercio'
                     name="store"
                     autoComplete="store"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                   onChange={(ev) => setStore(ev.target.value)}
                   />
                 </Grid>
                 <Button 
                 type="submit"
                 fullWidth
                 className={classes.register} 
-  //              onClick={ (ev) => handleClickRegistrar(ev)}
+               onClick={ (ev) => handleClickAddProductToStore(ev)}
                 >Agregar Producto
               </Button>
               </Grid>

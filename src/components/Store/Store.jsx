@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@material-ui/core/Box'
 
 
 class Store extends React.Component {
@@ -12,18 +13,18 @@ class Store extends React.Component {
   render() {
     return (
       
-        <div id={this.props.id} className="card store-card">
-        <div className="card-body">
-          <div className="row">
-            <div className="col-10">
-              <p className="card-title"> {this.props.storeName}</p>  
-              <div className="col-10">
-              <h>({this.props.activity})</h>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Box>
+      <Box className="row form-group">
+        <Box className="col-sm-10">
+      
+          <h4>{this.props.storeName}</h4>  
+          <h4> {this.props.activity}</h4> 
+          
+          
+        </Box>
+      
+      </Box>
+      </Box>
 
     );
   }
@@ -31,25 +32,3 @@ class Store extends React.Component {
 
 export default Store;
 
-/*import React from 'react';
-import './Store.css';
-
-
-const Store = ({ data }) => {
-    const { id, storeName, activity } = data;
-  
-    return (
-      <div id={id} className="card store-card">
-        <div className="card-body">
-          <div className="row">
-            <div className="col-10">
-              <h5 className="card-title"> {storeName} ,({activity})</h5>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  
-  export default Store;*/

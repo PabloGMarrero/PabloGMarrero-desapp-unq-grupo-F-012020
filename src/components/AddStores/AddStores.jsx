@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
 import {useTranslation } from 'react-i18next'
+import storeService from '../../service/store-service';
 
 
 const styles = makeStyles((theme) => ({
@@ -41,22 +42,38 @@ const styles = makeStyles((theme) => ({
 
 const AddStoreView = () =>{
   const classes = styles();
+  const [name, setName] = useState("")
+  const [activity, setActivity] = useState("")
+  const [street, setStreet] = useState("")
+  const [number, setNumber] = useState("")
+  const [locality, setLocality] = useState("")
+  const [longitude, setLongitude] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [covDistance, setCovDistance] = useState("")
+
   const history = useHistory();
   const [setError] = useState("")
   const {t} = useTranslation()
-  const param = {
 
-    name: '',
-    activity: '',
-    street: '',
-    number: '',
-    locality: '',
-    latitude: '',
-    longitude: '',
-    covDistance: ''
-
+  const isEmpty = (value) => {
+    return (typeof value === 'undefined' || value === null || value === '');
   }
- 
+  
+  const handleClickAddStore = (ev) => {
+    ev.preventDefault();
+    if (isEmpty(name) && isEmpty(latitude) && isEmpty(longitude)
+    && isEmpty(latitude) && isEmpty(street) && isEmpty(number)) {
+      setError('Por favor, complete todos los campos.')
+      
+    } else {
+            storeService.addStore(name, activity, street, number , locality, latitude, longitude, covDistance)
+              .then(response =>  history.push(`/home`))
+              .catch( e => console.log(e))
+
+    }
+  }
+
+
   return (
         <Box className="container">
           <Container component="main" maxWidth="xs">
@@ -77,7 +94,7 @@ const AddStoreView = () =>{
                     id="Name"
                     label= 'Nombre'
                     autoFocus
-    //                onChange={(ev) => setName(ev.target.value)}
+                   onChange={(ev) => setName(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -89,6 +106,7 @@ const AddStoreView = () =>{
                     label='Actividad'
                     name="activity"
                     autoComplete="activity"
+                    onChange={(ev) => setActivity(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -100,7 +118,7 @@ const AddStoreView = () =>{
                     label= 'Calle'
                     name="address"
                     autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                    onChange={(ev) => setStreet(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -112,7 +130,7 @@ const AddStoreView = () =>{
                     label= 'Numero'
                     name="address"
                     autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                    onChange={(ev) => setNumber(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -124,7 +142,7 @@ const AddStoreView = () =>{
                     label= 'Localidad'
                     name="address"
                     autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                    onChange={(ev) => setLocality(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -136,7 +154,7 @@ const AddStoreView = () =>{
                     label= 'Latitud'
                     name="address"
                     autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                   onChange={(ev) => setLatitude(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -148,7 +166,7 @@ const AddStoreView = () =>{
                     label= 'Longitud'
                     name="address"
                     autoComplete="address"
-//                    onChange={(ev) => setEmail(ev.target.value)}
+                    onChange={(ev) => setLongitude(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -161,14 +179,14 @@ const AddStoreView = () =>{
                     type="covDistance"
                     id="covDistance"
                     autoComplete="covDistance"
-  //                  onChange={(ev) =>setPassword(ev.target.value)}
+                  onChange={(ev) =>setCovDistance(ev.target.value)}
                   />
                 </Grid>
                 <Button 
                 type="submit"
                 fullWidth
                 className={classes.register} 
-  //              onClick={ (ev) => handleClickRegistrar(ev)}
+               onClick={ (ev) => handleClickAddStore(ev)}
                 >Agregar Comercio
               </Button>
               </Grid>
