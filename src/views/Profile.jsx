@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from "../components/Navbar/Navbar";
-import ContainerProfile from '../components/Login/Profile'
+import ContainerProfile from '../components/Profile/Profile'
 import {withRouter} from 'react-router';
 
 

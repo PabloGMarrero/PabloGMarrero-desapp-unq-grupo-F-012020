@@ -2,9 +2,9 @@ import React, {useState, useContext, useEffect} from 'react'
 import {withRouter} from 'react-router';
 import './Home.css';
 import Typography from '@material-ui/core/Typography';
-import { getProducts, getStores } from '../api/productAPI';
+import { getProducts, getStores } from '../../service/product-service';
 import ProductList from '../ProductsList/ProductsList'
-import StoreList from '../ProductsList/StoreList'
+import StoreList from '../StoreList/StoreList'
 import Total from '../Product/Total.jsx';
 import { CoordenadasContext } from '../../context/location-context';
 import { useTranslation } from 'react-i18next'
@@ -22,17 +22,15 @@ const Home = () =>{
 
   useEffect(() => {    
     async function fetchData() {
-       //getStores(coord.lat,coord.lng)
-     await  getStores(-58.258655, -34.721533)
-       .then(storeList => setStoreList(storeList ))
+    await getStores(coord.lat,coord.lng)
+    //await getStores(-58.258655, -34.721533)
+      .then(response => setStoreList(response.data ))
 
-
-      await getProducts(-58.258655, -34.721533)
-        .then(productList => setProductList(productList ))
-        .catch(error => setError( error ));
-  }
-  fetchData();
-  
+    await getProducts(coord.lat,coord.lng)
+    //await getProducts(-58.258655, -34.721533)
+       .then(response => setProductList(response.data ))
+    }
+    fetchData();
   },[coord, setError, setStoreList, setProductList] );
 
   const addProduct = (product) => {

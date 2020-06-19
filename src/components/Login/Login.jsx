@@ -45,7 +45,7 @@ const Login = () =>{
   const history = useHistory();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [setError] = useState("")
+  const [error, setError] = useState("")
   const { t } = useTranslation()
 
   const isEmpty = (value) => {
@@ -71,7 +71,7 @@ const Login = () =>{
             localStorage.setItem("user", JSON.stringify(resp.data));
         }
       })
-      .catch((e) => console.log(e) && setError({error: 'Bad username or password'}));
+      .catch((e) => setError('Bad username or password'));
     }
   }
 
@@ -124,6 +124,7 @@ const Login = () =>{
               onClick={(ev) => handleClickLogin(ev)}
               >{t("Login.Signin")}
             </Button>
+            {error ? <p>{error} </p> : <p></p> }
             <Grid container>
               <Grid item>
                 <Link href="#" variant="body2">{t("Login.ForgotPass")}</Link>
