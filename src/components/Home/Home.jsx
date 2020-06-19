@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {withRouter} from 'react-router';
+import { withRouter, useHistory } from 'react-router-dom';
 import './Home.css';
 import Typography from '@material-ui/core/Typography';
 import { getProducts, getStores } from '../../service/product-service';
@@ -10,8 +10,20 @@ import { CoordenadasContext } from '../../context/location-context';
 import { useTranslation } from 'react-i18next'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const styles = makeStyles((theme) => ({
+  register:{
+    background: '#E59500'
+  }
+}));
+
 
 const Home = () =>{
+  const classes = styles();
+  const history = useHistory();
   const [coord] = useContext(CoordenadasContext)
   let [total, setTotal] = useState(0)
   const [productList, setProductList] = useState([])
@@ -63,6 +75,11 @@ const Home = () =>{
   }
 
 
+  const goToPurchase = () =>{
+    history.push("/purchase")
+  }
+
+
   return (
     <Box>
       <Box className= "coordenadas">
@@ -77,6 +94,14 @@ const Home = () =>{
         <RenderProducts ></RenderProducts>
       </Box>
       <Total total = {total} />
+
+      <Button 
+            type="submit"
+            fullWidth
+            className={classes.register} 
+               onClick={goToPurchase}
+                >Add Purchase
+              </Button>
 
     </Box>
   );
