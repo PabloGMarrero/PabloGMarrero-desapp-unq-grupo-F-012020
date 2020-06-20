@@ -10,6 +10,7 @@ import ProductView from './views/AddProduct'
 import PurchaseView from './views/Purchase'
 import {CoordenadasContext, CoordenadasProvider } from './context/location-context'
 import { UserContext, UserProvider } from './context/user-context'
+import { PurchaseContext, PurchaseProvider } from './context/purchase-context'
 
 function App(){
   const coord = useContext(CoordenadasContext)
@@ -18,6 +19,7 @@ function App(){
   return (
     <UserProvider value = {user}>
       <CoordenadasProvider value = {coord}>
+        <PurchaseProvider>
         <BrowserRouter>
           <Switch>
             <Route exact path= '/' render={props => <Root coord={ props.location.state } />}/>
@@ -32,6 +34,7 @@ function App(){
               coord={ props.location.state }/>}   />
           </Switch>
         </BrowserRouter>
+        </PurchaseProvider>
       </CoordenadasProvider>
     </UserProvider>
   );

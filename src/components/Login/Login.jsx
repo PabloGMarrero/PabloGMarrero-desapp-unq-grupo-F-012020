@@ -80,6 +80,8 @@ const Login = () =>{
   }
   
   return (
+    <React.Fragment>
+      <CssBaseline />
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box className={classes.paper}>
@@ -137,6 +139,7 @@ const Login = () =>{
           </form>
         </Box>
       </Container>
+      </React.Fragment>
   );
 }
 

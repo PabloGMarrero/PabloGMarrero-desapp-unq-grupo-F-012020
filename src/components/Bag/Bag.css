@@ -1,0 +1,199 @@
+.wrapper .bag {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    width: 80px;
+    height: 80px;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: white;
+    transition: 0.1s linear;
+}
+.wrapper .bag__img {
+    width: 35px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+}
+.wrapper .bag:hover {
+    cursor: pointer;
+    background-color: #222;
+}
+.wrapper .items__count {
+    position: relative;
+    top: -20px;
+    right: -10px;
+    border: 1px solid #333;
+    text-align: center;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    color: #333;
+    background: #fb0;
+}
+.wrapper .item__close__btn__wrapper {
+    display: flex;
+    position: relative;
+    top: -18px;
+    justify-content: flex-end;
+}
+.wrapper .item__close__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+}
+.wrapper .item__close__btn:hover {
+    background: #333;
+}
+.wrapper *:hover ~ #container {
+    color: red;
+    background: #111 !important;
+}
+.wrapper .side__bar {
+    display: flex;
+    margin-top: 36px;
+    border: 1px solid #222;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper .bag__info {
+    margin: 4rem;
+    font-size: 18px;
+    font-weight: bold;
+}
+.wrapper .bag__price {
+    font-size: 22px;
+    color: gold;
+}
+.wrapper .close__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+.wrapper .container {
+    color: #fff;
+    background: #1b1a20;
+    height: 100vh;
+    width: 400px;
+    position: absolute;
+    right: 0;
+}
+.wrapper .bag__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 46px;
+    align-items: center;
+}
+.wrapper .bag__empty {
+    font-size: 26px;
+    margin-top: 46px;
+    text-align: center;
+}
+.wrapper .small__btn {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    padding: 12px;
+    color: #fff;
+    line-height: 12px;
+    text-align: center;
+    background: #111;
+    cursor: pointer;
+}
+.wrapper .small__btn:hover {
+    background: #222;
+}
+.wrapper .bag__item span {
+    line-height: 36px;
+    display: block;
+    font-size: 16px;
+}
+.wrapper .bag__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    bottom: 40px;
+}
+.wrapper .bag__total {
+    padding: 16px 0;
+    font-size: 26px;
+    color: gold;
+}
+.wrapper .checkout__btn {
+    background: #111;
+    cursor: pointer;
+    border-radius: 6px;
+    color: #fff;
+    text-align: center;
+    padding: 21px;
+    width: 80%;
+}
+.wrapper .checkout__btn:hover {
+    background: #111;
+}
+.wrapper .bag__operation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 46px;
+}
+.wrapper .bag__operation span {
+    font-size: 14px;
+    line-height: 5px;
+}
+.wrapper .bag__item__container {
+    border: 1px solid black;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper .items__container {
+    height: 500px;
+    overflow-y: scroll;
+}
+.wrapper .items__container::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 80px;
+}
+.wrapper .items__container::-webkit-scrollbar-thumb {
+    background: #dfbd01;
+}
+.wrapper .items__container::-webkit-scrollbar-thumb:hover {
+    background: #f1ce05;
+}
+.wrapper .slide-enter {
+    margin-right: -400px;
+}
+.wrapper .slide-enter-active {
+    margin-right: 0;
+    transition: 0.3s ease-in;
+}
+.wrapper .slide-exit {
+    margin-right: 0;
+}
+.wrapper .slide-exit-active {
+    margin-right: -400px;
+    transition: 0.3s ease-out;
+}
