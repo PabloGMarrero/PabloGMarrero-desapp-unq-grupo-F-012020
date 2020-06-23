@@ -75,9 +75,7 @@ const Home = () =>{
   }
 
 
-  const goToPurchase = () =>{
-    history.push("/purchase")
-  }
+ 
 
 
   return (
@@ -93,15 +91,6 @@ const Home = () =>{
       <Box className="products" >
         <RenderProducts ></RenderProducts>
       </Box>
-      <Total total = {total} />
-
-      <Button 
-            type="submit"
-            fullWidth
-            className={classes.register} 
-               onClick={goToPurchase}
-                >Add Purchase
-              </Button>
 
     </Box>
   );

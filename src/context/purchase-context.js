@@ -9,7 +9,12 @@ export const PurchaseProvider = props =>{
   const [shoppingList, setShoppingList] = useState(
     JSON.parse(localStorage.getItem('shopping_list')) || []
   );
+  const [address, setAddress] = useState(
+    JSON.parse(localStorage.getItem('address')) || []
+  );
   const [cartIsOpen, setCartIsOpen] = useState(false);
+
+  const [total, setTotal] = useState(false);
 
   return(
     <PurchaseContext.Provider 
@@ -20,7 +25,11 @@ export const PurchaseProvider = props =>{
       setProductsCount,
       setShoppingList,
       cartIsOpen,
-      setCartIsOpen
+      setCartIsOpen,
+      total,
+      setTotal,
+      address,
+      setAddress
     }}
   >    
       

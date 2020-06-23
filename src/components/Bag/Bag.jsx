@@ -1,8 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { withRouter, useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import Item from './Item';
 import { PurchaseContext } from '../../context/purchase-context'
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import './Bag.css';
+
+const styles = makeStyles((theme) => ({
+  register:{
+    background: '#E59500'
+  }
+}));
+
 export default function Bag() {
   const {
     shoppingList,
@@ -10,18 +20,23 @@ export default function Bag() {
     setProductsCount,
     setShoppingList,
     setCartIsOpen,
-    cartIsOpen
+    cartIsOpen,
+    total,
+    setTotal
   } = useContext(PurchaseContext);
 
-  console.log(shoppingList)
 
-  const [total, setTotal] = useState(0);
+
+  const classes = styles();
+  const history = useHistory(); 
+
 
   useEffect(() => {
     let computed_total = 0;
     shoppingList.map(
       item =>
-        (computed_total += parseInt(item.price.length - 1) * item.quantity
+        (computed_total +=  item.price * item.quantity
+
         )
     );
     setTotal(computed_total);
@@ -32,6 +47,10 @@ export default function Bag() {
   const handleClick = () => {
     setCartIsOpen(open => !open);
   };
+
+  const goToPurchase = () =>{
+    history.push("/purchase")
+  }
 
   return (
     <div className="wrapper">
@@ -54,7 +73,7 @@ export default function Bag() {
                 <div className="items__count">{productsCount}</div>
               </div>
             </div>
-            <span style={{ fontWeight: 'bold' }}>CART</span>
+            <span style={{ fontWeight: 'bold' }}>SHOPPING CART</span>
           </div>
           <div className="items__container">
             {shoppingList.length > 0 ? (
@@ -76,9 +95,13 @@ export default function Bag() {
           </div>
           <div className="bag__footer">
             <div className="bag__total">Total: {total}$</div>
-            <div className="checkout__btn" onClick={() => alert('COOL ! ')}>
-              CHECKOUT
-            </div>
+            <Button 
+                type="submit"
+                fullWidth
+                className={classes.register} 
+               onClick={goToPurchase}
+                >Checkout
+      </Button>
           </div>
         </div>
       </CSSTransition>

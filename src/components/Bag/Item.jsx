@@ -54,7 +54,7 @@ export default function Item({
       </div>
       <div className="bag__item">
         <div>
-          <span style={{ color: '#fff' }}>{productName}</span>
+          <span >{productName}</span>
         </div>
         <div>
           <span className="bag__price">{price}</span>

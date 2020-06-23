@@ -15,6 +15,7 @@ import Switch from '@material-ui/core/Switch';
 import Grid from '@material-ui/core/Grid';
 
 
+
 const styles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -121,6 +122,7 @@ const goToAddProduct = () =>{
           <Button className={classes.languageButton} onClick={() => changeLanguage('es')}>
               {t("Language.Spanish")}
           </Button> 
+          
 
          
         
