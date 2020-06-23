@@ -11,7 +11,7 @@ const styles = makeStyles((theme) => ({
     root:{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
     }
 }));
 
