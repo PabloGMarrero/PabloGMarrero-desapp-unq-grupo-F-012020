@@ -20,7 +20,10 @@
         "Email": "Dirección de email",
         "Password": "Contraseña",
         "InfoEmail": "Quiero recibir descuentos, promociones y noticias via email.",
-        "HaveAccount": "Ya tenés una cuenta? Logueate!"
+        "HaveAccount": "Ya tenés una cuenta? Logueate!",
+        "User": "Registrate como usuario",
+        "Store": "Registrate como comercio",
+        "Go": "Adelante!"
     },
     "Home":{
         "Stores": "Comercios cerca tuyo",

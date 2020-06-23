@@ -20,7 +20,10 @@
         "Email": "Email address",
         "Password": "Password",
         "InfoEmail": "I want to receive discounts, marketing promotions and updates via email.",
-        "HaveAccount": "Already have an account? Sign in"
+        "HaveAccount": "Already have an account? Sign in",
+        "User": "Register as user",
+        "Store": "Register as store",
+        "Go": "Go!"
     },
     "Home":{
         "Stores": "Stores near.",
