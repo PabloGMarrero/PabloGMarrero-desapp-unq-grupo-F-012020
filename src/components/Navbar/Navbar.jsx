@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { withRouter } from 'react-router';
 import {useHistory } from 'react-router-dom';
-import './Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar'
 import Box from '@material-ui/core/Box'
@@ -11,9 +10,6 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
-import Switch from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
-
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -37,10 +33,6 @@ const styles = makeStyles((theme) => ({
       display: 'flex',
       justifyContent: "flex-end",
       width: "100vw"
-    },
-    languageButton:{
-      marginRight: theme.spacing(2),
-      background: "#EDF2F4",
     },
     navbar:{
       background:"#D80032"
@@ -114,17 +106,17 @@ const goToAddProduct = () =>{
                 <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>             
               </Box>
             }
-          </Box>     
-          <Button className={classes.languageButton} onClick={() => changeLanguage('en')}>
-              {t("Language.English")}
-          </Button>
-          <Button className={classes.languageButton} onClick={() => changeLanguage('es')}>
-              {t("Language.Spanish")}
-          </Button> 
+          </Box>
+          <Box>
+            {
+              console.log(i18n.language) ||
+              i18n.language === "es" ?
+                <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
+              :
+                <Button onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
+            }
 
-         
-        
-        
+          </Box>       
         </Box>     
       </Toolbar>
     </AppBar>
