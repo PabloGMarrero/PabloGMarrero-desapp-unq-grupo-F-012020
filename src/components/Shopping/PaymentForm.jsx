@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext, useState }  from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withRouter, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
+import { PurchaseContext } from '../../context/purchase-context'
+
 
 
 
@@ -15,16 +15,25 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 const PaymentForm = () =>{ 
 
-  const [delivery, setDelivery] = React.useState();
-  const [payment, setPayment] = React.useState();
+  const {
+    shoppingList,
+
+    deliveryType,      
+    payMethod, 
+    setDeliveryType,
+    setPayMethod
+  
+  } = useContext(PurchaseContext);
 
   const handleDeliveryChange = (event) => {
-    setDelivery(event.target.value);
+    setDeliveryType(event.target.value);
   };
 
   const handlePaymentChange = (event) => {
-    setPayment(event.target.value);
+    setPayMethod(event.target.value);
   };
+  console.log(deliveryType)
+  console.log(payMethod)
 
   return (
     <React.Fragment>
@@ -34,7 +43,7 @@ const PaymentForm = () =>{
         <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
-              <RadioGroup aria-label="gender" name="gender1" value={payment} onChange={handleDeliveryChange}>
+              <RadioGroup aria-label="gender" name="gender1" onChange={handlePaymentChange}>
                       <FormControlLabel value="CASH" control={<Radio />} label="Cash" />
                       <FormControlLabel value="DEBIT" control={<Radio />} label="Debit" />
                       <FormControlLabel value="CREDIT" control={<Radio />} label="Credit" />
@@ -47,7 +56,7 @@ const PaymentForm = () =>{
         <Typography variant="h6" gutterBottom>
         Delivery Type
       </Typography>
-              <RadioGroup aria-label="gender" name="gender1" value={delivery} onChange={handlePaymentChange }>
+              <RadioGroup aria-label="gender" name="gender1" onChange={handleDeliveryChange }>
                       <FormControlLabel value="PICKUP" control={<Radio />} label="Pick Up" />
                       <FormControlLabel value="DELIVERY" control={<Radio />} label="Delivery" />
                       

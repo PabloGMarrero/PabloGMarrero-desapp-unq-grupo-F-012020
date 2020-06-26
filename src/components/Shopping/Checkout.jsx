@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './ReviewForm';
+import { PurchaseContext } from '../../context/purchase-context'
+import { UserContext } from '../../context/user-context'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +68,28 @@ function getStepContent(step) {
   }
 }
 
+
 const Checkout = () =>{ 
+
+  const {
+    shoppingList,
+    productsCount,
+    setProductsCount,
+    setShoppingList,
+    setCartIsOpen,
+    cartIsOpen,
+    total,
+    setTotal,
+    street,
+      number,
+      state,
+      city,
+      zipCode,
+      country
+
+  } = useContext(PurchaseContext);
+
+  const [,setUser] = useContext(UserContext)
 
 
   const classes = useStyles();
@@ -79,6 +102,8 @@ const Checkout = () =>{
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+ 
 
   return (
     <React.Fragment>

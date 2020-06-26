@@ -9,37 +9,22 @@ import { PurchaseContext } from '../../context/purchase-context'
 const AddressForm = () =>{ 
 
   const {
-    address,
-    setAddress,
+      setStreet,
+      setNumber,
+      setState,
+      setCity,
+      setZipCode,
+      setCountry
 
   } = useContext(PurchaseContext);
 
-  const [street, setStreet] = useState("")
-  const [number, setNumber] = useState("")
-  const [state, setState] = useState("")
-  const [city, setCity] = useState("")
-  const [zipCode, setZipCode] = useState("")
-  const [country, setCountry] = useState("")
 
-  const addressForm = [
-    { 
-      'street': street, 
-      'number': number,
-       'state': state, 
-       'city': city,
-       'zipCode': zipCode,
-      'country': country,
-  
-  },  ];
+ 
 
-  //useEffect(() => {
-  //  let new_state = addressForm
-  //  setAddress(new_state)
-  //}, [address]);
 
-  console.log(address)
 
-  console.log(addressForm)
+
+
 
   return (
     <React.Fragment>
