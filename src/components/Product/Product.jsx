@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { PurchaseContext } from '../../context/purchase-context'
 
 
+
 export default function Product(props) {
 
 const {
@@ -16,7 +17,7 @@ const {
     setProductsCount
   } = useContext(PurchaseContext);
 
-
+const { t } = useTranslation();
 
 const { id,  productName, price, imageUrl } = props.product;
 
@@ -49,7 +50,10 @@ const addItem = () => {
             </Box>
   
             <h4>{productName}</h4>  
-            <h4> ${price}</h4>             
+            <h4>  {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(price)}</h4>             
             
           </Box>
 
@@ -57,7 +61,7 @@ const addItem = () => {
         <Box className="row btn-toolbar">
           <Box className="col-6 text-right">
             <Button  variant="contained" size="small" color='#840032' align= "center" onClick={addItem}>
-            Add
+            {t("Product.Add")}
             </Button>
           </Box> 
         </Box>

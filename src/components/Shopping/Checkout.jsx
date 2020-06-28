@@ -13,6 +13,7 @@ import PaymentForm from './PaymentForm';
 import Review from './ReviewForm';
 import { PurchaseContext } from '../../context/purchase-context'
 import { UserContext } from '../../context/user-context'
+import { useTranslation } from 'react-i18next'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment & Delivery details', 'Review your order'];
+
 
 function getStepContent(step) {
   switch (step) {
@@ -73,6 +74,7 @@ const Checkout = () =>{
 
   const {
     shoppingList,
+    date,
     productsCount,
     setProductsCount,
     setShoppingList,
@@ -85,25 +87,41 @@ const Checkout = () =>{
       state,
       city,
       zipCode,
-      country
+      country,
+      setDate
 
   } = useContext(PurchaseContext);
 
   const [,setUser] = useContext(UserContext)
-
-
+  const { t } = useTranslation();
+  const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
+  var day = new Date().getDate(); //Current Date
+  var month = new Date().getMonth() + 1; //Current Month
+  var year = new Date().getFullYear(); //Current Year
+  var hours = new Date().getHours(); //Current Hours
+  var min = new Date().getMinutes(); //Current Minutes
+  var sec = new Date().getSeconds(); //Current Seconds
+
+  var date1 = day + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    setDate(date1)
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
 
- 
+  const handleClickPlaceOrder = (ev) => {
+    ev.preventDefault();
+
+  }
+
+ console.log(date)
 
   return (
     <React.Fragment>
@@ -137,7 +155,7 @@ const Checkout = () =>{
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
-                      Back
+                      {t("Checkout.Back")}
                     </Button>
                   )}
                   <Button
@@ -146,7 +164,7 @@ const Checkout = () =>{
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? t("Checkout.PlaceOrder") : t("Checkout.Next")}
                   </Button>
                 </div>
               </React.Fragment>

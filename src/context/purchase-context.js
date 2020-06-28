@@ -27,6 +27,8 @@ export const PurchaseProvider = props =>{
 
   const [country, setCountry] = useState();
 
+  const [date, setDate] = useState();
+
   return(
     <PurchaseContext.Provider 
     
@@ -43,6 +45,7 @@ export const PurchaseProvider = props =>{
       city,
       zipCode,
       country,
+      date,
       setTotal,
       setCartIsOpen,
       setDeliveryType,
@@ -54,7 +57,8 @@ export const PurchaseProvider = props =>{
       setCity,
       setZipCode,
       setCountry,
-      setPayMethod
+      setPayMethod,
+      setDate
 
     }}
   >    

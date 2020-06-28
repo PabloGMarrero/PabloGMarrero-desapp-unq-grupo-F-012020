@@ -59,6 +59,8 @@ const Login = () =>{
     history.push(`/home`)
   }
 
+
+
   const handleClickLogin = (ev) => {
     ev.preventDefault();
     if (isEmpty(email) && isEmpty(password)) {
@@ -67,6 +69,7 @@ const Login = () =>{
       authService.login("", email, password)
       .then(resp => {
         handleSubmit(resp)
+        console.log(resp)
         if (resp.data.accesToken){
             localStorage.setItem("user", JSON.stringify(resp.data));
         }

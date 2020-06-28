@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import { withRouter, useHistory } from 'react-router-dom';
 import { PurchaseContext } from '../../context/purchase-context'
 import { UserContext } from '../../context/user-context'
-
+import { useTranslation } from 'react-i18next'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,14 +42,14 @@ const Review = () =>{
   } = useContext(PurchaseContext);
 
   const [user, setUser] = useContext(UserContext)
-
+  const { t } = useTranslation();
   const classes = useStyles();
 
   const addresses = [street, number, city, state, zipCode, country];
 
   const payments = [
-    { name: 'Delivery Type:', detail: deliveryType },
-    { name: 'Payment Method:', detail: payMethod },
+    { name: t("Checkout.DeliveryType"), detail: deliveryType },
+    { name: t("Checkout.PaymentMethod"), detail: payMethod },
   ];
 
   console.log(shoppingList)
@@ -60,33 +60,39 @@ const Review = () =>{
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Order summary
+      {t("Checkout.OrderSummary")}
       </Typography>
       <List disablePadding>
         {shoppingList.map((product) => (
           <ListItem className={classes.listItem} key={product.productName}>
             <ListItemText primary={product.productName} secondary={product.brand} />
-            <Typography variant="body2">{product.price}</Typography>
+            <Typography variant="body2"> {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(product.price)}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $ {total}
+          {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(total)}
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Shipping
+          {t("Checkout.Shipping")}
           </Typography>
         <Typography gutterBottom>{user.name}</Typography>
           <Typography gutterBottom>{addresses.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Payment details
+          {t("Checkout.PaymentDetails")}
           </Typography>
           <Grid container>
             {payments.map((payment) => (

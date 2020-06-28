@@ -5,6 +5,7 @@ import Item from './Item';
 import { PurchaseContext } from '../../context/purchase-context'
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next'
 import './Bag.css';
 
 const styles = makeStyles((theme) => ({
@@ -29,7 +30,7 @@ export default function Bag() {
 
   const classes = styles();
   const history = useHistory(); 
-
+  const { t } = useTranslation();
 
   useEffect(() => {
     let computed_total = 0;
@@ -73,7 +74,7 @@ export default function Bag() {
                 <div className="items__count">{productsCount}</div>
               </div>
             </div>
-            <span style={{ fontWeight: 'bold' }}>SHOPPING CART</span>
+            <span style={{ fontWeight: 'bold' }}>{t("Bag.Cart")}</span>
           </div>
           <div className="items__container">
             {shoppingList.length > 0 ? (
@@ -90,11 +91,18 @@ export default function Bag() {
                 );
               })
             ) : (
-              <div className="bag__empty">Empty Cart</div>
+              <div className="bag__empty">{t("Bag.EmptyCart")}</div>
             )}
           </div>
           <div className="bag__footer">
-            <div className="bag__total">Total: {total}$</div>
+            <div className="bag__total">Total:  
+            
+            {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(total)}
+            
+            </div>
             <Button 
                 type="submit"
                 fullWidth

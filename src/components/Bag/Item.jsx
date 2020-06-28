@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next'
 
 export default function Item({
   setProductsCount,
@@ -23,6 +24,8 @@ export default function Item({
       setShoppingList(new_state);
     }
   };
+
+  const { t } = useTranslation();
 
   const addItem = () => {
     setProductsCount(productCount => productCount + 1);
@@ -57,11 +60,14 @@ export default function Item({
           <span >{productName}</span>
         </div>
         <div>
-          <span className="bag__price">{price}</span>
+          <span className="bag__price"> {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(price)}</span>
         </div>
       </div>
       <div className="bag__operation">
-        <span>Quantity: {quantity}</span>
+        <span>{t("Bag.Quantity")}: {quantity}</span>
         <div>
           <div className="small__btn" onClick={removeItem}>
             -
