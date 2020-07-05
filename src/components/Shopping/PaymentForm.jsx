@@ -1,50 +1,66 @@
-import React from 'react';
+import React, { useContext, useState }  from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withRouter, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import { useTranslation } from 'react-i18next'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { PurchaseContext } from '../../context/purchase-context'
+
+
 
 
 
 
 const PaymentForm = () =>{ 
 
+  const {
+    shoppingList,
+
+    deliveryType,      
+    payMethod, 
+    setDeliveryType,
+    setPayMethod
+  
+  } = useContext(PurchaseContext);
+
+  const handleDeliveryChange = (event) => {
+    setDeliveryType(event.target.value);
+  };
+  const { t } = useTranslation();
+  const handlePaymentChange = (event) => {
+    setPayMethod(event.target.value);
+  };
+  // console.log(deliveryType)
+  // console.log(payMethod)
+
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Payment method
-      </Typography>
+     
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth autoComplete="cc-name" 
-          //          onChange={changeEmail}
-          />
+        <Typography variant="h6" gutterBottom>
+        {t("Checkout.PaymentMethod")}
+      </Typography>
+              <RadioGroup aria-label="gender" name="gender1" onChange={handlePaymentChange}>
+                      <FormControlLabel value="CASH" control={<Radio />} label={t("Checkout.Cash")}/>
+                      <FormControlLabel value="DEBIT" control={<Radio />} label={t("Checkout.Debit")} />
+                      <FormControlLabel value="CREDIT" control={<Radio />} label={t("Checkout.Credit")} />
+                      <FormControlLabel value="TRANSFER" control={<Radio />} label={t("Checkout.Transfer")} />
+                      <FormControlLabel value="MERCADOPAGO" control={<Radio />} label="Mercado Pago" />
+                      
+              </RadioGroup>
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
-            //          onChange={changeEmail}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Expiry date" fullWidth autoComplete="cc-exp"
-          //          onChange={changeEmail}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
-            fullWidth
-            autoComplete="cc-csc"
-            //          onChange={changeEmail}
-          />
+        <Typography variant="h6" gutterBottom>
+        {t("Checkout.DeliveryType")}
+      </Typography>
+              <RadioGroup aria-label="gender" name="gender1" onChange={handleDeliveryChange }>
+                      <FormControlLabel value="PickupInStore" control={<Radio />} label={t("Checkout.PickUp")} />
+                      <FormControlLabel value="HomeDelivery" control={<Radio />} label={t("Checkout.Delivery")} />
+                      
+              </RadioGroup>
         </Grid>
       </Grid>
     </React.Fragment>

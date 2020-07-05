@@ -1,9 +1,91 @@
-import React from 'react';
+import React, { useContext, useState }  from 'react';
 import Button from '@material-ui/core/Button';
 import './Product.css';
 import Box from '@material-ui/core/Box'
 import { useTranslation } from 'react-i18next'
+import { PurchaseContext } from '../../context/purchase-context'
 
+
+
+export default function Product(props) {
+
+const {
+    shoppingList,
+    setShoppingList,
+    setCartIsOpen,
+    setProductsCount
+  } = useContext(PurchaseContext);
+
+const { t } = useTranslation();
+
+const { id,  productName, price, imageUrl } = props.product.product;
+
+
+
+const addItem = () => {
+  setCartIsOpen(true);
+    const product_array = shoppingList.filter(p => p.id === id);
+    const product_copy = props.product.product
+    const store_copy = props.product.store
+    if (product_array.length > 0) {
+      setProductsCount(productCount => productCount + 1);
+      let new_state = shoppingList.map(p => {
+        if (p.id === id) {
+          p.quantity += 1;
+          return { ...p };
+        } else return { ...p };
+      });
+      setShoppingList(new_state);
+      //setShoppingList({store_id : store_copy.id, new_state});
+      //console.log({store_id : store_copy.id, new_state})
+    } else {
+      setProductsCount(productCount => productCount + 1);
+      product_copy.quantity = 1;
+      setShoppingList([...shoppingList, product_copy]);
+
+    }
+}
+
+  return (
+      <Box>
+        <Box className="row form-group">
+          <Box className="col-sm-10">
+            <Box className="product-col" style={{ textAlign: 'center' }}>   
+              <img src={imageUrl} alt={productName}  className="product-img" />
+            </Box>
+  
+            <h4>{productName}</h4>  
+            <h4>  {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(price)}</h4>             
+            
+          </Box>
+
+        </Box>
+        <Box className="row btn-toolbar">
+          <Box className="col-6 text-right">
+            <Button  variant="contained" size="small" color='#840032' align= "center" onClick={addItem}>
+            {t("Product.Add")}
+            </Button>
+          </Box> 
+        </Box>
+  
+      </Box>
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
 class Product extends React.Component {
   constructor(props) {
     super(props);
@@ -61,4 +143,4 @@ class Product extends React.Component {
   }
 }
 
-export default Product;
+export default Product;*/
