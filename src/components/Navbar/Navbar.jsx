@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { withRouter } from 'react-router';
 import {useHistory } from 'react-router-dom';
-import './Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar'
 import Box from '@material-ui/core/Box'
@@ -11,9 +10,6 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
-import Switch from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
-
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -29,7 +25,8 @@ const styles = makeStyles((theme) => ({
       maxHeight: '40px'
     },
     strikingButton:{
-      background:  "#EDF2F4",
+      color: "#EDF2F4",
+      background:  "#2B2D42",
       margin: theme.spacing(0, 2, 0, 0)
     },
     button:{
@@ -37,10 +34,6 @@ const styles = makeStyles((theme) => ({
       display: 'flex',
       justifyContent: "flex-end",
       width: "100vw"
-    },
-    languageButton:{
-      marginRight: theme.spacing(2),
-      background: "#EDF2F4",
     },
     navbar:{
       background:"#D80032"
@@ -103,28 +96,27 @@ const goToAddProduct = () =>{
           <Box>
             {isLoggued ?
               <Box>
-                <Button variant="outlined" className={classes.strikingButton} onClick={goToProfile}>{t("Navbar.Profile")}</Button>
-                <Button variant="outlined" className={classes.strikingButton} onClick={logOut}>{t("Navbar.Logout")}</Button>
+                <Button variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>
+                <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>
               </Box>
               :
               <Box>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>    
-                <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
-                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>             
+                {/* <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
+                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>              */}
               </Box>
             }
-          </Box>     
-          <Button className={classes.languageButton} onClick={() => changeLanguage('en')}>
-              {t("Language.English")}
-          </Button>
-          <Button className={classes.languageButton} onClick={() => changeLanguage('es')}>
-              {t("Language.Spanish")}
-          </Button> 
+          </Box>
+          <Box>
+            {
+              i18n.language === "es" ?
+                <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
+              :
+                <Button onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
+            }
 
-         
-        
-        
+          </Box>       
         </Box>     
       </Toolbar>
     </AppBar>

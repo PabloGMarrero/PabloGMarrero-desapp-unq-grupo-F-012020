@@ -7,12 +7,8 @@ const ProductsList = ({products, calculateTotal}) =>{
         products.length > 0 ?
         products.map( product =>
             <Product
-                key={product.productName}
-                productName={product.productName}
-                price={product.price}
-                imageUrl={product.imageUrl}
-                handleTotal={calculateTotal}
-                t = {t}
+            product={product}
+                
             />
           )
           : <p>Loading...</p>
@@ -20,3 +16,10 @@ const ProductsList = ({products, calculateTotal}) =>{
 }
 
 export default ProductsList;
+
+/*
+productName={product.productName}
+                price={product.price}
+                imageUrl={product.imageUrl}
+                handleTotal={calculateTotal}
+                t = {t}*/

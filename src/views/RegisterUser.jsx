@@ -1,15 +1,15 @@
 import React from 'react';
 import Navbar from "../components/Navbar/Navbar";
-import ContainerStores from '../components/AddStores/AddStores'
+import RegisterUser from '../components/Register/RegisterUser'
 import {withRouter} from 'react-router';
 
-const RegisteStoreView = () => {
+const RegisterUserView = () => {
     return (   
         <div>
             <Navbar></Navbar>
-            <ContainerStores></ContainerStores>
+            <RegisterUser></RegisterUser>
         </div>      
     )         
 }
 
-export default withRouter(RegisteStoreView);
+export default withRouter(RegisterUserView);

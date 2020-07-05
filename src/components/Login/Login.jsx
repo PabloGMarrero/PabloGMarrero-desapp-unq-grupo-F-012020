@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box'
 import authService from '../../service/auth-service';
 import { UserContext } from '../../context/user-context'
+import { StoreContext } from '../../context/store-context'
 import { useTranslation } from 'react-i18next'
 
 const styles = makeStyles((theme) => ({
@@ -47,6 +48,7 @@ const Login = () =>{
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const { t } = useTranslation()
+  const [, setStore] = useContext(StoreContext)
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -56,6 +58,17 @@ const Login = () =>{
 
   const handleSubmit = (resp) =>{
     setUser(resp.data)
+    setStore({
+      id: 0, 
+      name: "",
+      activity: "",
+      street: "",
+      number:"",
+      locality: "",
+      latitude:"",
+      longitude:"",
+      covDistance: "",
+    })
     history.push(`/home`)
   }
 
@@ -80,6 +93,8 @@ const Login = () =>{
   }
   
   return (
+    <React.Fragment>
+      <CssBaseline />
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box className={classes.paper}>
@@ -137,6 +152,7 @@ const Login = () =>{
           </form>
         </Box>
       </Container>
+      </React.Fragment>
   );
 }
 

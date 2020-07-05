@@ -5,12 +5,13 @@ import Navbar from "../components/Navbar/Navbar";
 import ContainerHome from '../components/Home/Home'
 import {withRouter} from 'react-router';
 import Footer from '../components/Footer/Footer'
+import Bag from '../components/Bag/Bag'
 
 const styles = makeStyles((theme) => ({
     root:{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
     }
 }));
 
@@ -19,6 +20,7 @@ const Home = () => {
     return (    
         <Box className={classes.root}>
             <Navbar></Navbar>
+            <Bag></Bag>
             <ContainerHome></ContainerHome>
             <Footer></Footer>
         </Box>         

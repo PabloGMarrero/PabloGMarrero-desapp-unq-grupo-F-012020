@@ -20,7 +20,21 @@
         "Email": "Dirección de email",
         "Password": "Contraseña",
         "InfoEmail": "Quiero recibir descuentos, promociones y noticias via email.",
-        "HaveAccount": "Ya tenés una cuenta? Logueate!"
+        "HaveAccount": "Ya tenés una cuenta? Logueate!",
+        "User": "Usuario",
+        "Store": "Comercio",
+        "Go": "Adelante!"
+    },
+    "RegisterStore":{
+        "AddStore": "Agregar Comercio",
+        "Name": "Nombre",
+        "Activity": "Actividad",
+        "Street": "Calle",
+        "Number": "Numero",
+        "Locality": "Localidad",
+        "Latitude": "Latitud",
+        "Longitude": "Longitud",
+        "Coverage": "Distancia de cobertura (kms)"
     },
     "Home":{
         "Stores": "Comercios cerca tuyo",
@@ -37,6 +51,16 @@
     },   
     "Total":{
         "Total": "Total"
+    },
+    "Stores":{
+        "Grocery": "Kiosco",
+        "Store": "Almacen",
+        "Butcher": "Carnicería",
+        "Greengrocery": "Verdulería",
+        "Bakery": "Panadería",
+        "Pharmacy": "Farmacia",
+        "Ironmongery": "Ferretería",
+        "Others": "Otros"
     },
     "Footer":{
         "Body": "Buy from Home es una aplicacion que te acerca los comercios de tu zona a tu casa."
