@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
@@ -11,157 +11,64 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import authService from '../../service/auth-service';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
+import Paper from '@material-ui/core/Paper'
 import {useTranslation } from 'react-i18next'
 
 
 const styles = makeStyles((theme) => ({
-  paper: {
-    marginTop: 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+  main:{
+    display: "flex",
+    justifyContent: "center",
   },
-  avatar: {
-    margin: 1,
-    backgroundColor: '#E59500',
+  box: {
+    padding: "10px"
   },
-  form: {
-    width: '100%',
-    marginTop: 3,
+  title:{
+    color: "#2B2D42",
+    textAlign: "center",
+    fontFamily: "sans-serif"
   },
-  submit: {
-    margin: 3,
+  img:{
+    width: "20vh",
+    margin: "0 auto",
   },
-  register:{
-    background: '#E59500'
+  name: {
+      background: '#EDF2F4'
   }
 }));
 
 const RegisterView = () =>{
   const classes = styles();
   const history = useHistory();
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [setError] = useState("")
-  const {t} = useTranslation()
+  const {t} = useTranslation();
+  const store = './assets/img/store.png'
+  const user = './assets/img/user.png'
 
-  const isEmpty = (value) => {
-    return (typeof value === 'undefined' || value === null || value === '');
-  }
-
-  const validateEmail = (email) => {
-      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-          return true;
-      }
-      setError('Por favor, introduzca un email válido.');
-      return false;
-  }
-
-  const handleClickRegistrar = (ev) => {
-    ev.preventDefault();
-    if (isEmpty(name) && isEmpty(email) && isEmpty(password)) {
-      setError('Por favor, complete todos los campos.')
-    } else {
-        if (validateEmail(email)) {
-            authService.register(name, email, password)
-              .then(response =>  history.push(`/login`))
-              .catch( e => console.log(e))
-        }
-    }
-  }
-
-  const goToLogin = () =>{
-    history.push("/login")
-  }
   return (
-        <Box className="container">
-          <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              {t("Register.Signup")}
-            </Typography>
-            <form className={classes.form} noValidate>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label={t("Register.FirstName")}
-                    autoFocus
-                    onChange={(ev) => setName(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="lastName"
-                    label={t("Register.LastName")}
-                    name="lastName"
-                    autoComplete="lname"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="email"
-                    label={t("Register.Email")}
-                    name="email"
-                    autoComplete="email"
-                    onChange={(ev) => setEmail(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label={t("Register.Password")}
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    onChange={(ev) =>setPassword(ev.target.value)}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label={t("Register.InfoEmail")}
-                  />
-                </Grid>
-              </Grid>
-              <Button 
-                type="submit"
-                fullWidth
-                className={classes.register} 
-                onClick={ (ev) => handleClickRegistrar(ev)}
-                >{t("Register.Signup")}
-              </Button>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link href="#" onClick={goToLogin} variant="body2">{t("Register.HaveAccount")}</Link>
-                </Grid>
-              </Grid>
-            </form>
-          </Box>
-        </Container>
-        </Box>
+        <Grid container className={classes.main}>
+          <Grid className={classes.box}>
+            <Typography component="h2" variant = "h4" className={classes.title}>{t("Register.User")}</Typography>
+            <img className={classes.img} src={user} alt={'im'} />
+            <Button variant="contained"
+              fullWidth
+              className={classes.name}
+              onClick={()=>history.push("/register/user")}
+              >{t("Register.Go")}
+            </Button>          
+          </Grid>
+          <Grid className={classes.box}>
+            <Typography component="h2" variant = "h4" className={classes.title}>{t("Register.Store")} </Typography>
+            <img className={classes.img} src={store} alt={'im'} />
+            <Button variant="contained"
+              fullWidth
+              className={classes.name}
+              onClick={()=>history.push("/register/store")}
+              >{t("Register.Go")}
+            </Button>
+          </Grid>
+        </Grid>
   )
 }
 

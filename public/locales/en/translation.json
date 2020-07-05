@@ -21,9 +21,20 @@
         "Password": "Password",
         "InfoEmail": "I want to receive discounts, marketing promotions and updates via email.",
         "HaveAccount": "Already have an account? Sign in",
-        "User": "Register as user",
-        "Store": "Register as store",
+        "User": "User",
+        "Store": "Store",
         "Go": "Go!"
+    },
+    "RegisterStore":{
+        "AddStore": "Add Store",
+        "Name": "Name",
+        "Activity": "Activity",
+        "Street": "Street",
+        "Number": "Number",
+        "Locality": "Locality",
+        "Latitude": "Latitude",
+        "Longitude": "Longitude",
+        "Coverage": "Coverage distance (kms)"
     },
     "Home":{
         "Stores": "Stores near.",
@@ -40,6 +51,16 @@
     },    
     "Total":{
         "Total": "Total"
+    },
+    "Stores":{
+        "Grocery": "Grocery store",
+        "Store": "Store",
+        "Butcher": "Butcher shop",
+        "Greengrocery": "Greengrocery",
+        "Bakery": "Bakery",
+        "Pharmacy": "Pharmacy",
+        "Ironmongery": "Ironmongery",
+        "Others": "Others"
     },
     "Footer":{
         "Body": "Buy from Home is an application that brings shops in your area closer to your home."

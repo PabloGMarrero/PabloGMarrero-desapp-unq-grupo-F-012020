@@ -13,9 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import {useTranslation } from 'react-i18next'
 import storeService from '../../service/store-service';
-
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -37,10 +38,13 @@ const styles = makeStyles((theme) => ({
   },
   register:{
     background: '#E59500'
+  },
+  dropdown:{
+    minWidth: "100%",
   }
 }));
 
-const AddStoreView = () =>{
+const RegisterStore = () =>{
   const classes = styles();
   const [name, setName] = useState("")
   const [activity, setActivity] = useState("")
@@ -61,18 +65,19 @@ const AddStoreView = () =>{
   
   const handleClickAddStore = (ev) => {
     ev.preventDefault();
-    if (isEmpty(name) && isEmpty(latitude) && isEmpty(longitude)
+    if (isEmpty(name) && isEmpty(activity) && isEmpty(longitude)
     && isEmpty(latitude) && isEmpty(street) && isEmpty(number)) {
       setError('Por favor, complete todos los campos.')
       
     } else {
             storeService.addStore(name, activity, street, number , locality, latitude, longitude, covDistance)
-              .then(response =>  history.push(`/home`))
+              .then(response =>  
+                console.log(response.data) 
+                || history.push(`/home`))
               .catch( e => console.log(e))
 
     }
   }
-
 
   return (
         <Box className="container">
@@ -80,7 +85,7 @@ const AddStoreView = () =>{
           <CssBaseline />
           <Box className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Agregar Comercio
+              {t("RegisterStore.AddStore")}
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
@@ -92,22 +97,39 @@ const AddStoreView = () =>{
                     required
                     fullWidth
                     id="Name"
-                    label= 'Nombre'
+                    label= {t("RegisterStore.Name")}
                     autoFocus
                    onChange={(ev) => setName(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                <Select
+                  labelId={t("RegisterStore.Activity")}
+                  id="activity"
+                  displayEmpty
+                  value={activity}
+                  className= {classes.dropdown}
+                  onChange={(ev) => setActivity(ev.target.value)}
+                  >
+                  <MenuItem value={t("Stores.Grocery")} >{t("Stores.Grocery")}</MenuItem>
+                  <MenuItem value={t("Stores.Store")} >{t("Stores.Store")}</MenuItem>
+                  <MenuItem value={t("Stores.Butcher")}>{t("Stores.Butcher")}</MenuItem>
+                  <MenuItem value={t("Stores.Greengrocery")}>{t("Stores.Greengrocery")}</MenuItem>
+                  <MenuItem value={t("Stores.Bakery")}>{t("Stores.Bakery")}</MenuItem>
+                  <MenuItem value={t("Stores.Pharmacy")}>{t("Stores.Pharmacy")}</MenuItem>
+                  <MenuItem value={t("Stores.Ironmongery")}>{t("Stores.Ironmongery")}</MenuItem>
+                  <MenuItem value={t("Stores.Others")}>{t("Stores.Others")}</MenuItem>
+                </Select>
+                  {/* <TextField
                     variant="outlined"
                     required
                     fullWidth
                     id="activity"
-                    label='Actividad'
-                    name="activity"
+                    label={t("RegisterStore.Activity")}
+                    name='Actividad'
                     autoComplete="activity"
                     onChange={(ev) => setActivity(ev.target.value)}
-                  />
+                  /> */}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -115,8 +137,8 @@ const AddStoreView = () =>{
                     required
                     fullWidth
                     id="address"
-                    label= 'Calle'
-                    name="address"
+                    label= {t("RegisterStore.Street")}
+                    name='Calle'
                     autoComplete="address"
                     onChange={(ev) => setStreet(ev.target.value)}
                   />
@@ -127,7 +149,7 @@ const AddStoreView = () =>{
                     required
                     fullWidth
                     id="address"
-                    label= 'Numero'
+                    label= {t("RegisterStore.Number")}
                     name="address"
                     autoComplete="address"
                     onChange={(ev) => setNumber(ev.target.value)}
@@ -139,7 +161,7 @@ const AddStoreView = () =>{
                     required
                     fullWidth
                     id="address"
-                    label= 'Localidad'
+                    label= {t("RegisterStore.Locality")}
                     name="address"
                     autoComplete="address"
                     onChange={(ev) => setLocality(ev.target.value)}
@@ -150,10 +172,10 @@ const AddStoreView = () =>{
                     variant="outlined"
                     required
                     fullWidth
-                    id="address"
-                    label= 'Latitud'
-                    name="address"
-                    autoComplete="address"
+                    id="latitude"
+                    label= {t("RegisterStore.Latitude")}
+                    name="latitude"
+                    autoComplete="latitude"
                    onChange={(ev) => setLatitude(ev.target.value)}
                   />
                 </Grid>
@@ -162,10 +184,10 @@ const AddStoreView = () =>{
                     variant="outlined"
                     required
                     fullWidth
-                    id="address"
-                    label= 'Longitud'
-                    name="address"
-                    autoComplete="address"
+                    id="Longitud"
+                    label= {t("RegisterStore.Longitude")}
+                    name="Longitud"
+                    autoComplete="longitud"
                     onChange={(ev) => setLongitude(ev.target.value)}
                   />
                 </Grid>
@@ -175,7 +197,7 @@ const AddStoreView = () =>{
                     required
                     fullWidth
                     name="covDistance"
-                    label={"Distancia Cobertura"}
+                    label={t("RegisterStore.Coverage")}
                     type="covDistance"
                     id="covDistance"
                     autoComplete="covDistance"
@@ -198,4 +220,4 @@ const AddStoreView = () =>{
   )
 }
 
-export default withRouter(AddStoreView);
+export default withRouter(RegisterStore);

@@ -16,7 +16,7 @@ export const StoreProvider = props =>{
   });
 
   return(
-    <StoreContext.Provider value={[Store, setStore]}>
+    <StoreContext.Provider value={[store, setStore]}>
       {props.children}
     </StoreContext.Provider>
   )

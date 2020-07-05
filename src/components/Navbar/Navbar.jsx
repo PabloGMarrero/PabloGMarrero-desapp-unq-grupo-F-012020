@@ -25,7 +25,8 @@ const styles = makeStyles((theme) => ({
       maxHeight: '40px'
     },
     strikingButton:{
-      background:  "#EDF2F4",
+      color: "#EDF2F4",
+      background:  "#2B2D42",
       margin: theme.spacing(0, 2, 0, 0)
     },
     button:{
@@ -95,21 +96,20 @@ const goToAddProduct = () =>{
           <Box>
             {isLoggued ?
               <Box>
-                <Button variant="outlined" className={classes.strikingButton} onClick={goToProfile}>{t("Navbar.Profile")}</Button>
-                <Button variant="outlined" className={classes.strikingButton} onClick={logOut}>{t("Navbar.Logout")}</Button>
+                <Button variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>
+                <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>
               </Box>
               :
               <Box>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
                 <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>    
-                <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
-                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>             
+                {/* <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
+                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>              */}
               </Box>
             }
           </Box>
           <Box>
             {
-              console.log(i18n.language) ||
               i18n.language === "es" ?
                 <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
               :
