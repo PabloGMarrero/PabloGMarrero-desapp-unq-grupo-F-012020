@@ -63,7 +63,7 @@ const Home = () =>{
   const RenderProducts=  ()=> {
     return (
           <ProductList products = {productList}
-          calculateTotal = {calculateTotal} ></ProductList>
+></ProductList>
     )
   }
 
@@ -72,9 +72,6 @@ const Home = () =>{
       <StoreList stores = {storeList} ></StoreList>
     )
   }
-
-
- 
 
 
   return (

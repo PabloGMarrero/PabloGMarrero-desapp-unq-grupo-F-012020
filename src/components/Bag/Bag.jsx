@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { withRouter, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import Item from './Item';
 import { PurchaseContext } from '../../context/purchase-context'
@@ -31,6 +31,8 @@ export default function Bag() {
   const classes = styles();
   const history = useHistory(); 
   const { t } = useTranslation();
+
+  console.log(shoppingList)
 
   useEffect(() => {
     let computed_total = 0;

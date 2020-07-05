@@ -14,6 +14,7 @@ import Review from './ReviewForm';
 import { PurchaseContext } from '../../context/purchase-context'
 import { UserContext } from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
+import { CoordenadasContext } from '../../context/location-context'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -75,13 +76,11 @@ const Checkout = () =>{
   const {
     shoppingList,
     date,
+    deliveryType,
     productsCount,
-    setProductsCount,
-    setShoppingList,
-    setCartIsOpen,
     cartIsOpen,
     total,
-    setTotal,
+    payMethod,
     street,
       number,
       state,
@@ -92,7 +91,9 @@ const Checkout = () =>{
 
   } = useContext(PurchaseContext);
 
-  const [,setUser] = useContext(UserContext)
+  const [coord] = useContext(CoordenadasContext)
+
+  const [user,setUser] = useContext(UserContext)
   const { t } = useTranslation();
   const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
   const classes = useStyles();
@@ -105,7 +106,8 @@ const Checkout = () =>{
   var min = new Date().getMinutes(); //Current Minutes
   var sec = new Date().getSeconds(); //Current Seconds
 
-  var date1 = day + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec
+  var date1 = day + '/' + month + '/' + year 
+  var time = hours + ':' + min + ':' + sec
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -121,7 +123,28 @@ const Checkout = () =>{
 
   }
 
- console.log(date)
+  const Purchase = 
+  {
+    products: shoppingList,
+    user: user,
+    deliveryType: {
+          _type: deliveryType,
+          date: date1,
+          hour: time,
+              address:{
+                locality: city,
+                street: street,
+                number: number,
+                geographicZone: {
+                        latitude: coord.lat,
+                        longitude: coord.lng
+                }
+             }
+    },
+    paymentMethod: payMethod,
+  }
+
+ console.log(shoppingList)
 
   return (
     <React.Fragment>
