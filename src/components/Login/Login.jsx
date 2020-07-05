@@ -69,7 +69,7 @@ const Login = () =>{
       authService.login("", email, password)
       .then(resp => {
         handleSubmit(resp)
-        console.log(resp)
+        // console.log(resp)
         if (resp.data.accesToken){
             localStorage.setItem("user", JSON.stringify(resp.data));
         }

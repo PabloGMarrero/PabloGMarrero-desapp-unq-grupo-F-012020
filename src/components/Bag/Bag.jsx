@@ -32,8 +32,6 @@ export default function Bag() {
   const history = useHistory(); 
   const { t } = useTranslation();
 
-  console.log(shoppingList)
-
   useEffect(() => {
     let computed_total = 0;
     shoppingList.map(

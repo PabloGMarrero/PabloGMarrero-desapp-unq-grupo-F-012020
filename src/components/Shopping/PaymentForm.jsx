@@ -32,8 +32,8 @@ const PaymentForm = () =>{
   const handlePaymentChange = (event) => {
     setPayMethod(event.target.value);
   };
-  console.log(deliveryType)
-  console.log(payMethod)
+  // console.log(deliveryType)
+  // console.log(payMethod)
 
   return (
     <React.Fragment>
@@ -57,8 +57,8 @@ const PaymentForm = () =>{
         {t("Checkout.DeliveryType")}
       </Typography>
               <RadioGroup aria-label="gender" name="gender1" onChange={handleDeliveryChange }>
-                      <FormControlLabel value="PICKUP" control={<Radio />} label={t("Checkout.PickUp")} />
-                      <FormControlLabel value="DELIVERY" control={<Radio />} label={t("Checkout.Delivery")} />
+                      <FormControlLabel value="PickupInStore" control={<Radio />} label={t("Checkout.PickUp")} />
+                      <FormControlLabel value="HomeDelivery" control={<Radio />} label={t("Checkout.Delivery")} />
                       
               </RadioGroup>
         </Grid>

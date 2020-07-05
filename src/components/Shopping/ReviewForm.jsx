@@ -52,10 +52,10 @@ const Review = () =>{
     { name: t("Checkout.PaymentMethod"), detail: payMethod },
   ];
 
-  console.log(shoppingList)
-  console.log(total)
-  console.log(deliveryType)
-  console.log(user)
+  // console.log(shoppingList)
+  // console.log(total)
+  // console.log(deliveryType)
+  // console.log(user)
 
   return (
     <React.Fragment>

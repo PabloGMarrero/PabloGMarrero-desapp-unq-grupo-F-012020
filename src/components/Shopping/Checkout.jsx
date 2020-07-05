@@ -15,7 +15,7 @@ import { PurchaseContext } from '../../context/purchase-context'
 import { UserContext } from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
 import { CoordenadasContext } from '../../context/location-context'
-
+import purchaseService from '../../service/purchase-service'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -99,15 +99,24 @@ const Checkout = () =>{
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  var day = new Date().getDate(); //Current Date
-  var month = new Date().getMonth() + 1; //Current Month
-  var year = new Date().getFullYear(); //Current Year
+  
+  // var day = new Date().getDate(); //Current Date
+  // var month = new Date().getMonth() + 1; //Current Month
+  // var year = new Date().getFullYear(); //Current Year
   var hours = new Date().getHours(); //Current Hours
   var min = new Date().getMinutes(); //Current Minutes
   var sec = new Date().getSeconds(); //Current Seconds
 
-  var date1 = day + '/' + month + '/' + year 
-  var time = hours + ':' + min + ':' + sec
+  // var date1 = year + '-' + month + '-'+day
+  var myDate = new Date();  
+  var year = myDate.getFullYear();  
+  var month = myDate.getMonth() + 1; 
+  if(month <= 9)  month = '0'+month;  
+  var day= myDate.getDate(); 
+  if(day <= 9)  day = '0'+day;  
+
+  var date1 = year +'-'+ month +'-'+ day;
+  var time = hours + ":"+('0'  + min).slice(-2)+':'+('0' + sec).slice(-2);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -118,17 +127,19 @@ const Checkout = () =>{
     setActiveStep(activeStep - 1);
   };
 
-  const handleClickPlaceOrder = (ev) => {
-    ev.preventDefault();
-
+  const handlePurchase = () =>{
+  
+    purchaseService.newPurchase(JSON.stringify(purchase))
+    .then(response => console.log(response.data))
+    .catch(err => console.log(err))
   }
 
-  const Purchase = 
+  const purchase = 
   {
-    products: shoppingList,
+    items: shoppingList,
     user: user,
     deliveryType: {
-          _type: deliveryType,
+          type: deliveryType,
           date: date1,
           hour: time,
               address:{
@@ -143,8 +154,6 @@ const Checkout = () =>{
     },
     paymentMethod: payMethod,
   }
-
- console.log(shoppingList)
 
   return (
     <React.Fragment>
@@ -184,7 +193,7 @@ const Checkout = () =>{
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleNext}
+                    onClick={activeStep === steps.length -1 ? handlePurchase : handleNext}
                     className={classes.button}
                   >
                     {activeStep === steps.length - 1 ? t("Checkout.PlaceOrder") : t("Checkout.Next")}
