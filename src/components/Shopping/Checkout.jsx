@@ -98,6 +98,7 @@ const Checkout = () =>{
   const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [orderNumber, setOrderNumber] = useState("")
 
   
   // var day = new Date().getDate(); //Current Date
@@ -129,9 +130,13 @@ const Checkout = () =>{
 
   const handlePurchase = () =>{
   
-    purchaseService.newPurchase(JSON.stringify(purchase))
-    .then(response => console.log(response.data))
+    purchaseService.newPurchase(purchase)
+    .then(response => {
+      setOrderNumber(response.data) 
+      handleNext()
+    })
     .catch(err => console.log(err))
+
   }
 
   const purchase = 
@@ -177,7 +182,7 @@ const Checkout = () =>{
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
+                  Your order number is {orderNumber}. We have emailed your order confirmation, and will
                   send you an update when your order has shipped.
                 </Typography>
               </React.Fragment>

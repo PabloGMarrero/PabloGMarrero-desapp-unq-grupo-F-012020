@@ -69,10 +69,7 @@ const Login = () =>{
       authService.login("", email, password)
       .then(resp => {
         handleSubmit(resp)
-        // console.log(resp)
-        if (resp.data.accesToken){
-            localStorage.setItem("user", JSON.stringify(resp.data));
-        }
+        localStorage.setItem("user", JSON.stringify(resp.data));
       })
       .catch((e) => setError('Bad username or password'));
     }
