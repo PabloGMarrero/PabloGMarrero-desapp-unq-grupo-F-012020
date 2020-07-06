@@ -99,6 +99,9 @@
         "OrderSummary": "Order Summary",
         "Shipping": "Shipping",
         "PaymentDetails": "Payment Details"
+    },
+    "ProductList":{
+        "Loading": "Loading..."
     }
 
 }

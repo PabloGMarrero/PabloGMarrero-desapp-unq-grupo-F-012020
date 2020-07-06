@@ -1,25 +1,37 @@
 import React from 'react';
 import Product from '../Product/Product';
 import {useTranslation} from 'react-i18next'
-const ProductsList = ({products, calculateTotal}) =>{
+import { makeStyles } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
+
+const styles = makeStyles((theme) => ({
+    products:{
+      display: 'flex'
+    },
+    
+}));
+
+const LoadingProducts = () =>{
     const {t} = useTranslation()
+    return(
+        <p id="change-id">{t("ProductList.Loading")}</p>
+    )
+}
+const ProductsList = ({products, loading}) =>{    
+    const classes = styles();
+
     return (
-        products.length > 0 ?
-        products.map( product =>
+        <Box className ={classes.products}>
+            {!loading > 0 ?  
+            products.map( product =>
             <Product
-            product={product}
-                
+                key = {product.product.id}
+                product={product}    
             />
-          )
-          : <p>Loading...</p>
+            )
+            : <LoadingProducts></LoadingProducts>}
+        </Box>
     )
 }
 
 export default ProductsList;
-
-/*
-productName={product.productName}
-                price={product.price}
-                imageUrl={product.imageUrl}
-                handleTotal={calculateTotal}
-                t = {t}*/

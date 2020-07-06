@@ -1,4 +1,4 @@
-import React, { useContext, useState }  from 'react';
+import React, { useContext }  from 'react';
 import Button from '@material-ui/core/Button';
 import './Product.css';
 import Box from '@material-ui/core/Box'
@@ -26,7 +26,7 @@ const addItem = () => {
   setCartIsOpen(true);
     const product_array = shoppingList.filter(p => p.id === id);
     const product_copy = props.product.product
-    const store_copy = props.product.store
+
     if (product_array.length > 0) {
       setProductsCount(productCount => productCount + 1);
       let new_state = shoppingList.map(p => {
@@ -36,8 +36,6 @@ const addItem = () => {
         } else return { ...p };
       });
       setShoppingList(new_state);
-      //setShoppingList({store_id : store_copy.id, new_state});
-      //console.log({store_id : store_copy.id, new_state})
     } else {
       setProductsCount(productCount => productCount + 1);
       product_copy.quantity = 1;
@@ -65,7 +63,7 @@ const addItem = () => {
         </Box>
         <Box className="row btn-toolbar">
           <Box className="col-6 text-right">
-            <Button  variant="contained" size="small" color='#840032' align= "center" onClick={addItem}>
+            <Button  variant="contained" size="small" align= "center" onClick={addItem}>
             {t("Product.Add")}
             </Button>
           </Box> 

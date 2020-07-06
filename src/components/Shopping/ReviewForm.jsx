@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
-import { withRouter, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { PurchaseContext } from '../../context/purchase-context'
 import { UserContext } from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
@@ -41,7 +41,7 @@ const Review = () =>{
   
   } = useContext(PurchaseContext);
 
-  const [user, setUser] = useContext(UserContext)
+  const [user] = useContext(UserContext)
   const { t } = useTranslation();
   const classes = useStyles();
 
@@ -51,11 +51,6 @@ const Review = () =>{
     { name: t("Checkout.DeliveryType"), detail: deliveryType },
     { name: t("Checkout.PaymentMethod"), detail: payMethod },
   ];
-
-  // console.log(shoppingList)
-  // console.log(total)
-  // console.log(deliveryType)
-  // console.log(user)
 
   return (
     <React.Fragment>

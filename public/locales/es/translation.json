@@ -98,8 +98,9 @@
         "Delivery": "Envio",
         "OrderSummary": "Detalle Compra",
         "Shipping": "Direccion de Envio",
-        "PaymentDetails": "Detalle del Pago"
-
-        
+        "PaymentDetails": "Detalle del Pago" 
+    },
+    "ProductList":{
+        "Loading": "Buscando..."
     }
 }

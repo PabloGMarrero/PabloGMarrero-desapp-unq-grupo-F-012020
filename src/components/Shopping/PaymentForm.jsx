@@ -1,6 +1,6 @@
-import React, { useContext, useState }  from 'react';
+import React, { useContext }  from 'react';
 import Typography from '@material-ui/core/Typography';
-import { withRouter, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { useTranslation } from 'react-i18next'
 import Radio from '@material-ui/core/Radio';
@@ -8,16 +8,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { PurchaseContext } from '../../context/purchase-context'
 
-
-
-
-
-
 const PaymentForm = () =>{ 
 
   const {
     shoppingList,
-
     deliveryType,      
     payMethod, 
     setDeliveryType,
@@ -32,8 +26,6 @@ const PaymentForm = () =>{
   const handlePaymentChange = (event) => {
     setPayMethod(event.target.value);
   };
-  // console.log(deliveryType)
-  // console.log(payMethod)
 
   return (
     <React.Fragment>
