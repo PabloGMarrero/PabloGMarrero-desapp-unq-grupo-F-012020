@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import Item from './Item';
@@ -13,9 +13,6 @@ const styles = makeStyles((theme) => ({
   register:{
     background: '#E59500'
   },
-  bag:{
-    backgroundImage: "../../../public/assets/img/bag.png"
-  }
 }));
 
 export default function Bag() {
@@ -30,8 +27,6 @@ export default function Bag() {
     setTotal
   } = useContext(PurchaseContext);
 
-
-
   const classes = styles();
   const history = useHistory(); 
   const { t } = useTranslation();
@@ -39,15 +34,14 @@ export default function Bag() {
   useEffect(() => {
     let computed_total = 0;
     shoppingList.map(
-      item =>
-        (computed_total +=  item.price * item.quantity
-
-        )
+      item =>(
+        computed_total +=  item.price * item.quantity
+      )
     );
     setTotal(computed_total);
     localStorage.setItem('prod_count', JSON.stringify(productsCount));
     localStorage.setItem('shopping_list', JSON.stringify(shoppingList));
-  }, [shoppingList, productsCount]);
+  }, [shoppingList, productsCount, setTotal]);
 
   const handleClick = () => {
     setCartIsOpen(open => !open);

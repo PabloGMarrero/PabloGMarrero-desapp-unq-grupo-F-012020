@@ -36,7 +36,7 @@ const MapboxGLMap = () => {
     };
 
     if (!map) initializeMap({ setMap, mapContainer });
-  }, [map, coord, setCoordenadas, zoom]);
+  }, [coord, map, setCoordenadas, zoom]);
 
   return <div ref={el => (mapContainer.current = el)} style={styles} />;
 };

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { withRouter, useHistory } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -97,7 +97,7 @@ const Checkout = () =>{
   const { t } = useTranslation();
   const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [orderNumber, setOrderNumber] = useState("")
 
   
