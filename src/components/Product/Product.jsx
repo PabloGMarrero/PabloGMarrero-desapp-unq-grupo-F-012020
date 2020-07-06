@@ -53,10 +53,10 @@ const addItem = () => {
             </Box>
   
             <h4>{productName}</h4>  
-            <h4>  {new Intl.NumberFormat('es-AR', {
+            <h4>  {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
-                currency: "ARS",
-              }).format(price)}</h4>             
+                currency: t("Format.currency"),
+              }).format(t("Format.currency") == 'ARS'  ? price : price / 107)}</h4>             
             
           </Box>
 

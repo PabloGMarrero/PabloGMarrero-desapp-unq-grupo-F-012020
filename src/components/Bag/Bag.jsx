@@ -95,10 +95,10 @@ export default function Bag() {
           <div className="bag__footer">
             <div className="bag__total">Total:  
             
-            {new Intl.NumberFormat('es-AR', {
+            {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
-                currency: "ARS",
-              }).format(total)}
+                currency: t("Format.currency"),
+              }).format(t("Format.currency") == 'ARS'  ? total : total / 107)}
             
             </div>
             <Button 

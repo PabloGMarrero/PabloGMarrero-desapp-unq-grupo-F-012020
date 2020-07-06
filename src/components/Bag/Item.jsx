@@ -60,10 +60,10 @@ export default function Item({
           <span >{productName}</span>
         </div>
         <div>
-          <span className="bag__price"> {new Intl.NumberFormat('es-AR', {
+          <span className="bag__price"> {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
-                currency: "ARS",
-              }).format(price)}</span>
+                currency: t("Format.currency"),
+              }).format(t("Format.currency") == 'ARS'  ? price : price / 107)}</span>
         </div>
       </div>
       <div className="bag__operation">

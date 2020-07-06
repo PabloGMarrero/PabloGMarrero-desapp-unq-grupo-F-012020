@@ -103,5 +103,10 @@
     "ProductList":{
         "Loading": "Loading..."
     }
+    ,
+    "Format":{
+        "lang": "en-US",
+        "currency": "USD"
+    }
 
 }

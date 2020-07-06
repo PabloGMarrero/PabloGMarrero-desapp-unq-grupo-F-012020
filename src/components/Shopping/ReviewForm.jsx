@@ -61,19 +61,19 @@ const Review = () =>{
         {shoppingList.map((product) => (
           <ListItem className={classes.listItem} key={product.productName}>
             <ListItemText primary={product.productName} secondary={product.brand} />
-            <Typography variant="body2"> {new Intl.NumberFormat('es-AR', {
+            <Typography variant="body2"> {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
-                currency: "ARS",
-              }).format(product.price)}</Typography>
+                currency: t("Format.currency"),
+              }).format(t("Format.currency") == 'ARS'  ? product.price : product.price /107)}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-          {new Intl.NumberFormat('es-AR', {
+          {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
-                currency: "ARS",
-              }).format(total)}
+                currency: t("Format.currency"),
+              }).format(t("Format.currency") == 'ARS'  ? total : total / 107)}
           </Typography>
         </ListItem>
       </List>

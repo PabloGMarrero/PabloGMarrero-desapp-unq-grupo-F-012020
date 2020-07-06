@@ -103,4 +103,9 @@
     "ProductList":{
         "Loading": "Buscando..."
     }
+,
+    "Format":{
+        "lang": "es-AR",
+        "currency": "ARS"
+    }
 }
