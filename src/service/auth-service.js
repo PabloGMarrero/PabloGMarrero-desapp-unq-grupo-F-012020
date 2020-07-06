@@ -1,6 +1,6 @@
 import axios from 'axios';
-//const API_URL = 'https://buyingfromhome.herokuapp.com/authusers/'
-const API_URL = 'http://localhost:8080/authusers/'
+const API_URL = 'https://buyingfromhome.herokuapp.com/authusers/'
+//const API_URL = 'http://localhost:8080/authusers/'
 
 class AuthService{
     login(name, email, password){
@@ -11,6 +11,8 @@ class AuthService{
 
     logout(){
         localStorage.removeItem("user");
+        localStorage.removeItem("shopping_list")
+        localStorage.removeItem("prod_count")
     }
 
     register(name, email, password){

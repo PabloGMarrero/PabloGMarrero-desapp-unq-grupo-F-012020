@@ -68,5 +68,38 @@
     "Language":{
         "English": "Inglés",
         "Spanish": "Español"
+    },
+    "Bag":{
+        "Quantity": "Cantidad",
+        "Cart": "Carrito",
+        "EmptyCart": "Vacio"
+    },
+
+    "Checkout":{
+        "Address": "Direccion de Envio",
+        "Payment": "Pago y Metodo de Envio",
+        "Review": "Revisa tu Orden",
+        "Street": "Calle",
+        "Number": "Numero",
+        "City": "Ciudad",
+        "ZipCode": "Codigo Postal",
+        "State": "Provincia",
+        "Country": "Pais",
+        "Next": "Siguiente",
+        "Back": "Atras",
+        "PlaceOrder": "Enviar Compra",
+        "PaymentMethod": "Metodo de Pago",
+        "Cash": "Efectivo",
+        "Debit": "Tarjeta Debito",
+        "Credit": "Tarjeta Credito",
+        "Transfer": "Tranferencia Bancaria",
+        "DeliveryType": "Metodo de Envio",
+        "PickUp": "Recoger en Tienda",
+        "Delivery": "Envio",
+        "OrderSummary": "Detalle Compra",
+        "Shipping": "Direccion de Envio",
+        "PaymentDetails": "Detalle del Pago"
+
+        
     }
 }

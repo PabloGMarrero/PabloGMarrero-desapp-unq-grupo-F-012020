@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
+import authService from '../../service/auth-service'
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -61,13 +62,13 @@ const NavBar = () => {
   }
 
   const logOut =() =>{
-    //tendría que desloguearse llamando a auth-service.js
-    setUser({
-      id: 0, 
-      name: "",
-      password: "",
-      email: "",
-    })
+    // localStorage.setItem("user", {id: 0,  name: "",  password: "", email: "" })
+    // localStorage.setItem("prod_count", 0)
+    // localStorage.setItem("shopping_list", [] )
+    // localStorage.removeItem("user");
+    // localStorage.removeItem("shopping_list")
+    // localStorage.removeItem("prod_count")
+    authService.logout()
     history.push("/")
   }
   const goToHome = () =>{

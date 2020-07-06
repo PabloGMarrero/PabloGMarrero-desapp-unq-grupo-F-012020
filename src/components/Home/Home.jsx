@@ -5,12 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import { getProducts, getStores } from '../../service/product-service';
 import ProductList from '../ProductsList/ProductsList'
 import StoreList from '../StoreList/StoreList'
-import Total from '../Product/Total.jsx';
+
 import { CoordenadasContext } from '../../context/location-context';
 import { useTranslation } from 'react-i18next'
 import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid';
-import { Button } from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -64,7 +63,7 @@ const Home = () =>{
   const RenderProducts=  ()=> {
     return (
           <ProductList products = {productList}
-          calculateTotal = {calculateTotal} ></ProductList>
+></ProductList>
     )
   }
 
@@ -72,11 +71,6 @@ const Home = () =>{
     return (
       <StoreList stores = {storeList} ></StoreList>
     )
-  }
-
-
-  const goToPurchase = () =>{
-    history.push("/purchase")
   }
 
 
@@ -93,15 +87,6 @@ const Home = () =>{
       <Box className="products" >
         <RenderProducts ></RenderProducts>
       </Box>
-      <Total total = {total} />
-
-      <Button 
-            type="submit"
-            fullWidth
-            className={classes.register} 
-               onClick={goToPurchase}
-                >Add Purchase
-              </Button>
 
     </Box>
   );

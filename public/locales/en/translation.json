@@ -68,5 +68,37 @@
     "Language":{
         "English": "Inglés",
         "Spanish": "Español"
+    },
+    "Bag":{
+        "Quantity": "Quantity",
+        "Cart": "Shopping Cart",
+        "EmptyCart": "Empty Cart"
+    },
+
+    "Checkout":{
+        "Address": "Shipping address",
+        "Payment": "Payment & Delivery details",
+        "Review": "Review your order",
+        "Street": "Street",
+        "Number": "Number",
+        "City": "City",
+        "ZipCode": "ZipCode",
+        "State": "State",
+        "Country": "Country",
+        "Next": "Next",
+        "Back": "Back",
+        "PlaceOrder": "Place Order",
+        "PaymentMethod": "Payment Method",
+        "Cash": "Cash",
+        "Debit": "Debit",
+        "Credit": "Credit",
+        "Transfer": "Transfer",
+        "DeliveryType": "Delivery Type",
+        "PickUp": "Pick up",
+        "Delivery": "Delivery",
+        "OrderSummary": "Order Summary",
+        "Shipping": "Shipping",
+        "PaymentDetails": "Payment Details"
     }
+
 }

@@ -72,6 +72,8 @@ const Login = () =>{
     history.push(`/home`)
   }
 
+
+
   const handleClickLogin = (ev) => {
     ev.preventDefault();
     if (isEmpty(email) && isEmpty(password)) {
@@ -80,9 +82,7 @@ const Login = () =>{
       authService.login("", email, password)
       .then(resp => {
         handleSubmit(resp)
-        if (resp.data.accesToken){
-            localStorage.setItem("user", JSON.stringify(resp.data));
-        }
+        localStorage.setItem("user", JSON.stringify(resp.data));
       })
       .catch((e) => setError('Bad username or password'));
     }

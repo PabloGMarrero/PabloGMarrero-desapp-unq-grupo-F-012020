@@ -1,50 +1,41 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-
+import { PurchaseContext } from '../../context/purchase-context'
+import { useTranslation } from 'react-i18next'
 
 
 const AddressForm = () =>{ 
 
+  const {
+      setStreet,
+      setNumber,
+      setState,
+      setCity,
+      setZipCode,
+      setCountry
+
+  } = useContext(PurchaseContext);
+
+
+  const { t } = useTranslation();
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        {t("Checkout.Address")}
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            //          onChange={changeEmail}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            //          onChange={changeEmail}
-          />
-        </Grid>
         <Grid item xs={12}>
           <TextField
             required
             id="address1"
             name="address1"
-            label="Street"
+            label={t("Checkout.Street")}
             fullWidth
             autoComplete="shipping address-line1"
-            //          onChange={changeEmail}
+            onChange={(ev) => setStreet(ev.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -52,10 +43,10 @@ const AddressForm = () =>{
            required
             id="address2"
             name="address2"
-            label="Number"
+            label={t("Checkout.Number")}
             fullWidth
             autoComplete="shipping address-line2"
-            //          onChange={changeEmail}
+            onChange={(ev) => setNumber(ev.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -63,15 +54,15 @@ const AddressForm = () =>{
             required
             id="city"
             name="city"
-            label="City"
+            label={t("Checkout.City")}
             fullWidth
             autoComplete="shipping address-level2"
-            //          onChange={changeEmail}
+            onChange={(ev) => setCity(ev.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth 
-          //          onChange={changeEmail} 
+          <TextField id="state" name="state" label={t("Checkout.State")} fullWidth 
+          onChange={(ev) => setState(ev.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -79,10 +70,10 @@ const AddressForm = () =>{
             required
             id="zip"
             name="zip"
-            label="Zip / Postal code"
+            label={t("Checkout.ZipCode")}
             fullWidth
             autoComplete="shipping postal-code"
-            //          onChange={changeEmail}
+            onChange={(ev) => setZipCode(ev.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -90,10 +81,10 @@ const AddressForm = () =>{
             required
             id="country"
             name="country"
-            label="Country"
+            label={t("Checkout.Country")}
             fullWidth
             autoComplete="shipping country"
-  //          onChange={changeEmail}
+            onChange={(ev) => setCountry(ev.target.value)}
           />
         </Grid>
       </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -6,21 +6,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import { withRouter, useHistory } from 'react-router-dom';
+import { PurchaseContext } from '../../context/purchase-context'
+import { UserContext } from '../../context/user-context'
+import { useTranslation } from 'react-i18next'
 
-const products = [
-  { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
-  { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
-  { name: 'Product 3', desc: 'Something else', price: '$6.51' },
-  { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -34,40 +23,76 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const Review = () =>{ 
 
+  const {
+    shoppingList,
+    total,
+    deliveryType,      
+    payMethod, 
+    street,
+    number,
+    state,
+    city,
+    zipCode,
+    country
+  
+  } = useContext(PurchaseContext);
+
+  const [user, setUser] = useContext(UserContext)
+  const { t } = useTranslation();
   const classes = useStyles();
+
+  const addresses = [street, number, city, state, zipCode, country];
+
+  const payments = [
+    { name: t("Checkout.DeliveryType"), detail: deliveryType },
+    { name: t("Checkout.PaymentMethod"), detail: payMethod },
+  ];
+
+  // console.log(shoppingList)
+  // console.log(total)
+  // console.log(deliveryType)
+  // console.log(user)
 
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Order summary
+      {t("Checkout.OrderSummary")}
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {shoppingList.map((product) => (
+          <ListItem className={classes.listItem} key={product.productName}>
+            <ListItemText primary={product.productName} secondary={product.brand} />
+            <Typography variant="body2"> {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(product.price)}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+          {new Intl.NumberFormat('es-AR', {
+                style: "currency",
+                currency: "ARS",
+              }).format(total)}
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Shipping
+          {t("Checkout.Shipping")}
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
+        <Typography gutterBottom>{user.name}</Typography>
           <Typography gutterBottom>{addresses.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Payment details
+          {t("Checkout.PaymentDetails")}
           </Typography>
           <Grid container>
             {payments.map((payment) => (
