@@ -9,7 +9,7 @@ const StoreList = ({stores}) =>{
         stores.length > 0  ? 
         stores.map( store =>
             <Store
-                key={store.storeName}
+                key={store.id}
                 storeName={store.storeName}              
                 id={store.id}
                 activity={store.activity}
