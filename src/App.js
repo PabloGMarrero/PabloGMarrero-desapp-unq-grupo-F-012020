@@ -34,7 +34,7 @@ function App(){
               <Route exact path='/addstore' render={props => <StoreView coord={ props.location.state }/>}  />
               <Route exact path='/addproduct' render={props => <ProductView coord={ props.location.state }/>}  />
               <Route exact path='/purchase' render={props => <PurchaseView coord={ props.location.state }/>}  />
-              <Route exact path='/register' render={props => <RegisterView history= {props.history} coord={ props.location.state }/>}/>
+              <Route exact path='/register' render={props => <RegisterUserView history= {props.history} coord={ props.location.state }/>}/>
               <Route exact path='/register/user' render={props=><RegisterUserView coord={props.location.state} />}/>
               <Route exact path='/register/store' render={props=><RegisteStoreView coord={props.location.state}/>}/>
 
