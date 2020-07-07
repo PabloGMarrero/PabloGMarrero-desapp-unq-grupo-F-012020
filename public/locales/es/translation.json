@@ -11,7 +11,10 @@
         "ForgotPass": "Olvidó la contraseña?",
         "Remember": "Recuérdame", 
         "HaveNotAccount": "No tienes una cuenta? Registrate!",
-        "Password": "Contraseña"
+        "Password": "Contraseña",
+        "MissingValues": "Por favor, complete todos los campos.",
+        "BadLogin": "Usuario o contraseña incorrecta. Reintente.",
+        "InvalidEmail": "Por favor, introduzca un email válido."
     },
     "Register":{
         "Signup": "Registrate",

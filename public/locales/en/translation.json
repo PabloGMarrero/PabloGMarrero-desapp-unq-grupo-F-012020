@@ -11,7 +11,10 @@
         "ForgotPass": "Forgot password?",
         "Remember": "Remember me", 
         "HaveNotAccount": "Don't have an account? Sign Up!",
-        "Password": "Password"
+        "Password": "Password",
+        "MissingValues": "Please, complete with your email and password.",
+        "BadLogin": "Bad username or password",
+        "InvalidEmail": "Please, complete with a valid email."
     },
     "Register":{
         "Signup": "Sign up",
