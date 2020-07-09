@@ -73,8 +73,8 @@
         "Body": "Buy from Home es una aplicacion que te acerca los comercios de tu zona a tu casa."
     },
     "Language":{
-        "English": "Inglés",
-        "Spanish": "Español"
+        "English": "US-EN",
+        "Spanish": "AR-ES"
     },
     "Bag":{
         "Quantity": "Cantidad",
@@ -105,9 +105,33 @@
         "Delivery": "Envio",
         "OrderSummary": "Detalle Compra",
         "Shipping": "Direccion de Envio",
-        "PaymentDetails": "Detalle del Pago" 
+        "PaymentDetails": "Detalle del Pago",
+        "Thankyou": "Gracias por tu compra",
+        "SentMail": " Hemos enviado a tu correo los detalles de tu compra, y te enviaremos otro una vez que tu orden sea enviada",
+        "Orderis": "Tu numero de orden es: ",
+        "GoHome": "Ir al Inicio"
     },
     "ProductList":{
         "Loading": "Buscando..."
     }
+,
+    "Format":{
+        "lang": "es-AR",
+        "currency": "ARS"
+    }
+    ,
+    "Errors":{
+        "errorName": "en-US",
+        "errorVacio": "Please ",
+        "errorNumber": "No es un numero",
+        "perfect" : "Perfecto"
+    },
+
+    "Profile":{
+        "Profile": "Perfil",
+        "PurchaseHistory": "Historial de Compras",
+        "Purchases": "Estas son tus compras",
+        "SearchingPurchases": "Buscando..."
+    }
+
 }

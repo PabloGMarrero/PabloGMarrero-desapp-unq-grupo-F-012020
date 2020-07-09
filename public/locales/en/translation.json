@@ -43,7 +43,7 @@
         "Coverage": "Coverage distance (kms)"
     },
     "Home":{
-        "Stores": "Stores near.",
+        "Stores": "Stores near to your home",
         "SearchingStores": "Looking stores...",
         "Products": "Products near."
     },
@@ -73,8 +73,8 @@
         "Body": "Buy from Home is an application that brings shops in your area closer to your home."
     },
     "Language":{
-        "English": "Inglés",
-        "Spanish": "Español"
+        "English": "US-EN",
+        "Spanish": "AR-ES"
     },
     "Bag":{
         "Quantity": "Quantity",
@@ -105,10 +105,34 @@
         "Delivery": "Delivery",
         "OrderSummary": "Order Summary",
         "Shipping": "Shipping",
-        "PaymentDetails": "Payment Details"
+        "PaymentDetails": "Payment Details",
+        "Thankyou": "Thank you for your order",
+        "SentMail": " We have emailed your order confirmation, and will send you an update when your order has shipped.",
+        "Orderis": "Your Order number is: ",
+        "GoHome": "Go back to Home Page"
     },
     "ProductList":{
         "Loading": "Loading..."
     }
+    ,
+    "Format":{
+        "lang": "en-US",
+        "currency": "USD"
+    }
+    ,
+    "Errors":{
+        "errorName": "en-US",
+        "errorCity": "USD",
+        "errorNumber": "USD",
+        "perfect" : "Perfect"
+    },
+    
+    "Profile":{
+        "Profile": "Profile",
+        "PurchaseHistory": "Latest Purchases",
+        "Purchases": "These are your latest orders",
+        "SearchingPurchases": "Searching..."
+    }
+
 
 }

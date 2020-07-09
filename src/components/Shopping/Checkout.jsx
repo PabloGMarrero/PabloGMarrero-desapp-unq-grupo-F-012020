@@ -16,6 +16,7 @@ import { UserContext } from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
 import { CoordenadasContext } from '../../context/location-context'
 import purchaseService from '../../service/purchase-service'
+import {useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -92,7 +93,7 @@ const Checkout = () =>{
   } = useContext(PurchaseContext);
 
   const [coord] = useContext(CoordenadasContext)
-
+  const history = useHistory()
   const [user,setUser] = useContext(UserContext)
   const { t } = useTranslation();
   const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
@@ -139,6 +140,10 @@ const Checkout = () =>{
 
   }
 
+  const goToHome = () =>{
+    history.push("/home")
+}
+
   const purchase = 
   {
     items: shoppingList,
@@ -179,11 +184,19 @@ const Checkout = () =>{
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                {t("Checkout.Thankyou")}
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is {orderNumber}. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                {t("Checkout.Orderis")} {orderNumber}. 
+                  {t("Checkout.SentMail")}
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={goToHome}
+                    className={classes.button}
+                  >
+                    { t("Checkout.GoHome") }
+                  </Button>
                 </Typography>
               </React.Fragment>
             ) : (

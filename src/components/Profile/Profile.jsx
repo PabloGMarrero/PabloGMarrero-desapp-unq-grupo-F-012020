@@ -48,7 +48,7 @@ const ProfileView = () =>{
   const [password, setPassword] = useState("")
   const {t} = useTranslation()
   const [setError] = useState("")
-
+  const isUserAdmin = user.isAdmin
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -75,6 +75,14 @@ const ProfileView = () =>{
     }
   }
   
+
+  const StoreUser = () => {
+
+    return ( <p> este es el comercio </p> )
+
+  }
+
+
 
   return (
         <div className="container">
@@ -123,17 +131,24 @@ const ProfileView = () =>{
                   onChange={(ev) => setPassword(ev.target.value)}
                   />
                 </Grid>
-                <Button 
-                      type="submit"
-                       fullWidth
-                        className={classes.update} 
-                        onClick={ (ev) => handleClickUpdate(ev)}
-                >Actualizar
-              </Button>
+                
               </Grid>
             </form>
           </div>
+
+          {true ? <StoreUser> </StoreUser> : null };
+
+
+          <Button 
+                  type="submit"
+                  fullWidth
+                  className={classes.update} 
+                  onClick={ (ev) => handleClickUpdate(ev)}
+                >Actualizar
+           </Button>
         </Container>
+
+        
         </div>
   )
 }

@@ -1,6 +1,9 @@
 import React from 'react';
 import Box from '@material-ui/core/Box'
-
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
 
 class Store extends React.Component {
   constructor(props) {
@@ -12,8 +15,21 @@ class Store extends React.Component {
 
   render() {
     return (
+
+      <Card className="{classes.root}">
+      <CardContent>
+       
+        <Typography variant="h5" component="h2">
+              {this.props.storeName}
+        </Typography>
+        <Typography className="{classes.title}" color="textSecondary" gutterBottom>
+            {this.props.activity}
+        </Typography>
+      </CardContent>
+    </Card>
+
       
-      <Box>
+      /*<Box>
       <Box className="row form-group">
         <Box className="col-sm-10">
       
@@ -24,7 +40,7 @@ class Store extends React.Component {
         </Box>
       
       </Box>
-      </Box>
+      </Box>*/
 
     );
   }
