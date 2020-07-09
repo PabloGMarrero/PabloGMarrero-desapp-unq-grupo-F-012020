@@ -7,7 +7,9 @@ export const UserProvider = props =>{
     id: 0, 
     name: "",
     password: "",
-    email: ""
+    email: "",
+    isAdmin: false,
+    idStore: 0
   });
 
   return(
