@@ -26,9 +26,12 @@
         "HaveAccount": "Ya tenés una cuenta? Logueate!",
         "User": "Usuario",
         "Store": "Comercio",
-        "Go": "Adelante!"
+        "Go": "Adelante!",
+        "AlreadyExists": "Lo siento, el mail ya existe. Prueba otro por favor."
     },
     "RegisterStore":{
+        "Email": "Email",
+        "Password": "Contraseña",
         "AddStore": "Agregar Comercio",
         "Name": "Nombre",
         "Activity": "Actividad",
@@ -63,7 +66,8 @@
         "Bakery": "Panadería",
         "Pharmacy": "Farmacia",
         "Ironmongery": "Ferretería",
-        "Others": "Otros"
+        "Others": "Otros",
+        "CompleteFormStores": "Por favor, complete todos los campos."
     },
     "Footer":{
         "Body": "Buy from Home es una aplicacion que te acerca los comercios de tu zona a tu casa."
