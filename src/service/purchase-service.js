@@ -5,7 +5,6 @@ const API_URL = 'https://buyingfromhome.herokuapp.com/purchase/'
 
 class PurchaseService{
     newPurchase(purchase){
-        console.log(purchase)
         return axios.post(API_URL+"new",
             purchase
         )
