@@ -47,7 +47,7 @@ const NavBar = () => {
   const history = useHistory()
   const { t, i18n } = useTranslation();
   const [user, setUser] = useContext(UserContext)
-  const isUserAdmin = user.name === "Pablo" || user.name=== "Ezequiel"
+  const isUserAdmin = user.isAdmin 
   const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
 
   const goToLogin = () =>{
