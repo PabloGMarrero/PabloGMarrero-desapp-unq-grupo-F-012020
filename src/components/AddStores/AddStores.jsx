@@ -17,6 +17,7 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {useTranslation } from 'react-i18next'
 import storeService from '../../service/store-service';
+import Alert from '@material-ui/lab/Alert'
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -54,9 +55,10 @@ const RegisterStore = () =>{
   const [longitude, setLongitude] = useState("")
   const [latitude, setLatitude] = useState("")
   const [covDistance, setCovDistance] = useState("")
-
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const history = useHistory();
-  const [setError] = useState("")
+  const [error, setError] = useState("")
   const {t} = useTranslation()
 
   const isEmpty = (value) => {
@@ -67,21 +69,32 @@ const RegisterStore = () =>{
     ev.preventDefault();
     if (isEmpty(name) && isEmpty(activity) && isEmpty(longitude)
     && isEmpty(latitude) && isEmpty(street) && isEmpty(number)) {
-      setError('Por favor, complete todos los campos.')
+      setError(t("Stores.CompleteFormStores"))
       
     } else {
-            storeService.addStore(name, activity, street, number , locality, latitude, longitude, covDistance)
+            storeService.addStore(name, activity, street, number , locality, latitude, longitude, covDistance, email, password)
               .then(response =>  
-                console.log(response.data) 
-                || history.push(`/home`))
-              .catch( e => console.log(e))
+                history.push(`/home`))
+              .catch(e => {
+                handleError(e)
+              })
+    }
+  }
 
+  const handleError = e => {
+    if (e.response.status === 409){
+      setError(t("Register.AlreadyExists"))
     }
   }
 
   return (
         <Box className="container">
           <Container component="main" maxWidth="xs">
+          {error ?
+          <Alert severity="error">{error}</Alert>
+          :
+            null
+          }
           <CssBaseline />
           <Box className={classes.paper}>
             <Typography component="h1" variant="h5">
@@ -89,6 +102,32 @@ const RegisterStore = () =>{
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
+              <Grid item xs={12}>
+                  <TextField
+                    autoFocus
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    label= {t("RegisterStore.Email")}
+                    name='Email'
+                    autoComplete="email"
+                    onChange={(ev) => setEmail(ev.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    type="password"
+                    id="password"
+                    label= {t("RegisterStore.Password")}
+                    name='password'
+                    autoComplete="password"
+                    onChange={(ev) => setPassword(ev.target.value)}
+                  />
+                </Grid>
                 <Grid item xs={12} >
                   <TextField
                     autoComplete="fname"
@@ -98,38 +137,27 @@ const RegisterStore = () =>{
                     fullWidth
                     id="Name"
                     label= {t("RegisterStore.Name")}
-                    autoFocus
-                   onChange={(ev) => setName(ev.target.value)}
+                    onChange={(ev) => setName(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                <Select
-                  labelId={t("RegisterStore.Activity")}
-                  id="activity"
-                  displayEmpty
-                  value={activity}
-                  className= {classes.dropdown}
-                  onChange={(ev) => setActivity(ev.target.value)}
-                  >
-                  <MenuItem value={t("Stores.Grocery")} >{t("Stores.Grocery")}</MenuItem>
-                  <MenuItem value={t("Stores.Store")} >{t("Stores.Store")}</MenuItem>
-                  <MenuItem value={t("Stores.Butcher")}>{t("Stores.Butcher")}</MenuItem>
-                  <MenuItem value={t("Stores.Greengrocery")}>{t("Stores.Greengrocery")}</MenuItem>
-                  <MenuItem value={t("Stores.Bakery")}>{t("Stores.Bakery")}</MenuItem>
-                  <MenuItem value={t("Stores.Pharmacy")}>{t("Stores.Pharmacy")}</MenuItem>
-                  <MenuItem value={t("Stores.Ironmongery")}>{t("Stores.Ironmongery")}</MenuItem>
-                  <MenuItem value={t("Stores.Others")}>{t("Stores.Others")}</MenuItem>
-                </Select>
-                  {/* <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
+                  <Select
+                    labelId={t("RegisterStore.Activity")}
                     id="activity"
-                    label={t("RegisterStore.Activity")}
-                    name='Actividad'
-                    autoComplete="activity"
+                    displayEmpty
+                    value={activity}
+                    className= {classes.dropdown}
                     onChange={(ev) => setActivity(ev.target.value)}
-                  /> */}
+                    >
+                    <MenuItem value={"Kiosco"} >{t("Stores.Grocery")}</MenuItem>
+                    <MenuItem value={"Almacen"} >{t("Stores.Store")}</MenuItem>
+                    <MenuItem value={"Carnicería"}>{t("Stores.Butcher")}</MenuItem>
+                    <MenuItem value={"Verdulería"}>{t("Stores.Greengrocery")}</MenuItem>
+                    <MenuItem value={"Panadería"}>{t("Stores.Bakery")}</MenuItem>
+                    <MenuItem value={"Farmacia"}>{t("Stores.Pharmacy")}</MenuItem>
+                    <MenuItem value={"Ferretería"}>{t("Stores.Ironmongery")}</MenuItem>
+                    <MenuItem value={"Otros"}>{t("Stores.Others")}</MenuItem>
+                  </Select>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
