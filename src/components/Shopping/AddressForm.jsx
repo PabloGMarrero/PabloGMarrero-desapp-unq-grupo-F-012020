@@ -15,12 +15,19 @@ const AddressForm = () =>{
       setState,
       setCity,
       setZipCode,
-      setCountry
+      setCountry,
+      street
 
   } = useContext(PurchaseContext);
 
 
   const { t } = useTranslation();
+
+
+  
+  const errorName = street == '' ;
+  
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -36,6 +43,8 @@ const AddressForm = () =>{
             fullWidth
             autoComplete="shipping address-line1"
             onChange={(ev) => setStreet(ev.target.value)}
+    //        helperText={errorName ? t("Errors.errorName") : t("Errors.perfect") }
+     //       error={errorName}
           />
         </Grid>
         <Grid item xs={12}>

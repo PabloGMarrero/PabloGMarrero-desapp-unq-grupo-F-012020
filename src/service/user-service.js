@@ -3,6 +3,8 @@ import authHeader from './auth-header';
 
 const API_URL = 'https://buyingfromhome.herokuapp.com/users/'
 
+
+
 class UserService{
     getUserById(id){
         return axios.get(API_URL+"get", {
@@ -10,8 +12,12 @@ class UserService{
         })
     }
 
-    getUserOrders(id){
-        return axios.get(API_URL+"get/"+{id}+"/orders", {
+    
+
+    getUserOrders(id) {
+        const url = API_URL+"get/"+id+"/orders"
+        console.log(url)
+        return axios.get(API_URL+"get/"+id+"/orders", {
             id
         })
     }
@@ -24,3 +30,4 @@ class UserService{
 }
 
 export default new UserService();
+

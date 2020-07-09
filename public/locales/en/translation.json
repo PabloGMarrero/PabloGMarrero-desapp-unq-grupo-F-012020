@@ -37,7 +37,7 @@
         "Coverage": "Coverage distance (kms)"
     },
     "Home":{
-        "Stores": "Stores near.",
+        "Stores": "Stores near to your home",
         "SearchingStores": "Looking stores...",
         "Products": "Products near."
     },
@@ -98,7 +98,11 @@
         "Delivery": "Delivery",
         "OrderSummary": "Order Summary",
         "Shipping": "Shipping",
-        "PaymentDetails": "Payment Details"
+        "PaymentDetails": "Payment Details",
+        "Thankyou": "Thank you for your order",
+        "SentMail": " We have emailed your order confirmation, and will send you an update when your order has shipped.",
+        "Orderis": "Your Order number is: ",
+        "GoHome": "Go back to Home Page"
     },
     "ProductList":{
         "Loading": "Loading..."
@@ -108,5 +112,20 @@
         "lang": "en-US",
         "currency": "USD"
     }
+    ,
+    "Errors":{
+        "errorName": "en-US",
+        "errorCity": "USD",
+        "errorNumber": "USD",
+        "perfect" : "Perfect"
+    },
+    
+    "Profile":{
+        "Profile": "Profile",
+        "PurchaseHistory": "Latest Purchases",
+        "Purchases": "These are your latest orders",
+        "SearchingPurchases": "Searching..."
+    }
+
 
 }
