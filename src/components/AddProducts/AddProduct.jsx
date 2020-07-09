@@ -64,10 +64,8 @@ const AddProductView = () =>{
             productService.addProductToStore(name, brand, imagenUrl, price , store)
               .then(response =>  history.push(`/home`))
               .catch( e => console.log(e))
-
     }
   }
-
  
   return (
         <Box className="container">

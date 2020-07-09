@@ -42,13 +42,13 @@ const styles = makeStyles((theme) => ({
 
   }));
   
-
 const NavBar = () => {
-  const [user, setUser] = useContext(UserContext)
   const classes = styles();
   const history = useHistory()
-  const [isLoggued] =  user.isAdmin
   const { t, i18n } = useTranslation();
+  const [user, setUser] = useContext(UserContext)
+  const isUserAdmin = user.isAdmin 
+  const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
 
   const goToLogin = () =>{
     history.push("/login")
@@ -65,27 +65,86 @@ const NavBar = () => {
     // localStorage.setItem("user", {id: 0,  name: "",  password: "", email: "" })
     // localStorage.setItem("prod_count", 0)
     // localStorage.setItem("shopping_list", [] )
-    // localStorage.removeItem("user");
-    // localStorage.removeItem("shopping_list")
-    // localStorage.removeItem("prod_count")
-    authService.logout()
-    history.push("/")
-  }
-  const goToHome = () =>{
-      history.push("/home")
+    localStorage.removeItem("user");
+    localStorage.removeItem("shopping_list")
+    localStorage.removeItem("prod_count")
+    // authService.logout()
+    setTimeout(history.push("/"), 10000)
+    // history.push("/")
   }
 
   const goToAddStore = () =>{
     history.push("/addstore")
-}
+  }
 
-const goToAddProduct = () =>{
-  history.push("/addproduct")
-}
+  const goToAddProduct = () =>{
+    history.push("/addproduct")
+  }
 
   const changeLanguage = (language) =>{
     i18n.changeLanguage(language)
   }
+
+  const goToHome = () =>{
+      history.push("/home")
+  }
+
+  const NavBarAdmin = ()=>{
+    return(
+      <Box>
+        <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
+        <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>
+        <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>                        
+      </Box>
+    )
+  }
+
+  const NavBarUser = () =>{
+    return(
+      <Box>
+        <Button variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>
+        <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>
+      </Box>
+    )
+  }
+
+  const NavBarNoUser =() =>{
+    return(
+      <Box>
+        <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
+        <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>
+      </Box>
+    )
+  }
+  const GeneralNavBar = () => {
+    return(
+      <Box>
+        <Box>
+        {isLoggued && isUserAdmin
+        ?
+          <NavBarAdmin></NavBarAdmin>
+        :[
+          (!isLoggued
+          ? 
+           <NavBarNoUser></NavBarNoUser>
+          :
+            <NavBarUser></NavBarUser>
+          ) ]
+        }
+        </Box>
+        <Box>
+            {
+              i18n.language === "es" ?
+                <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
+                :
+                <Button onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
+              }
+  
+        </Box>  
+      </Box> 
+    )
+  }
+
 
   return (
     <AppBar position="static" className={classes.navbar}>
@@ -94,30 +153,7 @@ const goToAddProduct = () =>{
             <Typography variant="h6" className={classes.title} onClick={goToHome}>{t("Navbar.Home")}</Typography>
         </IconButton>   
         <Box className={classes.button}>
-          <Box>
-            {isLoggued ?
-              <Box>
-                <Button variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>
-                <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>
-              </Box>
-              :
-              <Box>
-                <Button variant="outlined" className={classes.strikingButton} onClick={goToLogin}>{t("Navbar.Login")}</Button>
-                <Button variant="outlined" className={classes.strikingButton} onClick={goToRegister}>{t("Navbar.Register")}</Button>    
-                {/* <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
-                <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>              */}
-              </Box>
-            }
-          </Box>
-          <Box>
-            {
-              i18n.language === "es" ?
-                <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
-              :
-                <Button onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
-            }
-
-          </Box>       
+          <GeneralNavBar></GeneralNavBar>
         </Box>     
       </Toolbar>
     </AppBar>

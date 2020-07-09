@@ -15,7 +15,8 @@ import authService from '../../service/auth-service';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
 import {useTranslation } from 'react-i18next'
-
+import Alert from '@material-ui/lab/Alert'
+import Snackbar from '@material-ui/core/Snackbar';
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -46,8 +47,9 @@ const RegisterUser = () =>{
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [setError] = useState("")
+  const [error, setError] = useState("")
   const {t} = useTranslation()
+  const [registrationSuccessful, setRegistrationSuccessful] = useState(false)
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -57,29 +59,57 @@ const RegisterUser = () =>{
       if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
           return true;
       }
-      setError('Por favor, introduzca un email válido.');
+      setError(t("Login.InvalidEmail"));
       return false;
   }
 
   const handleClickRegistrar = (ev) => {
     ev.preventDefault();
     if (isEmpty(name) && isEmpty(email) && isEmpty(password)) {
-      setError('Por favor, complete todos los campos.')
+      setError(t("Login.MissingValues"))
     } else {
         if (validateEmail(email)) {
             authService.register(name, email, password)
               .then(response => goToLogin() )
-              .catch( e => console.log(e))
+              .catch( e => {
+                handleError(e)
+              })
         }
     }
   }
 
-  const goToLogin = () =>{
+  const handleError = e => {
+    if (e.response.status === 409){
+      setError(t("Register.AlreadyExists"))
+    }
+  }
+
+  const handleClose = (event, reason) =>{
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setRegistrationSuccessful(false);
     history.push("/login")
+  }
+
+  const goToLogin = () =>{
+    setRegistrationSuccessful(true)
+    //history.push("/login")
   }
   return (
         <Box className="container">
           <Container component="main" maxWidth="xs">
+            {error ?
+              <Alert severity="error">{error}</Alert>
+            :
+              <p></p>
+            }
+            <Snackbar open={registrationSuccessful} autoHideDuration={3000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success">
+                This is a success message!
+              </Alert>
+            </Snackbar>
           <CssBaseline />
           <Box className={classes.paper}>
             <Avatar className={classes.avatar}>

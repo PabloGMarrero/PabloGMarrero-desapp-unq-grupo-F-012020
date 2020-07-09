@@ -17,6 +17,7 @@ import authService from '../../service/auth-service';
 import { UserContext } from '../../context/user-context'
 import { StoreContext } from '../../context/store-context'
 import { useTranslation } from 'react-i18next'
+import Alert from '@material-ui/lab/Alert'
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -57,6 +58,7 @@ const Login = () =>{
   const changePassword = (ev) => setPassword(ev.target.value);
 
   const handleSubmit = (resp) =>{
+    localStorage.setItem("user", JSON.stringify(resp.data));
     setUser(resp.data)
     setStore({
       id: 0, 
@@ -72,19 +74,24 @@ const Login = () =>{
     history.push(`/home`)
   }
 
-
+  const validateEmail = (email) => {
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        return true;
+    }
+    setError(t("Login.InvalidEmail"));
+    return false;
+}
 
   const handleClickLogin = (ev) => {
     ev.preventDefault();
-    if (isEmpty(email) && isEmpty(password)) {
-      setError('Por favor, complete todos los campos.')
-    }else{
+    if (isEmpty(email) || isEmpty(password)) {
+      setError(t("Login.MissingValues"))
+    }else if (validateEmail(email)){
       authService.login("", email, password)
       .then(resp => {
         handleSubmit(resp)
-        localStorage.setItem("user", JSON.stringify(resp.data));
       })
-      .catch((e) => setError('Bad username or password'));
+      .catch((e) => setError(t("Login.BadLogin")));
     }
   }
 
@@ -96,6 +103,11 @@ const Login = () =>{
     <React.Fragment>
       <CssBaseline />
     <Container component="main" maxWidth="xs">
+        {error ?
+          <Alert severity="error">{error}</Alert>
+        :
+          null
+        }
         <CssBaseline />
         <Box className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -139,7 +151,6 @@ const Login = () =>{
               onClick={(ev) => handleClickLogin(ev)}
               >{t("Login.Signin")}
             </Button>
-            {error ? <p>{error} </p> : <p></p> }
             <Grid container>
               <Grid item>
                 <Link href="#" variant="body2">{t("Login.ForgotPass")}</Link>

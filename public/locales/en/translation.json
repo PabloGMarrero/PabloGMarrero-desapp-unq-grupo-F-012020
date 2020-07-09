@@ -11,7 +11,10 @@
         "ForgotPass": "Forgot password?",
         "Remember": "Remember me", 
         "HaveNotAccount": "Don't have an account? Sign Up!",
-        "Password": "Password"
+        "Password": "Password",
+        "MissingValues": "Please, complete with your email and password.",
+        "BadLogin": "Bad username or password",
+        "InvalidEmail": "Please, complete with a valid email."
     },
     "Register":{
         "Signup": "Sign up",
@@ -23,9 +26,12 @@
         "HaveAccount": "Already have an account? Sign in",
         "User": "User",
         "Store": "Store",
-        "Go": "Go!"
+        "Go": "Go!",
+        "AlreadyExists": "Sorry, the email already exists. Please, user another one."
     },
     "RegisterStore":{
+        "Email": "Email",
+        "Password": "Password",
         "AddStore": "Add Store",
         "Name": "Name",
         "Activity": "Activity",
@@ -60,7 +66,8 @@
         "Bakery": "Bakery",
         "Pharmacy": "Pharmacy",
         "Ironmongery": "Ironmongery",
-        "Others": "Others"
+        "Others": "Others",
+        "CompleteFormStores":"Please, fill in all the data."
     },
     "Footer":{
         "Body": "Buy from Home is an application that brings shops in your area closer to your home."
