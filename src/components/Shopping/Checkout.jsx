@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next'
 import { CoordenadasContext } from '../../context/location-context'
 import purchaseService from '../../service/purchase-service'
 import {useHistory } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -76,40 +77,35 @@ const Checkout = () =>{
 
   const {
     shoppingList,
-    date,
     deliveryType,
-    productsCount,
-    cartIsOpen,
-    total,
     payMethod,
     street,
-      number,
-      state,
-      city,
-      zipCode,
-      country,
-      setDate
+    number,
+    city,
+    setDate,
+    state,
+    zipCode,
+    country,
+    total
 
   } = useContext(PurchaseContext);
 
   const [coord] = useContext(CoordenadasContext)
   const history = useHistory()
-  const [user,setUser] = useContext(UserContext)
+  const [user] = useContext(UserContext)
   const { t } = useTranslation();
   const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [orderNumber, setOrderNumber] = useState("")
+  const [error,setError] = useState("")
 
   
-  // var day = new Date().getDate(); //Current Date
-  // var month = new Date().getMonth() + 1; //Current Month
-  // var year = new Date().getFullYear(); //Current Year
   var hours = new Date().getHours(); //Current Hours
   var min = new Date().getMinutes(); //Current Minutes
   var sec = new Date().getSeconds(); //Current Seconds
 
-  // var date1 = year + '-' + month + '-'+day
+
   var myDate = new Date();  
   var year = myDate.getFullYear();  
   var month = myDate.getMonth() + 1; 
@@ -120,9 +116,21 @@ const Checkout = () =>{
   var date1 = year +'-'+ month +'-'+ day;
   var time = hours + ":"+('0'  + min).slice(-2)+':'+('0' + sec).slice(-2);
 
+  const isEmpty = (value) => {
+    return (typeof value === 'undefined' || value === null || value === '');
+  }
+
   const handleNext = () => {
+    if ((isEmpty(street) && isEmpty(number) && isEmpty(city) && isEmpty(state) && isEmpty(country)  && isEmpty(zipCode))
+      || (activeStep === 1 && isEmpty(deliveryType) && isEmpty(payMethod))
+    ) {
+      setError(t("Checkout.MissingValues"))
+
+    } 
+    else {
     setActiveStep(activeStep + 1);
     setDate(date1)
+    }
   };
 
   const handleBack = () => {
@@ -130,14 +138,19 @@ const Checkout = () =>{
   };
 
   const handlePurchase = () =>{
+    if ((total === 0) ){
+      setError(t("Checkout.ValueZero"))
+
+    } 
+    else {
   
     purchaseService.newPurchase(purchase)
-    .then(response => {
+                 .then(response => {
       setOrderNumber(response.data) 
       handleNext()
     })
     .catch(err => console.log(err))
-
+    }
   }
 
   const goToHome = () =>{
@@ -167,6 +180,11 @@ const Checkout = () =>{
 
   return (
     <React.Fragment>
+      {error ?
+          <Alert onClose={() => {}} severity="error">{error}</Alert>
+        :
+          null
+        }
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>

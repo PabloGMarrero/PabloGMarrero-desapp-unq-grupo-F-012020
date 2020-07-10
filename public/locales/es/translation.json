@@ -27,13 +27,16 @@
         "User": "Usuario",
         "Store": "Comercio",
         "Go": "Adelante!",
-        "AlreadyExists": "Lo siento, el mail ya existe. Prueba otro por favor."
+        "AlreadyExists": "Lo siento, el mail ya existe. Prueba otro por favor.",
+        "Success": "El usuario fue registrado exitosamente"
     },
+
     "RegisterStore":{
         "Email": "Email",
         "Password": "Contraseña",
         "AddStore": "Agregar Comercio",
-        "Name": "Nombre",
+        "Name": "Nombre de  usuario",
+        "NameStore": "Nombre de la Tienda",
         "Activity": "Actividad",
         "Street": "Calle",
         "Number": "Numero",
@@ -109,10 +112,13 @@
         "Thankyou": "Gracias por tu compra",
         "SentMail": " Hemos enviado a tu correo los detalles de tu compra, y te enviaremos otro una vez que tu orden sea enviada",
         "Orderis": "Tu numero de orden es: ",
-        "GoHome": "Ir al Inicio"
+        "GoHome": "Ir al Inicio",
+        "ValueZero": "Carrito vacio",
+        "MissingValues": "Por favor, complete todos los campos"
     },
     "ProductList":{
-        "Loading": "Buscando..."
+        "Loading": "Buscando...",
+        "Addproduct": "Agregar Producto"
     }
 ,
     "Format":{
@@ -129,9 +135,20 @@
 
     "Profile":{
         "Profile": "Perfil",
+        "Profile1": "Actualizar datos del usuario",
         "PurchaseHistory": "Historial de Compras",
         "Purchases": "Estas son tus compras",
-        "SearchingPurchases": "Buscando..."
+        "SearchingPurchases": "No hay comprar para mostrar",
+        "Update": "Actualizar",
+        "UpdateStoreData": "Actualizar datos del comercio",
+        "AddProduct": "Agregar productos"
+    }
+    ,
+    "AddProduct":{
+        "MissingValues": "Por favor, complete todos los campos",
+        "BadAgregation": "El producto ya existe",
+        "errorNumber": "No es un numero",
+        "perfect" : "Perfecto"
     }
 
 }

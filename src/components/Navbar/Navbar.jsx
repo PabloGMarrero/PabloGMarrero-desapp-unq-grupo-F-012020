@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { UserContext} from '../../context/user-context'
 import { useTranslation } from 'react-i18next'
-import authService from '../../service/auth-service'
+
 
 const styles = makeStyles((theme) => ({
     root: {
@@ -39,16 +39,18 @@ const styles = makeStyles((theme) => ({
     navbar:{
       background:"#D80032"
     }
-
   }));
   
 const NavBar = () => {
   const classes = styles();
   const history = useHistory()
   const { t, i18n } = useTranslation();
-  const [user, setUser] = useContext(UserContext)
+  const [user] = useContext(UserContext)
   const isUserAdmin = user.isAdmin 
-  const [isLoggued] = useState(user!==null && user !== undefined && user.name!== "")
+  const [isLoggued] = useState(user!==null && user !== undefined && user.email!== "")
+
+
+  
 
   const goToLogin = () =>{
     history.push("/login")
@@ -73,13 +75,7 @@ const NavBar = () => {
     // history.push("/")
   }
 
-  const goToAddStore = () =>{
-    history.push("/addstore")
-  }
 
-  const goToAddProduct = () =>{
-    history.push("/addproduct")
-  }
 
   const changeLanguage = (language) =>{
     i18n.changeLanguage(language)
@@ -92,9 +88,9 @@ const NavBar = () => {
   const NavBarAdmin = ()=>{
     return(
       <Box>
-        <Button className={classes.strikingButton} onClick={goToAddStore}>Agregar Comercio</Button>  
-        <Button className={classes.strikingButton} onClick={goToAddProduct}>Agregar Producto</Button>
-        <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>                        
+        
+        <Button className={classes.strikingButton}  variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button> 
+        <Button className={classes.strikingButton} variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>                       
       </Box>
     )
   }
@@ -102,8 +98,8 @@ const NavBar = () => {
   const NavBarUser = () =>{
     return(
       <Box>
-        <Button variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>
-        <Button variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>
+        <Button className={classes.strikingButton} variant="outlined" onClick={goToProfile}>{t("Navbar.Profile")}</Button>
+        <Button className={classes.strikingButton}  variant="outlined" onClick={logOut}>{t("Navbar.Logout")}</Button>
       </Box>
     )
   }
@@ -135,9 +131,9 @@ const NavBar = () => {
         <Box>
             {
               i18n.language === "es" ?
-                <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
+                <Button className={classes.strikingButton} onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
                 :
-                <Button onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
+                <Button className={classes.strikingButton}  onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
               }
   
         </Box>  

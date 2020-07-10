@@ -107,7 +107,7 @@ const RegisterUser = () =>{
             }
             <Snackbar open={registrationSuccessful} autoHideDuration={3000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
-                This is a success message!
+                {t("Register.Success")}
               </Alert>
             </Snackbar>
           <CssBaseline />

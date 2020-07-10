@@ -1,4 +1,4 @@
-import React, { useContext }  from 'react';
+import React, { useContext} from 'react'
 import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
@@ -8,23 +8,41 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { PurchaseContext } from '../../context/purchase-context'
 
+
 const PaymentForm = () =>{ 
 
+  const isEmpty = (value) => {
+    return (typeof value === 'undefined' || value === null || value === '');
+  }
+
+
   const {
-    shoppingList,
-    deliveryType,      
-    payMethod, 
+    
     setDeliveryType,
-    setPayMethod
+    setPayMethod,
+    setAnyError
   
   } = useContext(PurchaseContext);
+  const {t} = useTranslation()
+
+
 
   const handleDeliveryChange = (event) => {
+    if (isEmpty(event.target.value) ) { 
+      setAnyError(true)
+      
+    } else {
     setDeliveryType(event.target.value);
+    }
   };
-  const { t } = useTranslation();
+
   const handlePaymentChange = (event) => {
+    if (isEmpty(event.target.value) ) { 
+      setAnyError(true)
+      
+    } else {
     setPayMethod(event.target.value);
+    }
   };
 
   return (

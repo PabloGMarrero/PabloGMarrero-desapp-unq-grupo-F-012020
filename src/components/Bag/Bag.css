@@ -6,14 +6,15 @@
     right: 0px;
     width: 80px;
     height: 80px;
+    background-image: url('bag.png');
     background-repeat: no-repeat;
     background-position: 50%;
-    background-color: whitesmoke;
+    background-color: #2B2D42 ;
     transition: 0.1s linear;
 }
 .wrapper .bag__img {
     width: 35px;
-
+    background-image: url('bag.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;

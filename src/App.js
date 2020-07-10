@@ -13,7 +13,7 @@ import ProfileDataView from './views/DataProfileView'
 import HistoryProfileView from './views/HistorialView'
 import {CoordenadasContext, CoordenadasProvider } from './context/location-context'
 import { UserContext, UserProvider } from './context/user-context'
-import { PurchaseContext, PurchaseProvider } from './context/purchase-context'
+import { PurchaseProvider } from './context/purchase-context'
 import RegisterUserView from './views/RegisterUser';
 import { StoreContext, StoreProvider } from './context/store-context';
 

@@ -98,7 +98,7 @@ export default function Bag() {
             {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
                 currency: t("Format.currency"),
-              }).format(t("Format.currency") == 'ARS'  ? total : total / 107)}
+              }).format(t("Format.currency") === 'ARS'  ? total : total / 107)}
             
             </div>
             <Button 

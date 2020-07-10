@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState, useContext} from 'react'
 import { withRouter, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
 import {useTranslation } from 'react-i18next'
 import productService from '../../service/product-service';
+import Alert from '@material-ui/lab/Alert'
+import { UserContext} from '../../context/user-context'
 
 
 const styles = makeStyles((theme) => ({
@@ -48,8 +45,9 @@ const AddProductView = () =>{
   const [imagenUrl, setImagenUrl] = useState("")
   const [price, setPrice] = useState("")
   const [store, setStore] = useState("")
-  const [setError] = useState("")
+  const [error,setError] = useState("")
   const {t} = useTranslation()
+  const [user] = useContext(UserContext)
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -57,23 +55,30 @@ const AddProductView = () =>{
 
   const handleClickAddProductToStore = (ev) => {
     ev.preventDefault();
-    if (isEmpty(name) && isEmpty(brand) && isEmpty(price) && isEmpty(store)) {
-      setError('Por favor, complete todos los campos.')
+    if (isEmpty(name) && isEmpty(brand) && isEmpty(price) ) { //&& isEmpty(store)
+      setError(t("AddProduct.MissingValues"))
       
     } else {
-            productService.addProductToStore(name, brand, imagenUrl, price , store)
+            console.log(user.idStore)
+            productService.addProductToStore(user.idStore, name, brand, imagenUrl, price, store)
               .then(response =>  history.push(`/home`))
-              .catch( e => console.log(e))
+              .catch( e => setError(t("AddProduct.BadAgregation")))
     }
   }
+
  
   return (
         <Box className="container">
           <Container component="main" maxWidth="xs">
+          {error ?
+          <Alert severity="error">{error}</Alert>
+        :
+          null
+        }
           <CssBaseline />
           <Box className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Agregar Producto
+            {t("ProductList.Addproduct")}
             </Typography>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>

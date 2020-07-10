@@ -1,11 +1,13 @@
 import axios from 'axios';
-const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
-//const API_URL = 'http://localhost:8080/stores/'
+const API_URL = 'https://buyingfromhome.herokuapp.com/products/'
+//const API_URL = 'http://localhost:8080/products/'
 
 class addProductService{
-    addProductToStore(name, brand,  imagenUrl , price, store){
-        return axios.post(API_URL+"addproduct", {
-            name, brand,  imagenUrl , price, store
+    addProductToStore(idStore, name, brand,  imagenUrl , price, store){
+       // console.log(API_URL+id+"/addProduct/", {name, brand,  imagenUrl , price, store})
+
+       return axios.post(API_URL+idStore+"/addProduct", {
+           name, brand,  imagenUrl , price, store, id:0
         })
     }
     
@@ -37,3 +39,5 @@ export const getStores = (lat, long) => {
     // .catch(error => Promise.reject(error.response.data))
     // .catch(() => this.setState({error: 'No hay Comercios en tu zona'}));
 }
+
+

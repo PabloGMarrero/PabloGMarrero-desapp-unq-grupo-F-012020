@@ -27,13 +27,15 @@
         "User": "User",
         "Store": "Store",
         "Go": "Go!",
-        "AlreadyExists": "Sorry, the email already exists. Please, user another one."
+        "AlreadyExists": "Sorry, the email already exists. Please, user another one.",
+        "Success": "The user was register successfully"
     },
     "RegisterStore":{
         "Email": "Email",
         "Password": "Password",
         "AddStore": "Add Store",
-        "Name": "Name",
+        "Name": "User name",
+        "NameStore": "Store name",
         "Activity": "Activity",
         "Street": "Street",
         "Number": "Number",
@@ -109,10 +111,13 @@
         "Thankyou": "Thank you for your order",
         "SentMail": " We have emailed your order confirmation, and will send you an update when your order has shipped.",
         "Orderis": "Your Order number is: ",
-        "GoHome": "Go back to Home Page"
+        "GoHome": "Go back to Home Page",
+        "ValueZero": "Empty cart",
+        "MissingValues": "Please, fill all the fields"
     },
     "ProductList":{
-        "Loading": "Loading..."
+        "Loading": "Loading...",
+        "Addproduct": "Add Product"
     }
     ,
     "Format":{
@@ -129,10 +134,20 @@
     
     "Profile":{
         "Profile": "Profile",
+        "Profile1": "Update user data",
         "PurchaseHistory": "Latest Purchases",
         "Purchases": "These are your latest orders",
-        "SearchingPurchases": "Searching..."
+        "SearchingPurchases": "No purchases to show at the moment",
+        "Update": "Update",
+        "UpdateStoreData": "Update store data",
+        "AddProduct": "Add products"
     }
-
+    ,
+    "AddProduct":{
+        "MissingValues": "Please, fill all the fields",
+        "BadAgregation": "The product already exist",
+        "errorNumber": "No es un numero",
+        "perfect" : "Perfecto"
+    }
 
 }
