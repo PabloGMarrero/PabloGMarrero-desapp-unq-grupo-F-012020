@@ -27,7 +27,8 @@
         "User": "Usuario",
         "Store": "Comercio",
         "Go": "Adelante!",
-        "AlreadyExists": "Lo siento, el mail ya existe. Prueba otro por favor."
+        "AlreadyExists": "Lo siento, el mail ya existe. Prueba otro por favor.",
+        "InvalidNetwork": "Disculpa, hubo un problema con la conexión a internet. Por favor intente nuevamente."
     },
     "RegisterStore":{
         "Email": "Email",

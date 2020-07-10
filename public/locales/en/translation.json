@@ -27,7 +27,9 @@
         "User": "User",
         "Store": "Store",
         "Go": "Go!",
-        "AlreadyExists": "Sorry, the email already exists. Please, user another one."
+        "AlreadyExists": "Sorry, the email already exists. Please, user another one.",
+        "InvalidNetwork": "Sorry, there is a network problem. Try again later please."
+
     },
     "RegisterStore":{
         "Email": "Email",

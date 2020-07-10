@@ -4,7 +4,8 @@ const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
 
 class addProductService{
     addProductToStore(name, brand,  imagenUrl , price, store){
-        return axios.post(API_URL+"addproduct", {
+        const url = API_URL+1+"/addproduct"
+        return axios.post(url, {
             name, brand,  imagenUrl , price, store
         })
     }

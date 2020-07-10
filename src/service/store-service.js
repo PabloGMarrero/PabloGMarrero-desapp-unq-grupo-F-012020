@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
-//const API_URL = 'http://localhost:8080/stores/'
+// const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
+const API_URL = 'http://localhost:8080/stores/'
 
 
 class StoreService{

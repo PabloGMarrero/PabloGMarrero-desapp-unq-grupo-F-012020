@@ -79,7 +79,10 @@ const RegisterUser = () =>{
   }
 
   const handleError = e => {
-    if (e.response.status === 409){
+    console.log(JSON.stringify(e))
+    if(e.message === "Network Error"){
+      setError(t("Register.InvalidNetwork"))
+    }else if (e.response.status === 409){
       setError(t("Register.AlreadyExists"))
     }
   }
