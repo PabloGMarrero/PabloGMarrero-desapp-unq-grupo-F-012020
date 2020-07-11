@@ -13,6 +13,8 @@ import { Button } from '@material-ui/core';
 import  UserService   from '../../service/user-service';
 import  StoreService   from '../../service/store-service';
 import {useTranslation } from 'react-i18next'
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -49,6 +51,10 @@ const ProfileView = () =>{
   const isUserAdmin = user.isAdmin
   const[storeUser, setStoreUser] = useState("")
 
+  const[storeName, setStoreName] = useState("")
+  const[activity, setActivity] = useState("")
+  const[covDistance, setCovDistance] = useState("")
+
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
   }
@@ -65,12 +71,24 @@ const ProfileView = () =>{
     ev.preventDefault();
     if (isEmpty(name) && isEmpty(email) && isEmpty(password)) {
       setError('Por favor, complete todos los campos.')
+      console.log("sale por aca")
     } else {
-        if (validateEmail(email)) {
-            UserService.updateUser(name, email, password)
-              .then(response =>  history.push(`/profile`))
+        console.log(activity)
+        console.log(covDistance)
+        console.log( covDistance > 0)
+        if ( true) {
+          
+          UserService.updateUser(name, email, password)
+          
+          
+           .then(
+            history.push(`/profile`)
+          // StoreService.updateStore(name, activity, storeUser.street, storeUser.number , storeUser.locality, storeUser.latitude, storeUser.longitude, covDistance)
+         //     .then(response =>  history.push(`/profile`))
+         //     .catch( e => console.log(e))
+              )
               .catch( e => console.log(e))
-        }
+        }   else {console.log("sale por aca por")} 
     }
   }
 
@@ -79,71 +97,12 @@ const ProfileView = () =>{
 
        const resStore = await StoreService.getStoreById(user.idStore)
        setStoreUser(resStore.data)
-
     }
     fetchData();
   },[user]);
   
-  console.log(storeUser)
 
-  const StoreUser = () => {
-
-    return (  
-      <Container component="main" maxWidth="xs">
-          <Typography component="h1" variant="h5">
-          {t("Profile.UpdateStoreData")}
-          </Typography>
-    
-          <form className={classes.form} noValidate>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <TextField
-                        autoComplete="fname"
-                        name="firstName"
-                        variant="outlined"
-                        fullWidth
-                        id="firstName"
-                        label= {storeUser.storeName}
-                        autoFocus
-                onChange={(ev) => setName(ev.target.value)} 
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        variant="outlined"
-                        fullWidth
-                        id="email"
-                        label=  {storeUser.activity}
-                        name="email"
-                        autoComplete="email"
-                      onChange={(ev) => setEmail(ev.target.value)}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        variant="outlined"
-                        fullWidth
-                        id="password"
-                        label= {storeUser.coverageDistance}
-                        name="password"
-                        autoComplete="password"
-                      onChange={(ev) => setPassword(ev.target.value)}
-                      />
-                    </Grid>
-                    
-                  </Grid>
-          </form>
-          </Container>
-      
-      
-      
-      )
-
-  }
-
-
-
-  return (
+    return (
         <div className="container">
           <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -163,9 +122,10 @@ const ProfileView = () =>{
                     variant="outlined"
                     fullWidth
                     id="firstName"
-                    label= {user.name}
+                    helperText= {t("RegisterStore.Current") + user.name}
+                    label= {t("RegisterStore.Name")}
                     autoFocus
-             onChange={(ev) => setName(ev.target.value)} 
+                    onChange={(ev) => setName(ev.target.value)} 
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -173,10 +133,11 @@ const ProfileView = () =>{
                     variant="outlined"
                     fullWidth
                     id="email"
-                    label={user.email}
+                    helperText= {t("RegisterStore.Current") + user.email}
+                    label={t("RegisterStore.Email")}
                     name="email"
                     autoComplete="email"
-                  onChange={(ev) => setEmail(ev.target.value)}
+                    onChange={(ev) => setEmail(ev.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -184,9 +145,10 @@ const ProfileView = () =>{
                     variant="outlined"
                     fullWidth
                     id="password"
-                    label={user.password}
+                    label={t("RegisterStore.Password")}
                     name="password"
                     autoComplete="password"
+                    type="password"
                   onChange={(ev) => setPassword(ev.target.value)}
                   />
                 </Grid>
@@ -196,17 +158,58 @@ const ProfileView = () =>{
           </div>
         
           <p></p>
-          {isUserAdmin ? <StoreUser> </StoreUser> : null }
+          {isUserAdmin ? 
 
-          <p></p>
-          <Button 
-                  type="submit"
-                  fullWidth
-                  className={classes.update} 
-                  onClick={ (ev) => handleClickUpdate(ev)}
-                >{t("Profile.Update")}
-           </Button>
-        </Container>
+                            <Container component="main" maxWidth="xs">
+                            <Typography component="h1" variant="h5">
+                            {t("Profile.UpdateStoreData")}
+                            </Typography>
+
+                            <form className="{classes.form}" noValidate>
+                                    <Grid container spacing={12}>
+                                      <Grid item xs={12}>
+                                      <Select
+                                        labelId={t("RegisterStore.Activity")}
+                                        id="activity"
+                                        displayEmpty
+                                        value={activity}
+                                        className= {classes.dropdown}
+                                        onChange={(ev) => setActivity(ev.target.value)}
+                                        >
+                                        <MenuItem value={"Kiosco"} >{t("Stores.Grocery")}</MenuItem>
+                                        <MenuItem value={"Almacen"} >{t("Stores.Store")}</MenuItem>
+                                        <MenuItem value={"Carnicería"}>{t("Stores.Butcher")}</MenuItem>
+                                        <MenuItem value={"Verdulería"}>{t("Stores.Greengrocery")}</MenuItem>
+                                        <MenuItem value={"Panadería"}>{t("Stores.Bakery")}</MenuItem>
+                                        <MenuItem value={"Farmacia"}>{t("Stores.Pharmacy")}</MenuItem>
+                                        <MenuItem value={"Ferretería"}>{t("Stores.Ironmongery")}</MenuItem>
+                                        <MenuItem value={"Otros"}>{t("Stores.Others")}</MenuItem>
+                                      </Select>
+                                      </Grid>
+                                      <Grid item xs={12}>
+                                        <TextField
+                                          variant="outlined"
+                                          labelId={t("RegisterStore.Coverage")}
+                                          fullWidth
+                                          id="covDistance"
+                                          label=  {t("RegisterStore.Coverage")}
+                                          helperText= {t("RegisterStore.Current") + storeUser.covDistance}
+                                          name="activity"                        
+                                      onChange={(ev) => setCovDistance(ev.target.value)}
+                                        />
+                                      </Grid >
+                                    </Grid>
+                                     </form>
+                                  </Container>                                                                      
+                                      : null }
+                                <Button 
+                                        type="submit"
+                                        fullWidth
+                                        className={classes.update} 
+                                        onClick={ (ev) => handleClickUpdate(ev)}
+                                      >{t("Profile.Update")}
+                                </Button>
+                              </Container>
 
         
         </div>

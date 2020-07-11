@@ -20,7 +20,7 @@ class UserService{
     }
 
     updateUser(name, email, password){
-        return axios.post(API_URL+"update", {
+        return axios.post(API_URL+"updateuser", {
             name, email, password
         });
     }

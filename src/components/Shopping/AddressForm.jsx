@@ -110,6 +110,7 @@ const AddressForm = () =>{
             id="address2"
             name="address2"
             label={t("Checkout.Number")}
+            type= "number"
             fullWidth
             autoComplete="shipping address-line2"
             onChange={handleNumberChange}
