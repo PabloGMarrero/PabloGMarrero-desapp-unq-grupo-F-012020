@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import { withRouter, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Button } from '@material-ui/core';
@@ -16,8 +11,9 @@ import Box from '@material-ui/core/Box'
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {useTranslation } from 'react-i18next'
-import storeService from '../../service/store-service';
-import Alert from '@material-ui/lab/Alert'
+import storeService from '../../service/store-service'
+import Alert from '@material-ui/lab/Alert';
+
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -47,7 +43,7 @@ const styles = makeStyles((theme) => ({
 
 const RegisterStore = () =>{
   const classes = styles();
-  const [name, setName] = useState("")
+
   const [activity, setActivity] = useState("")
   const [street, setStreet] = useState("")
   const [number, setNumber] = useState("")
@@ -57,8 +53,10 @@ const RegisterStore = () =>{
   const [covDistance, setCovDistance] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
   const history = useHistory();
   const [error, setError] = useState("")
+
   const {t} = useTranslation()
 
   const isEmpty = (value) => {
@@ -68,7 +66,7 @@ const RegisterStore = () =>{
   const handleClickAddStore = (ev) => {
     ev.preventDefault();
     if (isEmpty(name) && isEmpty(activity) && isEmpty(longitude)
-    && isEmpty(latitude) && isEmpty(street) && isEmpty(number)) {
+    && isEmpty(latitude) && isEmpty(street) && isEmpty(number)&& isEmpty(covDistance)) {
       setError(t("Stores.CompleteFormStores"))
       
     } else {
@@ -82,7 +80,9 @@ const RegisterStore = () =>{
   }
 
   const handleError = e => {
-    if (e.response.status === 409){
+    if(e.message === "Network Error"){
+      setError(t("Register.InvalidNetwork"))
+    }else if (e.response.status === 409){
       setError(t("Register.AlreadyExists"))
     }
   }
@@ -131,12 +131,12 @@ const RegisterStore = () =>{
                 <Grid item xs={12} >
                   <TextField
                     autoComplete="fname"
-                    name="Name"
+                    name="NameStore"
                     variant="outlined"
                     required
                     fullWidth
                     id="Name"
-                    label= {t("RegisterStore.Name")}
+                    label= {t("RegisterStore.NameStore")}
                     onChange={(ev) => setName(ev.target.value)}
                   />
                 </Grid>

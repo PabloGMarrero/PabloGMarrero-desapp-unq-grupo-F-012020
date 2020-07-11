@@ -64,7 +64,7 @@ const Review = () =>{
             <Typography variant="body2"> {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
                 currency: t("Format.currency"),
-              }).format(t("Format.currency") == 'ARS'  ? product.price : product.price /107)}</Typography>
+              }).format(t("Format.currency") === 'ARS'  ? product.price : product.price /107)}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
@@ -73,7 +73,7 @@ const Review = () =>{
           {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
                 currency: t("Format.currency"),
-              }).format(t("Format.currency") == 'ARS'  ? total : total / 107)}
+              }).format(t("Format.currency") === 'ARS'  ? total : total / 107)}
           </Typography>
         </ListItem>
       </List>

@@ -1,12 +1,13 @@
 import axios from 'axios';
-const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
-//const API_URL = 'http://localhost:8080/stores/'
+// const API_URL = 'https://buyingfromhome.herokuapp.com/products/'
+const API_URL = 'http://localhost:8080/products/'
 
 class addProductService{
-    addProductToStore(name, brand,  imagenUrl , price, store){
-        const url = API_URL+1+"/addproduct"
-        return axios.post(url, {
-            name, brand,  imagenUrl , price, store
+    addProductToStore(idStore, name, brand,  imageUrl , price, store){
+       // console.log(API_URL+id+"/addProduct/", {name, brand,  imagenUrl , price, store})
+
+       return axios.post(API_URL+idStore+"/addProduct", {
+           name, brand,  imageUrl , price, store, id:0
         })
     }
     
@@ -15,10 +16,10 @@ class addProductService{
 export default new addProductService()
 
 
-const API_URL_PRODUCT = 'https://buyingfromhome.herokuapp.com/stores/store?'
-const API_URL_STORES = 'https://buyingfromhome.herokuapp.com/stores/stores?'
-//const API_URL_PRODUCT = 'http://localhost:8080/stores/store?'
-//const API_URL_STORES = 'http://localhost:8080/stores/stores?'
+// const API_URL_PRODUCT = 'https://buyingfromhome.herokuapp.com/stores/store?'
+// const API_URL_STORES = 'https://buyingfromhome.herokuapp.com/stores/stores?'
+const API_URL_PRODUCT = 'http://localhost:8080/stores/store?'
+const API_URL_STORES = 'http://localhost:8080/stores/stores?'
 
 
 
@@ -38,3 +39,5 @@ export const getStores = (lat, long) => {
     // .catch(error => Promise.reject(error.response.data))
     // .catch(() => this.setState({error: 'No hay Comercios en tu zona'}));
 }
+
+

@@ -63,7 +63,7 @@ export default function Item({
           <span className="bag__price"> {new Intl.NumberFormat(t("Format.lang"), {
                 style: "currency",
                 currency: t("Format.currency"),
-              }).format(t("Format.currency") == 'ARS'  ? price : price / 107)}</span>
+              }).format(t("Format.currency") === 'ARS'  ? price : price / 107)}</span>
         </div>
       </div>
       <div className="bag__operation">

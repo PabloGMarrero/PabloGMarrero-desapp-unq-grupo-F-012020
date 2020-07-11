@@ -6,20 +6,19 @@ import PurchaseList from '../StoreList/PurchaseList'
 import { useTranslation } from 'react-i18next'
 import Box from '@material-ui/core/Box'
 import { UserContext } from '../../context/user-context'
-import axios from 'axios';
+
 
 
 const PurchaseHistory= () =>{
 
     const [purchaseList, setPurchaseList] = useState()
-    const [loading, setLoading] = useState(false)
-    const [user,setUser] = useContext(UserContext)
+
+    const [user] = useContext(UserContext)
     const {t} = useTranslation()
 
     useEffect(() => {    
         const fetchData = async () => {
             const resStores = await UserService.getUserOrders(user.id)
-         // const resStores = await axios.get("https://buyingfromhome.herokuapp.com/users/get/1/orders")
           setPurchaseList(resStores.data)
         }
         fetchData();
@@ -30,8 +29,6 @@ const PurchaseHistory= () =>{
       <PurchaseList purchase = {purchaseList} ></PurchaseList>
     )
   }
-
-  console.log(purchaseList)
 
   return (
     <Box>

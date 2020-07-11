@@ -16,7 +16,7 @@ const PurchaseList = ({purchase}) =>{
                 itemQuantity={purchase.itemList.lengh}
             />
           )
-          : <p>Loading... </p>
+        : <p>{t("ProductList.Loading")} </p>
     )
     
 }

@@ -10,7 +10,7 @@ class StoreService{
         //     name, activity, street, number , locality, latitude, longitude, covDistance
         // })
         const user = {
-            id:0, email, password, name:""
+            id:0, email, password, name
         }
         const store = {
             name, activity, street, number , locality, latitude, longitude, covDistance
@@ -26,9 +26,11 @@ class StoreService{
     updateStore(name, activity, street, number , locality,latitude,longitude,covDistance){
         return axios.post(API_URL+"updatestore", {
             name, activity, street, number , locality, latitude, longitude, covDistance
-        })
+        })     
+    }
 
-
+    getStoreById(id){
+        return axios.get(API_URL+"get/"+id)
     }
     
 }

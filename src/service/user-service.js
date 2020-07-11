@@ -1,5 +1,4 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 
 const API_URL = 'https://buyingfromhome.herokuapp.com/users/'
 
@@ -11,8 +10,6 @@ class UserService{
             id
         })
     }
-
-    
 
     getUserOrders(id) {
         const url = API_URL+"get/"+id+"/orders"

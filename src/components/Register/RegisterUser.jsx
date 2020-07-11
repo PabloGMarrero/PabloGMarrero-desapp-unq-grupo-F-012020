@@ -79,7 +79,6 @@ const RegisterUser = () =>{
   }
 
   const handleError = e => {
-    console.log(JSON.stringify(e))
     if(e.message === "Network Error"){
       setError(t("Register.InvalidNetwork"))
     }else if (e.response.status === 409){
@@ -110,7 +109,7 @@ const RegisterUser = () =>{
             }
             <Snackbar open={registrationSuccessful} autoHideDuration={3000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
-                This is a success message!
+                {t("Register.Success")}
               </Alert>
             </Snackbar>
           <CssBaseline />
