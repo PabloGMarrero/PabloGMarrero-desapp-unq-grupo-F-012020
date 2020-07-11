@@ -13,7 +13,8 @@ const MapboxGLMap = () => {
   const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
   const [coord, setCoordenadas] = useContext(CoordenadasContext)
-  const [zoom] = useState(12)
+  const [zoom] = useState(15)
+  const marker = new mapboxgl.Marker()
 
   useEffect(() => {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZXplY2FycmFzY29zYSIsImEiOiJja2FoNnFkZmYwZ3N5MnBvMXNtdGx6c3QyIn0.xR9FIATQVNcdykGIGpITsA';
@@ -21,21 +22,27 @@ const MapboxGLMap = () => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
-        center: [coord.lat, coord.lng],
+        center: [coord.lng, coord.lat],
         zoom: zoom
       });
-
+      marker.setLngLat([coord.lng, coord.lat]).addTo(map)
+      
       map.on("load", () => {
         setMap(map);
         map.resize();
       });
 
       map.on('click', () => { 
-          setCoordenadas({lat:map.getCenter().lat.toFixed(4), lng: map.getCenter().lng.toFixed(4), })
+          var lngLat = map.getCenter()
+          setCoordenadas({lat: lngLat.lat.toFixed(6), lng: lngLat.lng.toFixed(6)})
+          marker.remove()
+          marker.setLngLat([lngLat.lng, lngLat.lat]).addTo(map)       
      });  
     };
 
-    if (!map) initializeMap({ setMap, mapContainer });
+    if (!map) {
+      initializeMap({ setMap, mapContainer });
+    }
   }, [coord, map, setCoordenadas, zoom]);
 
   return <div ref={el => (mapContainer.current = el)} style={styles} />;

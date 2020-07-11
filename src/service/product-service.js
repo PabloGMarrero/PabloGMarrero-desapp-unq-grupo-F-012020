@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const API_URL = 'https://buyingfromhome.herokuapp.com/products/'
-const API_URL = 'http://localhost:8080/products/'
+const API_URL = 'https://buyingfromhome.herokuapp.com/products/'
+// const API_URL = 'http://localhost:8080/products/'
 
 class addProductService{
     addProductToStore(idStore, name, brand,  imageUrl , price, store){
