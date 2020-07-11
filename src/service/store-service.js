@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
-const API_URL = 'http://localhost:8080/stores/'
+const API_URL = 'https://buyingfromhome.herokuapp.com/stores/'
+// const API_URL = 'http://localhost:8080/stores/'
 
 
 class StoreService{
@@ -23,12 +23,12 @@ class StoreService{
         return axios.post(API_URL+"addstore", userStoreDto )
     }
 
-    updateStore(name, activity, street, number , locality,latitude,longitude,covDistance){
-        console.log(API_URL+"updatestore", { name, activity, street, number , locality, latitude, longitude, covDistance })
+    updateStore(idStore, name, activity, street, number , locality,latitude,longitude,covDistance){
         
-        return axios.post(API_URL+"updatestore", {
-            name, activity, street, number , locality, latitude, longitude, covDistance
-        })     
+        const url = API_URL+idStore+"/updatestore"
+        const store = { name, activity, street, number , locality, latitude, longitude, covDistance }
+        
+        return axios.put(url, store)     
     }
 
     getStoreById(id){

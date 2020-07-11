@@ -43,7 +43,7 @@ const MapboxGLMap = () => {
     if (!map) {
       initializeMap({ setMap, mapContainer });
     }
-  }, [coord, map, setCoordenadas, zoom]);
+  }, [coord, map, setCoordenadas, zoom, marker]);
 
   return <div ref={el => (mapContainer.current = el)} style={styles} />;
 };

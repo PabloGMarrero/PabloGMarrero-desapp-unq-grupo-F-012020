@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'https://buyingfromhome.herokuapp.com/users/'
-
-
+// const API_URL = 'http://localhost:8080/users/'
 
 class UserService{
     getUserById(id){
@@ -13,17 +12,18 @@ class UserService{
 
     getUserOrders(id) {
         const url = API_URL+"get/"+id+"/orders"
-        console.log(url)
-        return axios.get(API_URL+"get/"+id+"/orders", {
+        return axios.get(url, {
             id
         })
     }
 
-    updateUser(name, email, password){
-        return axios.post(API_URL+"updateuser", {
-            name, email, password
-        });
+    updateUser(id, name, email, password){
+        const user = {
+            name, email, password, id, isAdmin:false, idStore:0
+        }
+        return axios.put(API_URL+"updateuser", user);
     }
+
 }
 
 export default new UserService();

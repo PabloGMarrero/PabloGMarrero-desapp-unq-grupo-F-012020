@@ -36,21 +36,24 @@ const styles = makeStyles((theme) => ({
   },
   update:{
     background: '#E59500'
+  },
+  dropdown:{
+    minWidth: "100%",
   }
+  
 }));
 
 const ProfileView = () =>{
   const classes = styles();
   const history = useHistory();
-  const [user] = useContext(UserContext)
+  const [user, setUser] = useContext(UserContext)
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const {t} = useTranslation()
   const [setError] = useState("")
   const isUserAdmin = user.isAdmin
-  const[storeUser, setStoreUser] = useState("")
-
+  const[storeUser, setStoreUser] = useState({})
   const[storeName, setStoreName] = useState("")
   const[activity, setActivity] = useState("")
   const[covDistance, setCovDistance] = useState("")
@@ -69,34 +72,40 @@ const ProfileView = () =>{
 
   const handleClickUpdate = (ev) => {
     ev.preventDefault();
-    if (isEmpty(name) && isEmpty(email) && isEmpty(password)) {
+    if (isEmpty(name) && isEmpty(email) && isEmpty(password) && isEmpty(activity) && isEmpty(covDistance)) {
       setError('Por favor, complete todos los campos.')
-      console.log("sale por aca")
-    } else {
-        console.log(activity)
-        console.log(covDistance)
-        console.log( covDistance > 0)
-        if ( true) {
-          
-          UserService.updateUser(name, email, password)
-          
-          
-           .then(
+    } else if (isUserAdmin){
+
+      UserService.updateUser(user.id, name, email, password)
+      .then(
+          StoreService.updateStore(user.idStore, name, activity, 
+            storeUser.address.street, storeUser.address.number , storeUser.address.locality, storeUser.address.geographicZone.latitude, 
+              storeUser.address.geographicZone.longitude, covDistance)
+          .then(response =>  {
             history.push(`/profile`)
-          // StoreService.updateStore(name, activity, storeUser.street, storeUser.number , storeUser.locality, storeUser.latitude, storeUser.longitude, covDistance)
-         //     .then(response =>  history.push(`/profile`))
-         //     .catch( e => console.log(e))
-              )
-              .catch( e => console.log(e))
-        }   else {console.log("sale por aca por")} 
-    }
+          })
+          .catch( e => {
+            console.log("Error al actualizar store")
+            console.log(e)
+          })
+        )
+        .catch( e =>
+          {
+            console.log("Error al actualizar user")
+            console.log(e)
+          })
+    }else{
+      UserService.updateUser(user.id, name, email, password)
+      .then(resp => history.push(`/profile`))
+      .catch( e=>console.log(e))
+    }          
   }
 
   useEffect(() => {    
     const fetchData = async () => {
-
-       const resStore = await StoreService.getStoreById(user.idStore)
-       setStoreUser(resStore.data)
+      const resStore = await StoreService.getStoreById(user.idStore)
+      console.log(resStore.data)
+      setStoreUser(resStore.data)
     }
     fetchData();
   },[user]);
@@ -122,13 +131,13 @@ const ProfileView = () =>{
                     variant="outlined"
                     fullWidth
                     id="firstName"
-                    helperText= {t("RegisterStore.Current") + user.name}
+                    helperText= {t("RegisterStore.Current") + storeUser.storeName}
                     label= {t("RegisterStore.Name")}
                     autoFocus
                     onChange={(ev) => setName(ev.target.value)} 
                   />
                 </Grid>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     fullWidth
@@ -139,7 +148,7 @@ const ProfileView = () =>{
                     autoComplete="email"
                     onChange={(ev) => setEmail(ev.target.value)}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
@@ -193,7 +202,7 @@ const ProfileView = () =>{
                                           fullWidth
                                           id="covDistance"
                                           label=  {t("RegisterStore.Coverage")}
-                                          helperText= {t("RegisterStore.Current") + storeUser.covDistance}
+                                          helperText= {t("RegisterStore.Current") + storeUser.coverageDistance}
                                           name="activity"                        
                                       onChange={(ev) => setCovDistance(ev.target.value)}
                                         />
