@@ -19,6 +19,7 @@ import purchaseService from '../../service/purchase-service'
 import {useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert'
 
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -127,6 +128,14 @@ const Checkout = () =>{
       setError(t("Checkout.MissingValues"))
 
     } 
+    else if (isNaN(number))
+      {
+        setError(t("Checkout.ErrorNumber"))
+      }
+      else if (street.match(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/))
+      {
+        setError(t("Checkout.ErrorString"))
+      }
     else {
     setActiveStep(activeStep + 1);
     setDate(date1)
@@ -155,7 +164,10 @@ const Checkout = () =>{
 
   const goToHome = () =>{
     history.push("/home")
-}
+  }
+
+
+
 
   const purchase = 
   {
@@ -181,7 +193,11 @@ const Checkout = () =>{
   return (
     <React.Fragment>
       {error ?
-          <Alert onClose={() => {}} severity="error">{error}</Alert>
+         
+      
+              <Alert severity="error">
+              {error}
+              </Alert>
         :
           null
         }

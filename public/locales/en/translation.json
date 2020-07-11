@@ -42,7 +42,8 @@
         "Locality": "Locality",
         "Latitude": "Latitude",
         "Longitude": "Longitude",
-        "Coverage": "Coverage distance (kms)"
+        "Coverage": "Coverage distance (kms)",
+        "Current": "Current: "
     },
     "Home":{
         "Stores": "Stores near to your home",
@@ -113,7 +114,9 @@
         "Orderis": "Your Order number is: ",
         "GoHome": "Go back to Home Page",
         "ValueZero": "Empty cart",
-        "MissingValues": "Please, fill all the fields"
+        "MissingValues": "Please, fill all the fields",
+        "ErrorNumber": "Please insert a valid number",
+        "ErrorString":"Please insert a valid address"
     },
     "ProductList":{
         "Loading": "Loading...",

@@ -43,7 +43,8 @@
         "Locality": "Localidad",
         "Latitude": "Latitud",
         "Longitude": "Longitud",
-        "Coverage": "Distancia de cobertura (kms)"
+        "Coverage": "Distancia de cobertura (kms)",
+        "Current": "Actual: "
     },
     "Home":{
         "Stores": "Comercios cerca tuyo",
@@ -114,7 +115,9 @@
         "Orderis": "Tu numero de orden es: ",
         "GoHome": "Ir al Inicio",
         "ValueZero": "Carrito vacio",
-        "MissingValues": "Por favor, complete todos los campos"
+        "MissingValues": "Por favor, complete todos los campos",
+        "ErrorNumber": "Por favor, inserte un numero valido",
+        "ErrorString":"Por favor, inserte un direccion valida"
     },
     "ProductList":{
         "Loading": "Buscando...",

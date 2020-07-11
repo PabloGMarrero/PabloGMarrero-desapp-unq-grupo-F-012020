@@ -24,6 +24,8 @@ class StoreService{
     }
 
     updateStore(name, activity, street, number , locality,latitude,longitude,covDistance){
+        console.log(API_URL+"updatestore", { name, activity, street, number , locality, latitude, longitude, covDistance })
+        
         return axios.post(API_URL+"updatestore", {
             name, activity, street, number , locality, latitude, longitude, covDistance
         })     
