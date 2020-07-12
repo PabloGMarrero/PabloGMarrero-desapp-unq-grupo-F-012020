@@ -41,9 +41,12 @@ const Review = () =>{
   
   } = useContext(PurchaseContext);
 
-  const [user] = useContext(UserContext)
+  const {user} = useContext(UserContext)
   const { t } = useTranslation();
   const classes = useStyles();
+  const {dataFacebook} = useContext(UserContext);
+
+  const isUserFacebook = dataFacebook.graphDomain === 'facebook'
 
   const addresses = [street, number, city, state, zipCode, country];
 
@@ -82,7 +85,7 @@ const Review = () =>{
           <Typography variant="h6" gutterBottom className={classes.title}>
           {t("Checkout.Shipping")}
           </Typography>
-        <Typography gutterBottom>{user.name}</Typography>
+        <Typography gutterBottom>{isUserFacebook ? dataFacebook.name : user.name}</Typography>
           <Typography gutterBottom>{addresses.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>

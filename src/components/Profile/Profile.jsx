@@ -46,15 +46,18 @@ const styles = makeStyles((theme) => ({
 const ProfileView = () =>{
   const classes = styles();
   const history = useHistory();
-  const [user, setUser] = useContext(UserContext)
+  const {user,} = useContext(UserContext)
   const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [email,] = useState("")
   const [password, setPassword] = useState("")
   const {t} = useTranslation()
   const [setError] = useState("")
   const isUserAdmin = user.isAdmin
   const[storeUser, setStoreUser] = useState({})
-  const[storeName, setStoreName] = useState("")
+  const {dataFacebook} = useContext(UserContext);
+
+  const isUserFacebook = dataFacebook.graphDomain === 'facebook'
+
   const[activity, setActivity] = useState("")
   const[covDistance, setCovDistance] = useState("")
 
@@ -72,7 +75,7 @@ const ProfileView = () =>{
 
   const handleClickUpdate = (ev) => {
     ev.preventDefault();
-    if (isEmpty(name) && isEmpty(email) && isEmpty(password) && isEmpty(activity) && isEmpty(covDistance)) {
+    if (isEmpty(name) && isEmpty(email) && validateEmail(email) && isEmpty(password) && isEmpty(activity) && isEmpty(covDistance)) {
       setError('Por favor, complete todos los campos.')
     } else if (isUserAdmin){
 
@@ -95,7 +98,7 @@ const ProfileView = () =>{
             console.log(e)
           })
     }else{
-      UserService.updateUser(user.id, name, email, password)
+      UserService.updateUser(user.id, name, user.email, password)
       .then(resp => history.push(`/profile`))
       .catch( e=>console.log(e))
     }          
@@ -112,7 +115,10 @@ const ProfileView = () =>{
   
 
     return (
+      
         <div className="container">
+          {isUserFacebook ? <h2>{t("RegisterStore.ErrorFacebook")}</h2>  
+          : 
           <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
@@ -131,7 +137,7 @@ const ProfileView = () =>{
                     variant="outlined"
                     fullWidth
                     id="firstName"
-                    helperText= {t("RegisterStore.Current") + storeUser.storeName}
+                    helperText= {t("RegisterStore.Current") + isUserAdmin ? storeUser.storeName : user.name}
                     label= {t("RegisterStore.Name")}
                     autoFocus
                     onChange={(ev) => setName(ev.target.value)} 
@@ -220,8 +226,9 @@ const ProfileView = () =>{
                                 </Button>
                               </Container>
 
-        
+          }
         </div>
+      
   )
 }
 

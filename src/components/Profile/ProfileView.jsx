@@ -42,7 +42,7 @@ const ProfileView = () =>{
   const profile = './assets/img/profile.png'
   const purchase = './assets/img/purchase.png'
   const product = './assets/img/product.png'
-  const [user] = useContext(UserContext)
+  const {user} = useContext(UserContext)
   const isUserAdmin = user.isAdmin 
   const [isLoggued] = useState(user!==null && user !== undefined && user.email!== "")
 

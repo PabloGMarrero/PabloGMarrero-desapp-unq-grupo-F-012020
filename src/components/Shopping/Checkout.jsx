@@ -93,13 +93,15 @@ const Checkout = () =>{
 
   const [coord] = useContext(CoordenadasContext)
   const history = useHistory()
-  const [user] = useContext(UserContext)
+  const {user} = useContext(UserContext)
   const { t } = useTranslation();
   const steps = [t("Checkout.Address"), t("Checkout.Payment"), t("Checkout.Review")];
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [orderNumber, setOrderNumber] = useState("")
   const [error,setError] = useState("")
+  const {dataFacebook} = useContext(UserContext);
+  const isUserFacebook = dataFacebook.graphDomain === 'facebook'
 
   
   var hours = new Date().getHours(); //Current Hours
@@ -122,6 +124,11 @@ const Checkout = () =>{
   }
 
   const handleNext = () => {
+    if (isUserFacebook ){
+      setError(t("Checkout.ErrorFacebook"))
+    }
+     else
+     { 
     if ((isEmpty(street) && isEmpty(number) && isEmpty(city) && isEmpty(state) && isEmpty(country)  && isEmpty(zipCode))
       || (activeStep === 1 && isEmpty(deliveryType) && isEmpty(payMethod))
     ) {
@@ -140,16 +147,16 @@ const Checkout = () =>{
     setActiveStep(activeStep + 1);
     setDate(date1)
     }
+  }
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
 
-  const handlePurchase = () =>{
+  const handlePurchase = () =>{    
     if ((total === 0) ){
       setError(t("Checkout.ValueZero"))
-
     } 
     else {
   
@@ -159,15 +166,13 @@ const Checkout = () =>{
       handleNext()
     })
     .catch(err => console.log(err))
-    }
+    
+  }
   }
 
   const goToHome = () =>{
     history.push("/home")
   }
-
-
-
 
   const purchase = 
   {
@@ -189,6 +194,8 @@ const Checkout = () =>{
     },
     paymentMethod: payMethod,
   }
+
+  console.log(purchase)
 
   return (
     <React.Fragment>

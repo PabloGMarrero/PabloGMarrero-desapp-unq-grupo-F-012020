@@ -21,6 +21,7 @@ class UserService{
         const user = {
             name, email, password, id, isAdmin:false, idStore:0
         }
+        console.log(API_URL+"updateuser", user)
         return axios.put(API_URL+"updateuser", user);
     }
 

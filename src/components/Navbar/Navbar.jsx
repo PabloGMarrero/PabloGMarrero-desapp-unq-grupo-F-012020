@@ -45,9 +45,11 @@ const NavBar = () => {
   const classes = styles();
   const history = useHistory()
   const { t, i18n } = useTranslation();
-  const [user] = useContext(UserContext)
-  const isUserAdmin = user.isAdmin 
-  const [isLoggued] = useState(user!==null && user !== undefined && user.email!== "")
+  const {user} = useContext(UserContext)
+  const isUserAdmin = user.isAdmin
+  const {dataFacebook} = useContext(UserContext) 
+  const [isLoggued] = useState((user!==null && user !== undefined && user.email!== "") ||  (dataFacebook.email!== '' &&  dataFacebook!== ""))
+
 
 
   
@@ -68,6 +70,7 @@ const NavBar = () => {
     // localStorage.setItem("prod_count", 0)
     // localStorage.setItem("shopping_list", [] )
     localStorage.removeItem("user");
+    localStorage.removeItem("dataFacebook");
     localStorage.removeItem("shopping_list")
     localStorage.removeItem("prod_count")
     // authService.logout()

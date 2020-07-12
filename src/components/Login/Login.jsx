@@ -18,6 +18,7 @@ import { UserContext } from '../../context/user-context'
 import { StoreContext } from '../../context/store-context'
 import { useTranslation } from 'react-i18next'
 import Alert from '@material-ui/lab/Alert'
+import FacebookAuth from 'react-facebook-auth';
 
 const styles = makeStyles((theme) => ({
   paper: {
@@ -40,16 +41,30 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
+const btnStyles = {
+  backgroundColor: '#008CBA',
+  border: 'none',
+  color: 'white',
+  padding: '15px 32px',
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-block',
+  fontSize: '16px',
+  margin: '4px 2px',
+  cursor: 'pointer',
+};
+
 
 const Login = () =>{
   const classes = styles();
-  const [,setUser] = useContext(UserContext)
+  const {setUser} = useContext(UserContext)
   const history = useHistory();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const { t } = useTranslation()
   const [, setStore] = useContext(StoreContext)
+  const {dataFacebook,setDataFacebook} = useContext(UserContext);
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -74,7 +89,7 @@ const Login = () =>{
     history.push(`/home`)
   }
 
-  const validateEmail = (email) => {
+   const validateEmail = (email) => {
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         return true;
     }
@@ -97,7 +112,54 @@ const Login = () =>{
 
   const goToRegister = () =>{
     history.push("/register")
+
   }
+
+  
+  const handleError = e => {
+    if(e.message === "Network Error"){
+      setError(t("Register.InvalidNetwork"))
+    }else if (e.response.status === 409){
+      setError(t("Register.AlreadyExists"))
+    }
+  }
+  
+  
+  const MyFacebookButton = ({ onClick, styles }) => (
+    <button onClick={onClick} style={styles}>
+      Login with facebook
+    </button>
+  );
+  
+  const authenticate = response => {
+
+    //console.log(response);
+    setDataFacebook(response);
+    history.push(`/home`)
+    
+    //console.log(dataFacebook);
+    //authService.register(dataFacebook.name, dataFacebook.email, '')
+    //           .then(resp1 => authService.login("", dataFacebook.email, "")
+    //                                     .then(resp => { handleSubmit(resp)})
+    //                                     .catch((e) => setError(t("Login.BadLogin"))) )
+    //           .catch( e => {handleError(e)})
+
+    
+  };
+  
+  const FaceLogin = () => (
+    <div>
+      <FacebookAuth
+        appId="3168251913232437"
+        callback={authenticate}
+        fields="name,email"
+        scope="public_profile,user_friends"
+        component={MyFacebookButton}
+        icon="fa-facebook" 
+        customProps={{ styles: btnStyles }}
+      />
+    </div>
+  )
   
   return (
     <React.Fragment>
@@ -152,9 +214,6 @@ const Login = () =>{
               >{t("Login.Signin")}
             </Button>
             <Grid container>
-              <Grid item>
-                <Link href="#" variant="body2">{t("Login.ForgotPass")}</Link>
-              </Grid>
               <hr></hr>
               <Grid item>
                 <Link href="#" onClick={goToRegister} variant="body2">{t("Login.HaveNotAccount")}</Link>
@@ -162,7 +221,11 @@ const Login = () =>{
             </Grid>
           </form>
         </Box>
+
+        <FaceLogin/> 
       </Container>
+
+      
       </React.Fragment>
   );
 }

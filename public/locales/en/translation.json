@@ -44,7 +44,8 @@
         "Latitude": "Latitude",
         "Longitude": "Longitude",
         "Coverage": "Coverage distance (kms)",
-        "Current": "Current: "
+        "Current": "Current: ",
+        "ErrorFacebook": "To see the profile you must use an App User"
     },
     "Home":{
         "Stores": "Stores near to your home",
@@ -117,7 +118,8 @@
         "ValueZero": "Empty cart",
         "MissingValues": "Please, fill all the fields",
         "ErrorNumber": "Please insert a valid number",
-        "ErrorString":"Please insert a valid address"
+        "ErrorString":"Please insert a valid address",
+        "ErrorFacebook": "Please, to make a purchase sign-up in app"
     },
     "ProductList":{
         "Loading": "Loading...",
@@ -144,7 +146,8 @@
         "SearchingPurchases": "No purchases to show at the moment",
         "Update": "Update",
         "UpdateStoreData": "Update store data",
-        "AddProduct": "Add products"
+        "AddProduct": "Add products",
+        "ErrorFacebook": "To see the history you must be loggued witha an App User"
     }
     ,
     "AddProduct":{

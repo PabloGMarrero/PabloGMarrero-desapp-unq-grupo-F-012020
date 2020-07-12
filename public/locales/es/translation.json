@@ -45,7 +45,8 @@
         "Latitude": "Latitud",
         "Longitude": "Longitud",
         "Coverage": "Distancia de cobertura (kms)",
-        "Current": "Actual: "
+        "Current": "Actual: ",
+        "ErrorFacebook": "Para ver el perfil debes estar logueado con un usuario de la aplicacion"
     },
     "Home":{
         "Stores": "Comercios cerca tuyo",
@@ -118,7 +119,9 @@
         "ValueZero": "Carrito vacio",
         "MissingValues": "Por favor, complete todos los campos",
         "ErrorNumber": "Por favor, inserte un numero valido",
-        "ErrorString":"Por favor, inserte un direccion valida"
+        "ErrorString":"Por favor, inserte un direccion valida",
+        "ErrorFacebook": "Para hace una compra por favor registrate en la aplicación"
+        
     },
     "ProductList":{
         "Loading": "Buscando...",
@@ -145,7 +148,8 @@
         "SearchingPurchases": "No hay comprar para mostrar",
         "Update": "Actualizar",
         "UpdateStoreData": "Actualizar datos del comercio",
-        "AddProduct": "Agregar productos"
+        "AddProduct": "Agregar productos",
+        "ErrorFacebook": "Para ver el historial debes estar logueado con un usuario de la aplicacion"
     }
     ,
     "AddProduct":{

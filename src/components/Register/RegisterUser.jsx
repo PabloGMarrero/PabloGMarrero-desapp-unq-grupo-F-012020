@@ -69,11 +69,7 @@ const RegisterUser = () =>{
       setError(t("Login.MissingValues"))
     } else {
         if (validateEmail(email)) {
-            authService.register(name, email, password)
-              .then(response => goToLogin() )
-              .catch( e => {
-                handleError(e)
-              })
+            authService.register(name, email, password).then(response => goToLogin() ).catch( e => {handleError(e)})
         }
     }
   }

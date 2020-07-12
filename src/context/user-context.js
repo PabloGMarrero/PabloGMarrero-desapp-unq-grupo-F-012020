@@ -12,8 +12,11 @@ export const UserProvider = props =>{
     idStore: 0
   });
 
+  const [dataFacebook,setDataFacebook] = useState(JSON.parse(localStorage.getItem('dataFacebook')) || '' );
+
   return(
-    <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={{user, setUser ,dataFacebook, setDataFacebook}}>
+
       {props.children}
     </UserContext.Provider>
   )

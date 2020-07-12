@@ -13,8 +13,10 @@ const PurchaseHistory= () =>{
 
     const [purchaseList, setPurchaseList] = useState()
 
-    const [user] = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const {t} = useTranslation()
+    const {dataFacebook} = useContext(UserContext);
+    const isUserFacebook = dataFacebook.graphDomain === 'facebook'
 
     useEffect(() => {    
         const fetchData = async () => {
@@ -32,13 +34,15 @@ const PurchaseHistory= () =>{
 
   return (
     <Box>
+      {isUserFacebook ? <h2>{t("Profile.ErrorFacebook")}</h2>  
+          : 
       <Box>
         <Typography variant="h4">{t("Profile.Purchases")} </Typography>
         <Box className="purchase" >
           {purchaseList ? <RenderPurchases> </RenderPurchases> : <p>{t("Profile.SearchingPurchases")}</p>}
         </Box>
       </Box>
-
+        }
     </Box>
   );
 }
