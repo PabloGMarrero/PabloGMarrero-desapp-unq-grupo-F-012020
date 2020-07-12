@@ -159,15 +159,16 @@ const Checkout = () =>{
       setError(t("Checkout.ValueZero"))
     } 
     else {
-  
-    purchaseService.newPurchase(purchase)
-                 .then(response => {
-      setOrderNumber(response.data) 
-      handleNext()
-    })
-    .catch(err => console.log(err))
-    
-  }
+      purchaseService.newPurchase(purchase)
+      .then(response => {
+        setOrderNumber(response.data) 
+        localStorage.removeItem('prod_count');
+        localStorage.removeItem('shopping_list');
+        handleNext()
+      })
+      .catch(err => console.log(err))
+      
+    }
   }
 
   const goToHome = () =>{
@@ -194,8 +195,6 @@ const Checkout = () =>{
     },
     paymentMethod: payMethod,
   }
-
-  console.log(purchase)
 
   return (
     <React.Fragment>
