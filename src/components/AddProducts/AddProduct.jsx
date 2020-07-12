@@ -47,7 +47,7 @@ const AddProductView = () =>{
   const [store, setStore] = useState("")
   const [error,setError] = useState("")
   const {t} = useTranslation()
-  const [user] = useContext(UserContext)
+  const {user} = useContext(UserContext)
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
