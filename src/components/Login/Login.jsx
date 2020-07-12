@@ -64,7 +64,6 @@ const Login = () =>{
   const [error, setError] = useState("")
   const { t } = useTranslation()
   const [, setStore] = useContext(StoreContext)
-  const {dataFacebook,setDataFacebook} = useContext(UserContext);
 
   const isEmpty = (value) => {
     return (typeof value === 'undefined' || value === null || value === '');
@@ -106,13 +105,12 @@ const Login = () =>{
       .then(resp => {
         handleSubmit(resp)
       })
-      .catch((e) => setError(t("Login.BadLogin")));
+      .catch((e) => handleError(e));
     }
   }
 
   const goToRegister = () =>{
     history.push("/register")
-
   }
 
   
@@ -121,6 +119,8 @@ const Login = () =>{
       setError(t("Register.InvalidNetwork"))
     }else if (e.response.status === 409){
       setError(t("Register.AlreadyExists"))
+    }else{
+      setError(t("Login.BadLogin"))
     }
   }
   
@@ -132,18 +132,26 @@ const Login = () =>{
   );
   
   const authenticate = response => {
+    const authorized = response
+    if (! (authorized.email === undefined)) {
+      console.log(authorized.email)
+      authService.registerIsUserDoesNotExist(authorized.name, authorized.email, "")
+      .then(resp => handleSubmit(resp))
+      .catch(e => console.log(e))
+      //setDataFacebook(response)
+      //setDataFacebook(response);
+      //history.push(`/home`)
+      
+      //console.log(dataFacebook);
+      //authService.register(dataFacebook.name, dataFacebook.email, '')
+      //           .then(resp1 => authService.login("", dataFacebook.email, "")
+      //                                     .then(resp => { handleSubmit(resp)})
+      //                                     .catch((e) => setError(t("Login.BadLogin"))) )
+      //           .catch( e => {handleError(e)})
 
-    //console.log(response);
-    setDataFacebook(response);
-    history.push(`/home`)
-    
-    //console.log(dataFacebook);
-    //authService.register(dataFacebook.name, dataFacebook.email, '')
-    //           .then(resp1 => authService.login("", dataFacebook.email, "")
-    //                                     .then(resp => { handleSubmit(resp)})
-    //                                     .catch((e) => setError(t("Login.BadLogin"))) )
-    //           .catch( e => {handleError(e)})
-
+    }else{
+      alert("no está autorizado")
+    }
     
   };
   
@@ -153,7 +161,7 @@ const Login = () =>{
         appId="3168251913232437"
         callback={authenticate}
         fields="name,email"
-        scope="public_profile,user_friends"
+        scope="public_profile,email,user_friends"
         component={MyFacebookButton}
         icon="fa-facebook" 
         customProps={{ styles: btnStyles }}
