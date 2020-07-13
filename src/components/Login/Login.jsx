@@ -42,7 +42,8 @@ const styles = makeStyles((theme) => ({
 }));
 
 const btnStyles = {
-  backgroundColor: '#008CBA',
+  backgroundColor: '#E59500',
+  width: "400px",
   border: 'none',
   color: 'white',
   padding: '15px 32px',
@@ -161,7 +162,7 @@ const Login = () =>{
         appId="3168251913232437"
         callback={authenticate}
         fields="name,email"
-        scope="public_profile,email,user_friends"
+        scope="public_profile,email"
         component={MyFacebookButton}
         icon="fa-facebook" 
         customProps={{ styles: btnStyles }}
@@ -222,7 +223,7 @@ const Login = () =>{
               >{t("Login.Signin")}
             </Button>
             <Grid container>
-              <hr></hr>
+
               <Grid item>
                 <Link href="#" onClick={goToRegister} variant="body2">{t("Login.HaveNotAccount")}</Link>
               </Grid>
