@@ -10,6 +10,7 @@ const styles = makeStyles((theme) => ({
   main:{
     display: "flex",
     justifyContent: "center",
+    marginTop: 100,
   },
   box: {
     padding: "10px"

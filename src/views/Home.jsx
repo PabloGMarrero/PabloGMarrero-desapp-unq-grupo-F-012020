@@ -6,6 +6,7 @@ import ContainerHome from '../components/Home/Home'
 import {withRouter} from 'react-router';
 import Footer from '../components/Footer/Footer'
 import Bag from '../components/Bag/Bag'
+import NavBarResponsive from '../components/Navbar/NavBarResponsive'
 
 const styles = makeStyles((theme) => ({
     root:{
@@ -19,7 +20,7 @@ const Home = () => {
     const classes = styles()
     return (    
         <Box className={classes.root}>
-            <Navbar></Navbar>
+            <NavBarResponsive></NavBarResponsive>
             <Bag></Bag>
             <ContainerHome></ContainerHome>
             <Footer></Footer>

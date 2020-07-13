@@ -1,7 +1,6 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
-import { CoordenadasContext } from '../../context/location-context'
 import MapboxGLMap from './MapGL.jsx'
 import { useTranslation } from 'react-i18next'
 import Button from '@material-ui/core/Button';
@@ -25,16 +24,12 @@ const styles = makeStyles((theme) => ({
 }));
 
 const Location = () =>{
-    const [coord] = useContext(CoordenadasContext)
     const image = './assets/img/logoB.png'
     const history = useHistory();
     const classes = styles();
     const {t} = useTranslation()
     return (
-        <Box className={classes.root}>
-            <div className= "coordenadas">
-                <div> Longitude: {coord.lng} | Latitude: {coord.lat} </div>
-            </div>           
+        <Box className={classes.root}>         
             <img src={image} alt={'im'} className="center" />
             <Button className={classes.button} onClick={() => {history.push(`/home`)}}>{t("Location.SearchProducts")}</Button>
             

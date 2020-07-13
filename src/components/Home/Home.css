@@ -1,17 +1,22 @@
 .main-body{
     margin: 1%;
 }
-
+.stores{
+    font-family: 'Roboto';
+    font-style: 'normal';
+    font-display: 'swap';
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 .products{
-    height: 200%;
+    height: 100%;
     padding: 0;
     margin: 0 auto;
-    display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
     align-content: center;
     flex-grow: 1;
     flex: 1 1 160px;
-    width: 50%;
+    width: 80%;
 }

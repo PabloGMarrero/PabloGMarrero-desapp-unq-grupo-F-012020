@@ -2,46 +2,36 @@ import React from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
+import { Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-class Store extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-
+const styles = makeStyles((theme) => ({
+  root:{
+    width: "100%",
+    margin: "30px"
+  },
+  title:{
+    fontFamily: 'Roboto',
   }
+}));
 
-  render() {
-    return (
+const Store = ({storeName, activity}) =>{
+  const classes = styles()
 
-      <Card className="{classes.root}">
-      <CardContent>
-       
-        <Typography variant="h5" component="h2">
-              {this.props.storeName}
-        </Typography>
-        <Typography className="{classes.title}" color="textSecondary" gutterBottom>
-            {this.props.activity}
-        </Typography>
-      </CardContent>
-    </Card>
-
-      
-      /*<Box>
-      <Box className="row form-group">
-        <Box className="col-sm-10">
-      
-          <h4>{this.props.storeName}</h4>  
-          <h4> {this.props.activity}</h4> 
-          
-          
-        </Box>
-      
-      </Box>
-      </Box>*/
-
+  return (
+    <Box>
+      <Card className={classes.root}>
+        <CardContent>      
+          <Typography variant="h5" component="h2">
+                {storeName}
+          </Typography>
+          <Typography className={classes.title} color="textSecondary" gutterBottom>
+              {activity}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Box>
     );
-  }
 }
 
 export default Store;

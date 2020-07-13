@@ -20,7 +20,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 const styles = makeStyles((theme) => ({
   paper: {
-    marginTop: 8,
+    marginTop: 100,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

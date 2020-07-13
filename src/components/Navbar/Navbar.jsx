@@ -38,6 +38,9 @@ const styles = makeStyles((theme) => ({
     },
     navbar:{
       background:"#D80032"
+    },
+    language:{
+      marginLeft: "20px",
     }
   }));
   
@@ -49,10 +52,6 @@ const NavBar = () => {
   const isUserAdmin = user.isAdmin
   const {dataFacebook} = useContext(UserContext) 
   const [isLoggued] = useState((user!==null && user !== undefined && user.email!== "") ||  (dataFacebook.email!== '' &&  dataFacebook!== ""))
-
-
-
-  
 
   const goToLogin = () =>{
     history.push("/login")
@@ -131,15 +130,7 @@ const NavBar = () => {
           ) ]
         }
         </Box>
-        <Box>
-            {
-              i18n.language === "es" ?
-                <Button className={classes.strikingButton} onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
-                :
-                <Button className={classes.strikingButton}  onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
-              }
-  
-        </Box>  
+ 
       </Box> 
     )
   }
@@ -150,6 +141,15 @@ const NavBar = () => {
       <Toolbar>
         <IconButton edge="start" className="menuButton" color="inherit" aria-label="menu">   
             <Typography variant="h6" className={classes.title} onClick={goToHome}>{t("Navbar.Home")}</Typography>
+            <Box className= {classes.language}>
+            {
+              i18n.language === "es" ?
+                <Button onClick={() => changeLanguage('en')}>{t("Language.English")}</Button>
+                :
+                <Button onClick={() => changeLanguage('es')}>{t("Language.Spanish")}</Button> 
+              }
+  
+        </Box> 
         </IconButton>   
         <Box className={classes.button}>
           <GeneralNavBar></GeneralNavBar>
