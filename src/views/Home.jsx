@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import Navbar from "../components/Navbar/Navbar";
 import ContainerHome from '../components/Home/Home'
 import {withRouter} from 'react-router';
 import Footer from '../components/Footer/Footer'

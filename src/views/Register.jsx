@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from "../components/Navbar/Navbar";
 import ContainerRegister from '../components/Register/Register'
 import {withRouter} from 'react-router';
 import NavBarResponsive from '../components/Navbar/NavBarResponsive'
