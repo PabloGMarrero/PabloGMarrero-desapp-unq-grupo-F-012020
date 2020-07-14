@@ -27,7 +27,15 @@ const styles = makeStyles((theme) => ({
     justifyContent: "center",
     alignContent: "center",
     width: "80%",
-  }   
+  },
+  title:{
+    paddingLeft: "150px",
+    color: "#EDF2F4",
+    width: "500px",
+    background: "#D80032",
+    borderTopRightRadius: "1em 1.5em",
+    borderBottomRightRadius: "1em 1.5em",
+  }
 }));
 
 const Home = () =>{
@@ -80,14 +88,14 @@ const Home = () =>{
   return (
     <Box>
       <Box>
-        <Typography variant="h4">{t("Home.Stores")} </Typography>
+        <Typography variant="h4" className={classes.title}>{t("Home.Stores")} </Typography>
         <Box className={classes.stores}>
           {storeList ? <RenderStores> </RenderStores> : <p>{t("Home.SearchingStores")}</p>}
         </Box>
       </Box>
       
       <Box>
-        <Typography variant="h4">{t("Home.Products")}</Typography>
+        <Typography variant="h4" className={classes.title}>{t("Home.Products")}</Typography>
         <Box className={classes.products} >
           <RenderProducts ></RenderProducts>
         </Box>

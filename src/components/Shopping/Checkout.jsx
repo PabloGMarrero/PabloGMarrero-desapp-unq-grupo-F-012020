@@ -162,8 +162,10 @@ const Checkout = () =>{
       purchaseService.newPurchase(purchase)
       .then(response => {
         setOrderNumber(response.data) 
-        localStorage.removeItem('prod_count');
-        localStorage.removeItem('shopping_list');
+        localStorage.setItem('prod_count', 0);
+        localStorage.setItem('shopping_list', []);
+        // localStorage.removeItem('prod_count');
+        // localStorage.removeItem('shopping_list');
         handleNext()
       })
       .catch(err => console.log(err))

@@ -8,10 +8,13 @@ import { makeStyles } from '@material-ui/core/styles';
 const styles = makeStyles((theme) => ({
   root:{
     width: "100%",
-    margin: "30px"
+    margin: "30px",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
-  title:{
-    fontFamily: 'Roboto',
+  store:{
+    margin: "0 auto",
   }
 }));
 
@@ -21,7 +24,7 @@ const Store = ({storeName, activity}) =>{
   return (
     <Box>
       <Card className={classes.root}>
-        <CardContent>      
+        <CardContent className={classes.store}>      
           <Typography variant="h5" component="h2">
                 {storeName}
           </Typography>

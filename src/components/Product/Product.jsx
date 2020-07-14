@@ -48,7 +48,7 @@ const addItem = () => {
       <Box>
         <Box className="row form-group">
           <Box className="col-sm-10">
-            <Box className="product-col" style={{ textAlign: 'center' }}>   
+            <Box className="product-col" >   
               <img src={imageUrl} alt={productName}  className="product-img" />
             </Box>
   

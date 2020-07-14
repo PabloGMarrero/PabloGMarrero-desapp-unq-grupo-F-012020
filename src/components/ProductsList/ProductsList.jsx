@@ -6,8 +6,9 @@ import { Box } from '@material-ui/core';
 
 const styles = makeStyles((theme) => ({
     products:{
-      display: 'flex',
-      width: "100%"
+        marginTop: "20px",
+        display: 'flex',
+        width: "100%"
     },
     
 }));
