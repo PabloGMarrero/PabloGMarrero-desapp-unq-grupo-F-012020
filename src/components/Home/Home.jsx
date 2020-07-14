@@ -11,6 +11,9 @@ import ProductsPagination from '../ProductsList/ProductsPagination'
 import { makeStyles } from '@material-ui/core/styles';
 
 const styles = makeStyles((theme) => ({
+  root:{
+    margin: "0 auto"
+  },
   stores: {
       fontFamily: 'Roboto',
       fontStyle: 'normal',
@@ -86,7 +89,7 @@ const Home = () =>{
   }
 
   return (
-    <Box>
+    <Box className={classes.root}>
       <Box>
         <Typography variant="h4" className={classes.title}>{t("Home.Stores")} </Typography>
         <Box className={classes.stores}>
