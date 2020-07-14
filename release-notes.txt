@@ -1,0 +1,15 @@
+---------------------------------------------------------------------
+RELEASE V3.0.1
+---------------------------------------------------------------------
+
+NEW FEATURES:
+- Agregado de formatters de fecha, $ (moneda) y # (números) según LOCALE}
+- Se agrega autenticación con Facebook.
+- Se agregó paginación del lado del servidor
+- Se agregó historial de compras para visualizar del lado del front.
+
+NOTES:
+- Falto un poco más de tiempo de nuestra parte para pensar mejor el diseño.
+
+KNOWN ISSUES:
+- Diseño no es 100% responsive
