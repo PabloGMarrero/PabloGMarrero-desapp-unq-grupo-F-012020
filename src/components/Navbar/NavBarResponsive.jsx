@@ -231,10 +231,5 @@ const NavBarResponsive = ()=>{
     );
 }
 
-NavBarResponsive.propTypes = {
-  classes : PropTypes.object.isRequired
-};
-
-
 
 export default withRouter(NavBarResponsive);

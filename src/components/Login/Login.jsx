@@ -39,6 +39,9 @@ const styles = makeStyles((theme) => ({
     margin: 3,
     backgroundColor: '#E59500'
   },
+  error:{
+    marginTop: "100px",
+  }
 }));
 
 const btnStyles = {
@@ -139,17 +142,6 @@ const Login = () =>{
       authService.registerIsUserDoesNotExist(authorized.name, authorized.email, "")
       .then(resp => handleSubmit(resp))
       .catch(e => console.log(e))
-      //setDataFacebook(response)
-      //setDataFacebook(response);
-      //history.push(`/home`)
-      
-      //console.log(dataFacebook);
-      //authService.register(dataFacebook.name, dataFacebook.email, '')
-      //           .then(resp1 => authService.login("", dataFacebook.email, "")
-      //                                     .then(resp => { handleSubmit(resp)})
-      //                                     .catch((e) => setError(t("Login.BadLogin"))) )
-      //           .catch( e => {handleError(e)})
-
     }else{
       alert("no está autorizado")
     }
@@ -173,7 +165,7 @@ const Login = () =>{
   return (
     <React.Fragment>
       <CssBaseline />
-    <Container component="main" maxWidth="xs">
+    <Container className={classes.error}  component="main" maxWidth="xs">
         {error ?
           <Alert severity="error">{error}</Alert>
         :

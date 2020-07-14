@@ -38,6 +38,9 @@ const styles = makeStyles((theme) => ({
   },
   register:{
     background: '#E59500'
+  },
+  error:{
+    marginTop: "100px",
   }
 }));
 
@@ -93,11 +96,10 @@ const RegisterUser = () =>{
 
   const goToLogin = () =>{
     setRegistrationSuccessful(true)
-    //history.push("/login")
   }
   return (
         <Box className="container">
-          <Container component="main" maxWidth="xs">
+          <Container className={classes.error}  component="main" maxWidth="xs">
             {error ?
               <Alert severity="error">{error}</Alert>
             :
