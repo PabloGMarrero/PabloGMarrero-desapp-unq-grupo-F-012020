@@ -9,12 +9,8 @@ const styles = makeStyles((theme) => ({
   root:{
     width: "100%",
     margin: "30px",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
   },
   store:{
-    margin: "0 auto",
   }
 }));
 

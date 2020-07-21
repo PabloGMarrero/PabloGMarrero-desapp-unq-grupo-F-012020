@@ -3,13 +3,20 @@ import Product from '../Product/Product';
 import {useTranslation} from 'react-i18next'
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
+import './ProductList.css'
 
 const styles = makeStyles((theme) => ({
-    products:{
-        marginTop: "20px",
-        display: 'flex',
-        width: "100%"
-    },
+    // products:{ 
+    //     // marginTop: "20px",
+    //     // display: 'flex',
+    //     // width: "100%"
+    //     margin: "0 auto",
+    //     width: "100%",
+    //     display: "flex",
+    //     flexDirection: "row",
+    //     flexWrap: "wrap",
+    //     justifyContent: "space-between",
+    // },
     
 }));
 
@@ -23,7 +30,8 @@ const ProductsList = ({products, loading}) =>{
     const classes = styles();
 
     return (
-        <Box className ={classes.products}>
+        // <Box className ={classes.products}>
+        <Box className ="products">
             {!loading > 0 ?  
             products.map( product =>
             <Product

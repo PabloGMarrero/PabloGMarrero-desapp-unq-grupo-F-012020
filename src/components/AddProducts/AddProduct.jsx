@@ -21,19 +21,15 @@ const styles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
-    margin: 1,
-    backgroundColor: '#E59500',
-  },
   form: {
     width: '100%',
     marginTop: 3,
   },
-  submit: {
-    margin: 3,
-  },
   register:{
     background: '#E59500'
+  },
+  container:{
+    marginTop: "5%",
   }
 }));
 
@@ -59,7 +55,6 @@ const AddProductView = () =>{
       setError(t("AddProduct.MissingValues"))
       
     } else {
-            console.log(user.idStore)
             productService.addProductToStore(user.idStore, name, brand, imagenUrl, price, store)
               .then(response =>  history.push(`/home`))
               .catch( e => {
@@ -72,7 +67,7 @@ const AddProductView = () =>{
 
  
   return (
-        <Box className="container">
+        <Box className= {classes.container}>
           <Container component="main" maxWidth="xs">
           {error ?
           <Alert severity="error">{error}</Alert>

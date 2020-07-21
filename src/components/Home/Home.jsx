@@ -15,26 +15,13 @@ const styles = makeStyles((theme) => ({
     margin: "0 auto"
   },
   stores: {
-      fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontDisplay: 'swap',
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
   },
   products:{
-    fontFamily: 'Roboto',
-    height: "100%",
-    margin: "0 auto",
-    alignItems: "center",
-    justifyContent: "center",
-    alignContent: "center",
-    width: "80%",
+
   },
   title:{
-    paddingLeft: "150px",
+    width: "400px",
     color: "#EDF2F4",
-    width: "500px",
     background: "#D80032",
     borderTopRightRadius: "1em 1.5em",
     borderBottomRightRadius: "1em 1.5em",

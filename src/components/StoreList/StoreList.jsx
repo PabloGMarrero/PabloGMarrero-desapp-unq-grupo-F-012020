@@ -4,20 +4,17 @@ import { useTranslation } from 'react-i18next';
 import MapboxGLMapStores from './MapGLStores';
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core/styles';
+import './StoreList.css'
 
 const styles = makeStyles((theme) => ({
     root:{
       width: "80%",
-      margin: "30px",
-      display: "flex",
-      flexDirection: "column",
-      
+      margin: "30px",      
     },
-    products:{
-        width: "80%",
-        marginLeft: "25%",
-        display: "flex",
-        flexDirection: "row"
+    stores:{
+        // display: "flex",
+        // flexDirection: "row",
+        // flexWrap: "wrap",
     }
   }));
 
@@ -27,7 +24,7 @@ const StoreList = ({stores}) =>{
     return (
         <Box className = {classes.root}>
             <MapboxGLMapStores stores = {stores}></MapboxGLMapStores>
-            <Box className = {classes.products}>
+            <Box className = "stores">
                 {stores.length > 0  ? 
                 stores.map( store =>
                     <Store
