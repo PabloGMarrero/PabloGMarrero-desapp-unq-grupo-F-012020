@@ -35,7 +35,7 @@ const StoreList = ({stores}) =>{
                         t = {t}
                     />
                 )
-                : <p>Loading... </p>
+                : <p>{t("ProductList.Loading")} </p>
                 }
             </Box>
         </Box>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import {useHistory, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {  AppBar, Toolbar, Typography,  Grid, SwipeableDrawer } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button'
@@ -96,12 +95,13 @@ const NavBarResponsive = ()=>{
         // localStorage.setItem("user", {id: 0,  name: "",  password: "", email: "" })
         // localStorage.setItem("prod_count", 0)
         // localStorage.setItem("shopping_list", [] )
-        localStorage.removeItem("user");
-        localStorage.removeItem("dataFacebook");
-        localStorage.removeItem("shopping_list")
-        localStorage.removeItem("prod_count")
+        // localStorage.removeItem("user");
+        // localStorage.removeItem("dataFacebook");
+        // localStorage.removeItem("shopping_list")
+        // localStorage.removeItem("prod_count")
+        localStorage.clear()
         // authService.logout()
-        setTimeout(history.push("/"), 10000)
+        setTimeout(history.push("/"), 3000)
         // history.push("/")
       }
       const goToLogin = () =>{

@@ -12,6 +12,7 @@ import {useTranslation } from 'react-i18next'
 import productService from '../../service/product-service';
 import Alert from '@material-ui/lab/Alert'
 import { UserContext} from '../../context/user-context'
+import AddMultipleProducts from './AddMultipleProducts';
 
 
 const styles = makeStyles((theme) => ({
@@ -26,7 +27,8 @@ const styles = makeStyles((theme) => ({
     marginTop: 3,
   },
   register:{
-    background: '#E59500'
+    background: '#E59500',
+    marginTop: '30px',
   },
   container:{
     marginTop: "5%",
@@ -89,7 +91,7 @@ const AddProductView = () =>{
                     required
                     fullWidth
                     id="Name"
-                    label= 'Nombre'
+                    label= {t("AddProduct.NameProduct")}
                     autoFocus
                    onChange={(ev) => setName(ev.target.value)}
                   />
@@ -100,7 +102,7 @@ const AddProductView = () =>{
                     required
                     fullWidth
                     id="Marca"
-                    label='Marca'
+                    label={t("AddProduct.BrandProduct")}
                     name="Marca"
                     autoComplete="Marca"
                     onChange={(ev) => setBrand(ev.target.value)}
@@ -112,7 +114,7 @@ const AddProductView = () =>{
                     required
                     fullWidth
                     id="price"
-                    label= 'Precio'
+                    label= {t("AddProduct.PriceProduct")}
                     name="price"
                     autoComplete="price"
                    onChange={(ev) => setPrice(ev.target.value)}
@@ -124,7 +126,7 @@ const AddProductView = () =>{
                     required
                     fullWidth
                     id="imageurl"
-                    label= 'Imagen'
+                    label= {t("AddProduct.ImageProduct")}
                     name="imageurl"
                     autoComplete="imageurl"
                    onChange={(ev) => setImagenUrl(ev.target.value)}
@@ -153,6 +155,7 @@ const AddProductView = () =>{
               
             </form>
           </Box>
+          <AddMultipleProducts></AddMultipleProducts>
         </Container>
         </Box>
   )

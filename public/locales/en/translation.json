@@ -154,7 +154,17 @@
         "MissingValues": "Please, fill all the fields",
         "BadAgregation": "The product already exist",
         "errorNumber": "No es un numero",
-        "perfect" : "Perfecto"
+        "perfect" : "Perfecto",
+        "NameProduct": "Name",
+        "BrandProduct": "Brand",
+        "PriceProduct": "Price",
+        "ImageProduct": "Image url"
+    },
+    "AddMultipleProducts":{
+        "SelectFile": "Select CSV with products",
+        "SendFile": "Upload file",
+        "Success":"The products were saved successfully",
+        "InvalidCharacteres": "The file is empty or has invalid characters."
     }
 
 }
